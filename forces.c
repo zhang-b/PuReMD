@@ -336,7 +336,6 @@ void Compute_Bond_Boost_Force(reax_system *system, control_params *control,
             printf("fy = %f ", atom1->f[1]);
             printf("fz = %f\n", atom1->f[2]);
             */
-            printf("re = %f\n", re);
           }
         }
       }
