@@ -256,6 +256,9 @@ typedef struct {
   real gamma; // note: this parameter is gamma^-3 and not gamma.
 
   real v13cor, ovc;
+
+  /* Bond boost parameters */
+  real r_e;
 } two_body_parameters;
 
 
@@ -444,6 +447,11 @@ typedef struct
   real amd_alpha;
   real amd_power;
   real amd_hof;  /*heat of formation*/
+
+  int bboost;
+  real bboost_Vmax;
+  real bboost_P1;
+  real bboost_q;
 } control_params;
 
 

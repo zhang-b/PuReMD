@@ -80,7 +80,7 @@ void Read_System( char *geof, char *ff, char *ctrlf,
 		  simulation_data *data, static_storage *workspace, 
 		  output_controls *out_control )
 {
-  FILE *ffield, *ctrl;
+  FILE *ffield, *ctrl, *bboost;
 
   ffield = fopen( ff, "r" );
   ctrl = fopen( ctrlf, "r" );
@@ -90,6 +90,17 @@ void Read_System( char *geof, char *ff, char *ctrlf,
 
   /* control file */
   Read_Control_File( ctrl, system, control, out_control );
+
+  /* read the boost parameters */
+  if (control->bboost) {
+    if ((bboost = fopen( "ffield.ext", "r")) == NULL ) {
+      printf("\nError on open ffield.ext!\n");
+      printf("Have bond boost in control file, but no boost parameters read\n\n");
+      exit(1);
+    }
+    else
+      Read_Force_Field_ext( bboost, &(system->reaxprm) );
+  }
 
   /* geo file */
   if( control->geo_format == XYZ ) {

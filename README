@@ -1,2 +1,19 @@
-PuReMD Manual (Purdue Reactive Molecular Dynamics Program) belongs to Purdue Univeristy. I just would like to modify the code to satisfy my specific usage.
+PuReMD (Purdue Reactive Molecular Dynamics Program) 
+@ref: Aktulga, H. M.; Fogarty, J. C.; Pandit, S. A.; Grama, A. Y. Parallel Computing 2012, 38, 245.
+@http: 
+
+We have implemented the Accelerated MD method in PuReMD.
+
+
+Bond boost method
+@ ref: J. Chem. Phys. 119. 6210 (2003)
+
+keywords in control
+
+bboost           1 ! 0: no bond boost; 1: bond boost simulation
+bboost_Vmax      200.0 ! bond boost maximium boost potential
+bboost_P1        0.95 ! bond boost adjust parameter
+bboost_q         0.3  ! bond boost switch
+
+
 

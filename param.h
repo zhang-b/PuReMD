@@ -34,6 +34,8 @@ int  Tokenize( char*, char*** );
 
 char Read_Force_Field( FILE*, reax_interaction* );
 
+char Read_Force_Field_ext( FILE*, reax_interaction* );
+
 char Read_Control_File( FILE*, reax_system*, control_params*, 
 			output_controls* );
 

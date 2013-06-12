@@ -91,6 +91,43 @@ void Init_Taper(control_params *control) {
 			+ 7.0 * swa * swb3 * swb3 + swb3 * swb3 * swb) / d7;
 }
 
+char Read_Force_Field_ext(FILE* fp, reax_interaction* reax) {
+
+    int i, j, k;
+    int c, l;
+    char *s;
+    char **tmp;
+    real val;
+
+    s = (char*) malloc(sizeof(char)*MAX_LINE);
+    tmp = (char**) malloc(sizeof(char*)*MAX_TOKENS);
+    for (i=0; i < MAX_TOKENS; i++)
+        tmp[i] = (char*) malloc(sizeof(char)*MAX_TOKEN_LEN);
+    // assign default parameters
+
+    for (i = 0; i < reax->num_atom_types; i++)
+        for (j = i; j < reax->num_atom_types; j++) {
+            reax->tbp[i][j].r_e = 0.001;
+    }
+
+    fgets(s, MAX_LINE, fp);
+    c = Tokenize(s, &tmp);
+    l = atoi(tmp[0]);
+
+    for (i=0; i < l; i++) {
+        fgets(s, MAX_LINE, fp);
+        c = Tokenize(s, &tmp);
+
+        j = atoi(tmp[0]) - 1;
+        k = atoi(tmp[1]) - 1;
+        
+        if ( j < reax->num_atom_types && k < reax->num_atom_types) {
+            val = atof(tmp[2]); reax->tbp[j][k].r_e = val;
+        }
+    }    
+
+}
+
 char Read_Force_Field(FILE* fp, reax_interaction* reax) {
 	char *s;
 	char **tmp;
@@ -841,6 +878,11 @@ char Read_Control_File(FILE* fp, reax_system *system, control_params* control,
 	control->amd_func = 1;
 	control->amd_hof = 0;
 
+	control->bboost = 0;
+	control->bboost_Vmax = 0.0;
+	control->bboost_P1 = 0.0;
+	control->bboost_q = 0.0;
+
 	/* memory allocations */
 	s = (char*) malloc(sizeof(char) * MAX_LINE);
 	tmp = (char**) malloc(sizeof(char*) * MAX_TOKENS);
@@ -1089,6 +1131,18 @@ char Read_Control_File(FILE* fp, reax_system *system, control_params* control,
 		} else if (strcmp(tmp[0], "amd_hof") == 0) {
 			val = atof(tmp[1]);
 			control->amd_hof = val;
+		} else if (strcmp(tmp[0], "bboost") == 0) {
+			val = atof(tmp[1]);
+			control->bboost= val;
+		} else if (strcmp(tmp[0], "bboost_Vmax") == 0) {
+			val = atof(tmp[1]);
+			control->bboost_Vmax = val;
+		} else if (strcmp(tmp[0], "bboost_P1") == 0) {
+			val = atof(tmp[1]);
+			control->bboost_P1 = val;
+		} else if (strcmp(tmp[0], "bboost_q") == 0) {
+			val = atof(tmp[1]);
+			control->bboost_q = val;
 		} else {
 			fprintf(stderr, "WARNING: unknown parameter %s\n", tmp[0]);
 			exit(15);
