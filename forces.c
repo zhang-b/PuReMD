@@ -228,6 +228,7 @@ void Compute_AMD_Force(reax_system *system, control_params *control,
 void Compute_Bond_Boost_Force(reax_system *system, control_params *control,
 		simulation_data *data, static_storage *workspace, list **lists) {
   int i, j, pj;
+  int type_i, type_j;
   int nbond; // Nb
   int start_i, end_i;
   real e, emax, r, re; // eta, eta_max, r, r_e
@@ -238,6 +239,7 @@ void Compute_Bond_Boost_Force(reax_system *system, control_params *control,
   real bf;
   rvec df; // boost force
   reax_atom *atom1, *atom2;
+  two_body_parameters *twbp;
   list *bonds;
 
   // bond boost parameters
@@ -255,12 +257,17 @@ void Compute_Bond_Boost_Force(reax_system *system, control_params *control,
   for( i=0; i < system->N; ++i ) {
     emax = 0.0;
     nbond = 0;
+    re = 0.001;
     V = 0;
     start_i = Start_Index(i, bonds);
     end_i = End_Index(i, bonds);
     for( pj = start_i; pj < end_i; ++pj ){
       if( i < bonds->select.bond_list[pj].nbr ) {
         j = bonds->select.bond_list[pj].nbr;
+        type_i = system->atoms[i].type;
+        type_j = system->atoms[j].type;
+        twbp = &( system->reaxprm.tbp[type_i][type_j] );
+        re = twbp->r_e;
         r = bonds->select.bond_list[pj].d;
         rv = bonds->select.bond_list[pj].dvec;
         e = (r - re)/re;
@@ -329,6 +336,7 @@ void Compute_Bond_Boost_Force(reax_system *system, control_params *control,
             printf("fy = %f ", atom1->f[1]);
             printf("fz = %f\n", atom1->f[2]);
             */
+            printf("re = %f\n", re);
           }
         }
       }
