@@ -455,6 +455,13 @@ void Init_Out_Controls(reax_system *system, control_params *control,
     fprintf( out_control->log, "%-6s%10s%10s%10s%10s%10s%10s%10s\n", 
 	     "step", "total", "neighbors", "init", "bonded", 
 	     "nonbonded", "QEq", "matvec" );
+
+    /* Init bond boost file */
+    strcpy( temp, control->sim_name );
+    strcat( temp, ".bboost" );
+    out_control->bboost = fopen( temp, "w" );
+    fprintf( out_control->bboost, "%-6s%13s%13s\n", "step", "eboost_max", "e_boost_total" );
+    fflush( out_control->bboost);
   }
 
   /* Init pressure file */

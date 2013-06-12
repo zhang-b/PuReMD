@@ -226,39 +226,46 @@ void Compute_AMD_Force(reax_system *system, control_params *control,
 }
 
 void Compute_Bond_Boost_Force(reax_system *system, control_params *control,
-		simulation_data *data, static_storage *workspace, list **lists) {
+		simulation_data *data, static_storage *workspace, list **lists, 
+        output_controls *out_control) {
   int i, j, pj;
   int type_i, type_j;
+  int adatom, adatom2; // label the boost atom
   int nbond; // Nb
   int start_i, end_i;
   real e, emax, r, re; // eta, eta_max, r, r_e
+  real bo;
   real A, dA, V, dV; // A(\eta^max), and \Delta A(\eta^max)
   real *rv;
   real q, P1, vmax; // q, P1 in equation 13
   real a1, a2, f1, f2, f3, f4;
-  real bf;
+  real bf; // boost force scale
   rvec df; // boost force
   reax_atom *atom1, *atom2;
+  bond_order_data *bo_ij;
   two_body_parameters *twbp;
   list *bonds;
+
+  bonds = (*lists) + BONDS;
 
   // bond boost parameters
   q = control->bboost_q; // should read this from control file
   P1 = control->bboost_P1; 
   vmax = control->bboost_Vmax;
-  re = 0.756; // should read this data from input files
 
   // initiate parameters
   e = 0;
+  adatom = 0;
+  adatom2 = 0;
+  nbond = 0;
+  emax = 0.0;
+  V = 0.0; // bost energy
+  bo = 0.0;
+  re = 0.001;
 
-  bonds = (*lists) + BONDS;
-  
   // first get the max bond order
   for( i=0; i < system->N; ++i ) {
-    emax = 0.0;
-    nbond = 0;
     re = 0.001;
-    V = 0;
     start_i = Start_Index(i, bonds);
     end_i = End_Index(i, bonds);
     for( pj = start_i; pj < end_i; ++pj ){
@@ -267,79 +274,99 @@ void Compute_Bond_Boost_Force(reax_system *system, control_params *control,
         type_i = system->atoms[i].type;
         type_j = system->atoms[j].type;
         twbp = &( system->reaxprm.tbp[type_i][type_j] );
-        re = twbp->r_e;
+        bo_ij = &( bonds->select.bond_list[pj].bo_data );
+        re = twbp->r_e; // get r_e from ffield.ext
         r = bonds->select.bond_list[pj].d;
-        rv = bonds->select.bond_list[pj].dvec;
-        e = (r - re)/re;
-        f1 = (e/q)*(e/q);
-        a1 = 1 - f1;
-        a2 = vmax * a1;
-        V += a2;
-        if (fabs (emax) < fabs(e))
+        e = (r - re)/re; // eta
+        bo = bo_ij->BO;
+        if ( (fabs (emax) < fabs(e)) & (bo > 0.3)) {
             emax = e;
-        //printf("emax = %f\n", e);
-        //printf("atom i %d, atom j %d, r= %f ", i, j, r);
+            adatom = i;
+            adatom2 = j;
+        }
       }
-      nbond += 1;
     }
-    // calculate A, and dA
-    if (emax < 0.3) {
-        f1 = (emax/q)*(emax/q);
-        a1 = 1 - f1;
-        a2 = 1 - P1*P1*f1;
-        A = a1*a1 / a2;
-        f2 = a1*(-2.0)*emax/q/re;
-        f3 = 2*a2*a2 - P1*P1*a1;
-        f4 = a2*a2;
-        dA = f2*f3/f4;
-        for( pj = start_i; pj < end_i; ++pj ) {
-          if( i < bonds->select.bond_list[pj].nbr ) {
-            j = bonds->select.bond_list[pj].nbr;
-            r = bonds->select.bond_list[pj].d;
-            rv = bonds->select.bond_list[pj].dvec;
-            e = (r - re)/re;
-            f1 = -2.0 * vmax * e;
-            f2 = nbond * q * re;
-            dV = f1 / f2;
-            if (fabs(emax - e) < 0.00001)
-                bf = -A * dV;
-            else
-                bf = -A * dV - dA * V / nbond;
+  }
+  /*
+  printf("atom1 = %s ", system->reaxprm.sbp[ system->atoms[adatom].type ].name);
+  printf("atom2 = %s ", system->reaxprm.sbp[ system->atoms[adatom2].type ].name);
+  printf("bo = %f\n", bo);
+  */
 
-            rvec_Scale(df, bf, rv);
-            rvec_Scale(df, 1/r, df);
+  if (fabs(emax) < 0.3) {
+      i = adatom;
 
-            /*
-            printf("-A = %f ", -A);
-            printf("-dV = %f ", dV);
-            printf("-dA = %f ", dA);
-            printf("V = %f ", V);
-            printf("nbond = %d\n", nbond);
-            printf("atom i %d, atom j %d, coord x= %f\n", i, j, rv[2]);
-            */
-            atom1 = &( system->atoms[i] );
-            atom2 = &( system->atoms[j] );
-            /*
-            printf("atom1 fz  = %10.4f ", atom1->f[2]);
-            printf("atom2 fz  = %10.4f ", atom2->f[2]);
-            printf("dfz = %10.4f\n", df[2]);
-            */
-            rvec_Add(system->atoms[i].f, df);
-            rvec_Scale(df, -1, df);
-            rvec_Add(system->atoms[j].f, df);
-            /*
-            printf("%f\n", r);
-            atom1->f[0] = 0;
-            atom1->f[1] = 0;
-            atom1->f[2] = 0;
-            printf("fx = %f ", atom1->f[0]);
-            printf("fy = %f ", atom1->f[1]);
-            printf("fz = %f\n", atom1->f[2]);
-            */
-          }
+      // calculate A, and dA
+      f1 = (emax/q)*(emax/q);
+      a1 = 1 - f1;
+      a2 = 1 - P1*P1*f1;
+      A = a1*a1 / a2;
+      f2 = a1*(-2.0)*emax/q/re;
+      f3 = 2*a2*a2 - P1*P1*a1;
+      f4 = a2*a2;
+      dA = f2*f3/f4;
+      /*
+      printf("f1 = %f, a1 = %f ", f1, a1);
+      printf("A = %f, dA = %f\n", A, dA);
+      */
+
+      start_i = Start_Index(i, bonds);
+      end_i = End_Index(i, bonds);
+      for( pj = start_i; pj < end_i; ++pj ) {
+        if( i < bonds->select.bond_list[pj].nbr ) {
+            nbond += 1;
+        }
+      }
+
+      for( pj = start_i; pj < end_i; ++pj ) {
+        if( i < bonds->select.bond_list[pj].nbr ) {
+          j = bonds->select.bond_list[pj].nbr;
+          r = bonds->select.bond_list[pj].d;
+          rv = bonds->select.bond_list[pj].dvec;
+          type_i = system->atoms[i].type;
+          type_j = system->atoms[j].type;
+          twbp = &( system->reaxprm.tbp[type_i][type_j] );
+          re = twbp->r_e; // get r_e from ffield.ext
+
+          /* \delta V = (1 - (\eta/q)^2) */
+          e = (r - re)/re; // eta
+          //printf("r = %f, e = %f\n", r, e);
+          f1 = (e/q)*(e/q);
+          a1 = 1 - f1;
+          a2 = vmax * a1;
+          V += a2;
+
+          f1 = -2.0 * vmax * e;
+          f2 = nbond * q * re;
+          dV = f1 / f2;
+          if (fabs(emax - e) < 0.00001)
+              bf = -A * dV;
+          else
+              bf = -A * dV - dA * V / nbond;
+
+          rvec_Scale(df, bf, rv);
+          rvec_Scale(df, 1/r, df);
+          V = V / nbond * A;
+          // assign the boost force
+          atom1 = &( system->atoms[i] );
+          atom2 = &( system->atoms[j] );
+          rvec_Add(system->atoms[i].f, df);
+          rvec_Scale(df, -1, df);
+          rvec_Add(system->atoms[j].f, df);
         }
       }
   }
+  /*
+  else
+      printf("No acceleration here !!!, emax = %f\n", emax);
+      */
+  fprintf( out_control->bboost, "%-6d%6d%6d%8.4f%8.4f%13.2f", \
+  data->step, adatom + 1, adatom2 + 1, bo, emax, V );
+
+  fprintf( out_control->bboost, " %s %s\n", \
+  system->reaxprm.sbp[ system->atoms[adatom].type ].name, 
+  system->reaxprm.sbp[ system->atoms[adatom2].type ].name);
+  fflush( out_control->bboost);
 }
 
 void Validate_Lists(static_storage *workspace, list **lists, int step, int n,
@@ -1052,7 +1079,7 @@ void Compute_Forces(reax_system *system, control_params *control,
 		Compute_AMD_Force(system, control, data, workspace, lists);
 	}
     if (control->bboost)
-        Compute_Bond_Boost_Force(system, control, data, workspace, lists);
+        Compute_Bond_Boost_Force(system, control, data, workspace, lists, out_control);
 	//Print_Total_Force( system, control, data, workspace, lists, out_control );
 #if defined(DEBUG_FOCUS)
 	fprintf( stderr, "totalforces - ");

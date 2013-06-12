@@ -747,6 +747,7 @@ typedef struct
   FILE *trj;
   FILE *out;
   FILE *pot;
+  FILE *bboost;
   FILE *log;
   FILE *mol, *ign;
   FILE *dpl;

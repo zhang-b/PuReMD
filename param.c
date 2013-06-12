@@ -108,6 +108,7 @@ char Read_Force_Field_ext(FILE* fp, reax_interaction* reax) {
     for (i = 0; i < reax->num_atom_types; i++)
         for (j = i; j < reax->num_atom_types; j++) {
             reax->tbp[i][j].r_e = 0.001;
+            reax->tbp[j][i].r_e = 0.001;
     }
 
     fgets(s, MAX_LINE, fp);
@@ -122,10 +123,12 @@ char Read_Force_Field_ext(FILE* fp, reax_interaction* reax) {
         k = atoi(tmp[1]) - 1;
         
         if ( j < reax->num_atom_types && k < reax->num_atom_types) {
-            val = atof(tmp[2]); reax->tbp[j][k].r_e = val;
+            val = atof(tmp[2]); 
+            reax->tbp[j][k].r_e = val;
+            reax->tbp[k][j].r_e = val;
         }
     }    
-
+    return 0;
 }
 
 char Read_Force_Field(FILE* fp, reax_interaction* reax) {
