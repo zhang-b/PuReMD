@@ -91,7 +91,9 @@ void Init_Taper(control_params *control) {
 			+ 7.0 * swa * swb3 * swb3 + swb3 * swb3 * swb) / d7;
 }
 
-char Read_Force_Field_ext(FILE* fp, reax_interaction* reax) {
+char Read_Force_Field_ext(FILE* fp, reax_interaction* reax, 
+     control_params *control) {
+    // read the bond boost parameters from ffield.ext
 
     int i, j, k;
     int c, l;
@@ -109,6 +111,10 @@ char Read_Force_Field_ext(FILE* fp, reax_interaction* reax) {
         for (j = i; j < reax->num_atom_types; j++) {
             reax->tbp[i][j].r_e = 0.001;
             reax->tbp[j][i].r_e = 0.001;
+            reax->tbp[i][j].q_e = control->bboost_q;
+            reax->tbp[j][i].q_e = control->bboost_q;
+            reax->tbp[i][j].c_e = 0.300;
+            reax->tbp[j][i].c_e = 0.300;
     }
 
     fgets(s, MAX_LINE, fp);
@@ -126,6 +132,12 @@ char Read_Force_Field_ext(FILE* fp, reax_interaction* reax) {
             val = atof(tmp[2]); 
             reax->tbp[j][k].r_e = val;
             reax->tbp[k][j].r_e = val;
+            val = atof(tmp[3]); 
+            reax->tbp[j][k].q_e = val;
+            reax->tbp[k][j].q_e = val;
+            val = atof(tmp[3]); 
+            reax->tbp[j][k].c_e = val;
+            reax->tbp[k][j].c_e = val;
         }
     }    
     return 0;

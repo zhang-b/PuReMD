@@ -99,7 +99,7 @@ void Read_System( char *geof, char *ff, char *ctrlf,
       exit(1);
     }
     else
-      Read_Force_Field_ext( bboost, &(system->reaxprm) );
+      Read_Force_Field_ext( bboost, &(system->reaxprm), control );
   }
 
   /* geo file */

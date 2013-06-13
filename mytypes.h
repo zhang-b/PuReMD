@@ -259,6 +259,8 @@ typedef struct {
 
   /* Bond boost parameters */
   real r_e;
+  real q_e;
+  real c_e; // bond order cutoff
 } two_body_parameters;
 
 

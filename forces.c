@@ -293,7 +293,7 @@ void Compute_Bond_Boost_Force(reax_system *system, control_params *control,
   printf("bo = %f\n", bo);
   */
 
-  if (fabs(emax) < 0.3) {
+  if (fabs(emax) < q) {
       i = adatom;
 
       // calculate A, and dA
