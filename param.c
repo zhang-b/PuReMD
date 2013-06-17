@@ -115,6 +115,8 @@ char Read_Force_Field_ext(FILE* fp, reax_interaction* reax,
             reax->tbp[j][i].q_e = control->bboost_q;
             reax->tbp[i][j].c_e = 0.300;
             reax->tbp[j][i].c_e = 0.300;
+            reax->tbp[i][j].v_max = 0.000;
+            reax->tbp[j][i].v_max = 0.000;
     }
 
     fgets(s, MAX_LINE, fp);
@@ -135,9 +137,12 @@ char Read_Force_Field_ext(FILE* fp, reax_interaction* reax,
             val = atof(tmp[3]); 
             reax->tbp[j][k].q_e = val;
             reax->tbp[k][j].q_e = val;
-            val = atof(tmp[3]); 
+            val = atof(tmp[4]); 
             reax->tbp[j][k].c_e = val;
             reax->tbp[k][j].c_e = val;
+            val = atof(tmp[5]); 
+            reax->tbp[j][k].v_max = val;
+            reax->tbp[k][j].v_max = val;
         }
     }    
     return 0;

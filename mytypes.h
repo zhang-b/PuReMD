@@ -261,6 +261,7 @@ typedef struct {
   real r_e;
   real q_e;
   real c_e; // bond order cutoff
+  real v_max;
 } two_body_parameters;
 
 
