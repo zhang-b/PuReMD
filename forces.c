@@ -365,8 +365,7 @@ void Compute_Bond_Boost_Force(reax_system *system, control_params *control,
             // assign the boost force
             atom1 = &( system->atoms[i] );
             atom2 = &( system->atoms[j] );
-            /*
-            printf("ofx = %8.3f ofy = %8.3f ofz = %8.3f \n", system->atoms[i].f[0],\
+            /* printf("ofx = %8.3f ofy = %8.3f ofz = %8.3f \n", system->atoms[i].f[0],\
                     system->atoms[i].f[1], system->atoms[i].f[2]);
             */
             rvec_Add(system->atoms[i].f, df);
@@ -393,6 +392,140 @@ void Compute_Bond_Boost_Force(reax_system *system, control_params *control,
 
   fprintf( out_control->bboost, "%-10d%6d%6d%10.4f%10.4f%10.4f", \
   data->step, adatom + 1, adatom2 + 1, bo, emax, A*V );
+
+  fprintf( out_control->bboost, " %4s %4s\n", \
+  system->reaxprm.sbp[ system->atoms[adatom].type ].name, 
+  system->reaxprm.sbp[ system->atoms[adatom2].type ].name);
+  fflush( out_control->bboost);
+}
+
+void Compute_Bond_Boost_Force_All(reax_system *system, control_params *control,
+		simulation_data *data, static_storage *workspace, list **lists, 
+        output_controls *out_control) {
+  int i, j, pj;
+  int type_i, type_j;
+  int adatom, adatom2; // label the boost atom
+  int nbond; // Nb
+  int start_i, end_i;
+  real e, emax, r, re, r_max; // eta, eta_max, r, r_e
+  real bo;
+  real A, dA, V; // A(\eta^max), and \Delta A(\eta^max)
+  real *rv, *rv_max;
+  real q, P1, vmax; // q, P1 in equation 13
+  real S1, S2, f1, f2, C1, C2;
+  real T;
+  real bf, bfactor; // boost force scale
+  rvec df; // boost force
+  reax_atom *atom1, *atom2;
+  bond_order_data *bo_ij;
+  two_body_parameters *twbp;
+  list *bonds;
+
+  //printf("-------------------------step %d  -----------------\n", data->step);
+  bonds = (*lists) + BONDS;
+
+  // bond boost parameters
+  q = control->bboost_q; // should read this from control file
+  P1 = control->bboost_P1; 
+  vmax = control->bboost_Vmax;
+
+  // initiate parameters
+  e = 0;
+  adatom = 0;
+  adatom2 = 0;
+  bo = 0.0;
+  re = 0.001;
+
+  A = 0.0;
+  dA = 0.0;
+  r_max = 0.0;
+  bfactor = 0.0;
+  T = control->T_final;
+
+  // first get the max bond order
+  for( i=0; i < system->N; ++i ) {
+    re = 0.001;
+    A = 0.0;
+    V = 0.0; // bost energy
+    nbond = 0;
+    emax = 0.0;
+    start_i = Start_Index(i, bonds);
+    end_i = End_Index(i, bonds);
+    for( pj = start_i; pj < end_i; ++pj ){
+      if( i < bonds->select.bond_list[pj].nbr ) {
+        j = bonds->select.bond_list[pj].nbr;
+        type_i = system->atoms[i].type;
+        type_j = system->atoms[j].type;
+        twbp = &( system->reaxprm.tbp[type_i][type_j] );
+        bo_ij = &( bonds->select.bond_list[pj].bo_data );
+        re = twbp->r_e; // get r_e from ffield.ext
+        r = bonds->select.bond_list[pj].d;
+        e = (r - re)/re; // eta
+        bo = bo_ij->BO;
+        if (bo > 0.3) {
+            nbond += 1;
+            if ( fabs(emax) < fabs(e) ) {
+                emax = e;
+            }
+        }
+      }
+    }
+
+    if (fabs(emax) < q && nbond > 0) {
+      vmax = control->bboost_Vmax;
+
+      // calculate A, and dA
+      S1 = emax/q;
+      S2 = S1 * S1;
+      C1 = 1 - (emax/q)*(emax/q);
+      C2 = 1 - P1*P1*S2;
+      A = C1 * C1 / C2;
+
+      for( pj = start_i; pj < end_i; ++pj ) {
+        if( i < bonds->select.bond_list[pj].nbr ) {
+          bo_ij = &( bonds->select.bond_list[pj].bo_data );
+          bo = bo_ij->BO;
+          if (bo > 0.3) {
+            j = bonds->select.bond_list[pj].nbr;
+            r = bonds->select.bond_list[pj].d;
+            rv = bonds->select.bond_list[pj].dvec;
+            type_i = system->atoms[i].type;
+            type_j = system->atoms[j].type;
+            twbp = &( system->reaxprm.tbp[type_i][type_j] );
+            vmax = twbp->v_max;
+            re = twbp->r_e; // get r_e from ffield.ext
+
+            e = (r - re)/re; // eta
+            C1 = 1 - e*e/(q*q);
+            V += vmax / nbond * C1;
+            bf = 2*A*vmax*e/(nbond*q*re);
+
+            if (fabs(e - emax) < 0.00001) {
+                C2 = 1 - e*e*P1*P1/(q*q);
+                f1 = 2/(q*re);
+                f2 = f1/2*P1*P1;
+                dA = 2*e*C1/C2*(f1 - f2*C1/C2);
+                rv_max = bonds->select.bond_list[pj].dvec;
+                r_max = bonds->select.bond_list[pj].d;;
+            }
+            rvec_Scale(df, bf, rv);
+            atom1 = &( system->atoms[i] );
+            atom2 = &( system->atoms[j] );
+            rvec_Add(system->atoms[i].f, df);
+          }
+        }
+      }
+      // add the contribution of evalope function A
+      bf = dA * V;
+      rvec_Scale(df, bf, rv_max);
+      atom1 = &( system->atoms[i] );
+      rvec_Add(system->atoms[i].f, df);
+    }
+    bfactor += exp(A*V/(T * 8.314 / 4184));
+  }
+  bfactor = bfactor / system->N;
+  fprintf( out_control->bboost, "%-10d%6d%6d%10.4f%10.4f%10.4f", \
+  data->step, adatom + 1, adatom2 + 1, bo, emax, bfactor );
 
   fprintf( out_control->bboost, " %4s %4s\n", \
   system->reaxprm.sbp[ system->atoms[adatom].type ].name, 
@@ -1109,8 +1242,10 @@ void Compute_Forces(reax_system *system, control_params *control,
 	{
 		Compute_AMD_Force(system, control, data, workspace, lists);
 	}
-    if (control->bboost)
+    if (control->bboost == 1)
         Compute_Bond_Boost_Force(system, control, data, workspace, lists, out_control);
+    else if (control->bboost == 2)
+        Compute_Bond_Boost_Force_All(system, control, data, workspace, lists, out_control);
 	//Print_Total_Force( system, control, data, workspace, lists, out_control );
 #if defined(DEBUG_FOCUS)
 	fprintf( stderr, "totalforces - ");
