@@ -164,6 +164,26 @@ void LonePair_OverUnder_Coordination_Energy( reax_system *system,
     inv_exp_ovun1 = 1.0 / (1 + exp_ovun1);
     Delta_lpcorr  = workspace->Delta[i] - 
       (dfvl*workspace->Delta_lp_temp[i]) * inv_exp_ovun1;
+    if (Delta_lpcorr >= 0){
+        system->atoms[i].ov = Delta_lpcorr;
+        system->atoms[i].un = 0;
+        /*
+        printf("atom type %d ", system->atoms[i].type);
+        printf("bond order %6.3f ", workspace->Delta[i]);
+        printf("lone pair %6.3f ", workspace->Delta_lp_temp[i]);
+        printf("over corr %6.3f \n", Delta_lpcorr);
+        */
+    }
+    else {
+        system->atoms[i].ov = 0;
+        system->atoms[i].un = Delta_lpcorr;
+        /*
+        printf("atom type %d ", system->atoms[i].type);
+        printf("bond order %6.3f ", workspace->Delta[i]);
+        printf("lone pair %6.3f ", workspace->Delta_lp_temp[i]);
+        printf("unde corr %6.3f\n", Delta_lpcorr);
+        */
+    }
 	
     exp_ovun2 = EXP( p_ovun2 * Delta_lpcorr );
     inv_exp_ovun2 = 1.0 / (1.0 + exp_ovun2);

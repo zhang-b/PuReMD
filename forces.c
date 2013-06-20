@@ -225,13 +225,39 @@ void Compute_AMD_Force(reax_system *system, control_params *control,
 	//printf("in AMD no of water is %d\n", data->Fragment_wat);
 }
 
+int Find_Radicals(reax_system *system, control_params *control,
+		simulation_data *data, static_storage *workspace, list **lists, 
+        output_controls *out_control) {
+  int i, no, nu;
+  real ov, un;
+  char *atp;
+  nu = 0;
+  no = 0;
+  for( i=0; i < system->N; ++i ) {
+      atp = system->reaxprm.sbp[ system->atoms[i].type ].name;
+      ov = system->atoms[i].ov;
+      un = system->atoms[i].un;
+      if (strcmp(atp, "H") == 0) {
+          if (un < -0.8)
+              nu += 1;
+      }
+      else if (strcmp(atp, "O") == 0) {
+          if (un < -0.8)
+              nu += 1;
+          if (ov > 0.3)
+              no += 1;
+      }
+  }
+  return nu + no;
+}
+
 void Compute_Bond_Boost_Force(reax_system *system, control_params *control,
 		simulation_data *data, static_storage *workspace, list **lists, 
         output_controls *out_control) {
   int i, j, pj;
   int type_i, type_j;
   int adatom, adatom2; // label the boost atom
-  int nbond; // Nb
+  int nbond, nrad; // Nb
   int start_i, end_i;
   real e, emax, r, re, r_max; // eta, eta_max, r, r_e
   real bo;
@@ -246,6 +272,7 @@ void Compute_Bond_Boost_Force(reax_system *system, control_params *control,
   two_body_parameters *twbp;
   list *bonds;
 
+  nrad = Find_Radicals(system, control, data, workspace, lists, out_control);
   //printf("-------------------------step %d  -----------------\n", data->step);
   bonds = (*lists) + BONDS;
 
@@ -298,9 +325,9 @@ void Compute_Bond_Boost_Force(reax_system *system, control_params *control,
   printf("bo = %f\n", bo);
   */
 
-  V = 0.0; // bost energy
+  V = 0.0; // boost energy
 
-  if (fabs(emax) < q) {
+  if (fabs(emax) < q && nrad == 0) {
       i = adatom;
       vmax = control->bboost_Vmax;
 
@@ -405,7 +432,7 @@ void Compute_Bond_Boost_Force_All(reax_system *system, control_params *control,
   int i, j, pj;
   int type_i, type_j;
   int adatom, adatom2; // label the boost atom
-  int nbond; // Nb
+  int nbond, nrad; // Nb
   int start_i, end_i;
   real e, emax, r, re, r_max; // eta, eta_max, r, r_e
   real bo;
@@ -421,6 +448,7 @@ void Compute_Bond_Boost_Force_All(reax_system *system, control_params *control,
   two_body_parameters *twbp;
   list *bonds;
 
+  nrad = Find_Radicals(system, control, data, workspace, lists, out_control);
   //printf("-------------------------step %d  -----------------\n", data->step);
   bonds = (*lists) + BONDS;
 
@@ -471,7 +499,7 @@ void Compute_Bond_Boost_Force_All(reax_system *system, control_params *control,
       }
     }
 
-    if (fabs(emax) < q && nbond > 0) {
+    if (fabs(emax) < q && nbond > 0 && nrad == 0) {
       vmax = control->bboost_Vmax;
 
       // calculate A, and dA
@@ -523,6 +551,7 @@ void Compute_Bond_Boost_Force_All(reax_system *system, control_params *control,
     }
     bfactor += exp(A*V/(T * 8.314 / 4184));
   }
+  printf("bfactor = %.3f\n");
   bfactor = bfactor / system->N;
   fprintf( out_control->bboost, "%-10d%6d%6d%10.4f%10.4f%10.4f", \
   data->step, adatom + 1, adatom2 + 1, bo, emax, bfactor );

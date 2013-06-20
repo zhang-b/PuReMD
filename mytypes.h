@@ -327,6 +327,7 @@ typedef struct
 {
   rvec x, v, f;        /* Position, velocity, force on atom */
   real q;              /* Charge on the atom */
+  real ov, un;
   int  type;           /* Type of this atom */
   char name[5];
 } reax_atom;
