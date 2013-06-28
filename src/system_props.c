@@ -63,6 +63,10 @@ void Temperature_Control( control_params *control, simulation_data *data,
     if( fabs( control->T - control->T_final ) >= fabs( tmp ) )
       control->T += tmp;       
   }
+  else if( control->T_mode == 3 ) { // pesudo nve
+    if (data->boost == 1)
+        control->T = data->therm.T;
+  }
 }
 
 
