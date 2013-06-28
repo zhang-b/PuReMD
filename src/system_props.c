@@ -64,8 +64,11 @@ void Temperature_Control( control_params *control, simulation_data *data,
       control->T += tmp;       
   }
   else if( control->T_mode == 3 ) { // pesudo nve
-    if (data->boost == 1)
+    if (data->boost == 0)
         control->T = data->therm.T;
+    if (control->T < data->ignite_T)
+        control->T = data->ignite_T;
+    //printf("Now boost = %d, and Temperature = %.3f\n", data->boost, control->T);
   }
 }
 

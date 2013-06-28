@@ -23,10 +23,10 @@ q_err			1e-6    ! relative residual norm threshold used in GMRES
 ilu_refactor            100
 ilu_droptol             0.01
 
-temp_init	        2598.0  ! desired init T of the simulated system
-temp_final 	        2598.0  ! desired final temperature of the simulated system
+temp_init	         773.0  ! desired init T of the simulated system
+temp_final 	         773.0  ! desired final temperature of the simulated system
 t_mass		        0.16700 ! 0.16666 for Nose-Hoover nvt ! 1000.0 for npt! in fs, thermal inertia parameter
-t_mode   	        0	! 0: T-coupling only, 1: step-wise, 2:constant slope, 3: pesudo-nve
+t_mode   	        3	! 0: T-coupling only, 1: step-wise, 2:constant slope, 3: pesudo-nve
 t_rate    	        40.0	! in  K
 t_freq   	        1.000   ! in ps 
 

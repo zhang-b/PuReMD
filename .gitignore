@@ -26,3 +26,10 @@ traj.o
 two_body_interactions.o
 vector.o
 SerialReax
+bboost.bboost
+bboost.log
+bboost.mol
+bboost.out
+bboost.pot
+bboost.trj
+

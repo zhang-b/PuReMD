@@ -519,6 +519,7 @@ typedef struct
   int step;
   int prev_steps;
   int boost;         /*states of the boost*/
+  real ignite_T;     /*ignite Temperature */
   real time;
 
   real M;			   /* Total Mass */

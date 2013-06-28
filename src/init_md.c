@@ -127,6 +127,7 @@ void Init_Simulation_Data( reax_system *system, control_params *control,
   
   /* state of the boost*/
   data->boost = 0;
+  data->ignite_T = control->T;
 
   switch( control->ensemble ) {
   case NVE:

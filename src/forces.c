@@ -606,7 +606,6 @@ void Compute_Bond_Boost_Force_All_Couple(reax_system *system, control_params *co
   V = 0.0; // bost energy
   nbond = 0;
   emax = 0.0;
-  data->boost = 0;
 
   // first get the max bond order
   for( i=0; i < system->N; ++i ) {
@@ -641,7 +640,7 @@ void Compute_Bond_Boost_Force_All_Couple(reax_system *system, control_params *co
 
   int ntmp; 
   if (fabs(emax) < q && nbond > 0 && nrad == 0) {
-    data->boost = 1;
+    data->boost ++ ;
     // calculate A, and dA
     S1 = emax/q;
     S2 = S1 * S1;
@@ -694,9 +693,12 @@ void Compute_Bond_Boost_Force_All_Couple(reax_system *system, control_params *co
     atom1 = &( system->atoms[adatom]);
     rvec_Add(system->atoms[adatom].f, df);
   }
+  else {
+    data->boost = 0;
+  }
   bfactor = exp(4184 * A * V/(T * 8.314));
   //bfactor = V;
-  fprintf( out_control->bboost, "%-10d%6d%6d%6d%14.4f%14.4f", \
+  fprintf( out_control->bboost, "%-10d%6d%6d%6d%14.4f %24.4f", \
   data->step, nbond, adatom, nrad, emax, bfactor );
 
   fprintf( out_control->bboost, " %4s %4s\n", \
