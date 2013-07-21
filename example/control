@@ -1,6 +1,6 @@
 simulation_name		bboost  ! output files will carry this name + their specific extension
-ensemble_type	        1       ! 0: NVE, 1: NVT, 2: anisotropic NPT, 3: semi-isotropic NPT, 4: isotropic NPT
-nsteps			400000  ! number of simulation steps
+ensemble_type	        4       ! 0: NVE, 1: NVT, 2: anisotropic NPT, 3: semi-isotropic NPT, 4: isotropic NPT
+nsteps			4000  ! number of simulation steps
 dt			0.25 	! time step in fs
 
 geo_format              4       ! 0:xyz 1:pdb 2:bgf 3:ASCII 4:binary restart
@@ -26,12 +26,12 @@ ilu_droptol             0.01
 temp_init	         773.0  ! desired init T of the simulated system
 temp_final 	         773.0  ! desired final temperature of the simulated system
 t_mass		        0.16700 ! 0.16666 for Nose-Hoover nvt ! 1000.0 for npt! in fs, thermal inertia parameter
-t_mode   	        3	! 0: T-coupling only, 1: step-wise, 2:constant slope, 3: pesudo-nve
+t_mode   	        3	! 0: T-coupling only, 1: step-wise, 2:constant slope, 3: ignition
 t_rate    	        40.0	! in  K
 t_freq   	        1.000   ! in ps 
 
 pressure 		0.000101325 0.000101325 0.000101325 ! desired pressure of the simulated system in GPa, 1atm = 0.000101325 GPa
-p_mass		        5000.00     5000.00     5000.00  ! in fs, pressure inertia parameter
+p_mass		        99999999.00     5000.00     5000.00  ! in fs, pressure inertia parameter (no box scale with 99999999.00 if ensemble_type = 4)
 compress 		0.008134 ! in ps^2 * A / amu ( 4.5X10^(-5) bar^(-1) )
 press_mode		0	 ! 0: internal + external pressure, 1: ext only, 2: int only
 

@@ -583,6 +583,7 @@ void Compute_Bond_Boost_Force_All_Couple(reax_system *system, control_params *co
   list *bonds;
 
   nrad = Find_Radicals(system, control, data, workspace, lists, out_control);
+  nrad = 0;
   //printf("-------------------------step %d  -----------------\n", data->step);
   bonds = (*lists) + BONDS;
 
@@ -630,6 +631,16 @@ void Compute_Bond_Boost_Force_All_Couple(reax_system *system, control_params *co
                 emax = e;
                 adatom = i;
                 adatom2 = j;
+                /* for debug
+                printf("i = %d, j = %d, re = %.2f, r = %.2f ", i, j, re, r);
+                printf("x1 = %.2f, y1 = %.2f, z1 = %.2f, ", \
+                system->atoms[i].x[0], system->atoms[i].x[1], system->atoms[i].x[2]);
+                printf("x2 = %.2f, y2 = %.2f, z2 = %.2f\n", \
+                system->atoms[j].x[0], system->atoms[j].x[1], system->atoms[j].x[2]);
+                printf( " %4s %4s\n", \
+                system->reaxprm.sbp[ system->atoms[i].type ].name, 
+                system->reaxprm.sbp[ system->atoms[j].type ].name);
+                */
                 rv_max = bonds->select.bond_list[pj].dvec;
                 r_max = bonds->select.bond_list[pj].d;;
             }
@@ -698,8 +709,8 @@ void Compute_Bond_Boost_Force_All_Couple(reax_system *system, control_params *co
   }
   bfactor = exp(4184 * A * V/(T * 8.314));
   //bfactor = V;
-  fprintf( out_control->bboost, "%-10d%6d%6d%6d%14.4f %24.4f", \
-  data->step, nbond, adatom, nrad, emax, bfactor );
+  fprintf( out_control->bboost, "%-10d%6d%6d%6d%3d%8.4f%8.4f %24.4f", \
+  data->step, nbond, adatom, adatom2, nrad, r_max, emax, bfactor );
 
   fprintf( out_control->bboost, " %4s %4s\n", \
   system->reaxprm.sbp[ system->atoms[adatom].type ].name, 

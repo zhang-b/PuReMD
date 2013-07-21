@@ -271,6 +271,11 @@ void Velocity_Verlet_Berendsen_Isotropic_NPT( reax_system* system,
   else if( mu > MAX_dV )
     mu = MAX_dV;
 
+  /* only calculate the pressure without scale the box */
+  if (control->Tau_P[0] > 9999){
+    mu = 1;
+  }
+
   /* temperature scaler */
   lambda = 1.0 + (dt / control->Tau_T) * (control->T / data->therm.T - 1.0);
   if( lambda < MIN_dT )
