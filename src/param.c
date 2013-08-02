@@ -802,6 +802,8 @@ char Read_Control_File(FILE* fp, reax_system *system, control_params* control,
 	int c, i;
 	real val;
 	int ival;
+        
+        val = 0.0;
 
 	/* assign default values */
 	strcpy(control->sim_name, "default.sim");
@@ -902,6 +904,10 @@ char Read_Control_File(FILE* fp, reax_system *system, control_params* control,
 	control->bboost_Vmax = 0.0;
 	control->bboost_P1 = 0.0;
 	control->bboost_q = 0.0;
+
+	control->bias = 0;
+	control->bias_con = 0;
+	control->bias_V = 0.0;
 
 	/* memory allocations */
 	s = (char*) malloc(sizeof(char) * MAX_LINE);
@@ -1163,6 +1169,15 @@ char Read_Control_File(FILE* fp, reax_system *system, control_params* control,
 		} else if (strcmp(tmp[0], "bboost_q") == 0) {
 			val = atof(tmp[1]);
 			control->bboost_q = val;
+		} else if (strcmp(tmp[0], "bias") == 0) {
+			ival = atoi(tmp[1]);
+			control->bias = ival;
+		} else if (strcmp(tmp[0], "bias_con") == 0) {
+			ival = atoi(tmp[1]);
+			control->bias_con = ival;
+		} else if (strcmp(tmp[0], "bias_V") == 0) {
+			val = atof(tmp[1]);
+			control->bias_V = val;
 		} else {
 			fprintf(stderr, "WARNING: unknown parameter %s\n", tmp[0]);
 			exit(15);

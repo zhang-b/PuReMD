@@ -1,12 +1,12 @@
 CC      = gcc 
 
 LIBS    = -lm -lz
-CFLAGS  = -I.  -Wall -O3 -funroll-loops -fstrict-aliasing
+CFLAGS  = -I.  -Wall -O3 -funroll-loops -fstrict-aliasing -g
  #-finline-functions  -finline-limit=15 -g#-DTEST -pg -ldl -rdynamic -g
 DEFS    = $(CFLAGS)
 FLAG    = $(DEFS) $(INCS) $(LIBS)
 
-OBJ     =  grid.o list.o lookup.o print_utils.o reset_utils.o restart.o random.o traj.o vector.o allocate.o analyze.o box.o system_props.o param.o pdb_tools.o neighbors.o GMRES.o QEq.o bond_orders.o single_body_interactions.o two_body_interactions.o three_body_interactions.o four_body_interactions.o forces.o integrate.o init_md.o testmd.o
+OBJ     =  grid.o list.o lookup.o print_utils.o reset_utils.o restart.o random.o traj.o vector.o allocate.o analyze.o box.o system_props.o param.o pdb_tools.o neighbors.o GMRES.o QEq.o bond_orders.o single_body_interactions.o two_body_interactions.o three_body_interactions.o four_body_interactions.o forces.o integrate.o init_md.o bias.o testmd.o
 
 all:    SerialReax
 
@@ -22,7 +22,7 @@ init_md.o: init_md.c init_md.h mytypes.h box.o forces.o grid.o integrate.o list.
 integrate.o: integrate.c integrate.h mytypes.h box.o forces.o neighbors.o QEq.o reset_utils.o system_props.o vector.o
 	$(CC) $(DEFS) -c integrate.c
 
-forces.o: forces.c forces.h mytypes.h bond_orders.o single_body_interactions.o two_body_interactions.o three_body_interactions.o four_body_interactions.o print_utils.o vector.o
+forces.o: forces.c forces.h mytypes.h bond_orders.o single_body_interactions.o two_body_interactions.o three_body_interactions.o four_body_interactions.o print_utils.o vector.o bias.o
 	$(CC) $(DEFS) -c forces.c
 
 four_body_interactions.o: four_body_interactions.c four_body_interactions.h mytypes.h bond_orders.o list.o lookup.o vector.o
@@ -94,6 +94,9 @@ traj.o: traj.c traj.h mytypes.h
 
 vector.o: vector.c vector.h mytypes.h 
 	$(CC) $(DEFS) -c vector.c
+
+bias.o: bias.c bias.h mytypes.h list.o vector.o
+	$(CC) $(DEFS) -c bias.c
 
 clean:
 	rm -f *.o *~ core 

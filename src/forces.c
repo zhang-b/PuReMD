@@ -26,6 +26,7 @@
 #include "two_body_interactions.h"
 #include "three_body_interactions.h"
 #include "four_body_interactions.h"
+#include "bias.h"
 #include "list.h"
 #include "print_utils.h"
 #include "system_props.h"
@@ -1434,6 +1435,10 @@ void Compute_Forces(reax_system *system, control_params *control,
     else if (control->bboost == 3)
         Compute_Bond_Boost_Force_All_Couple(system, control, data, workspace, lists, out_control);
 	//Print_Total_Force( system, control, data, workspace, lists, out_control );
+        //Bias Potential
+        //Bias_Spring(system, control, data, workspace, lists, out_control);
+        if (control->bias)
+            Bias_COn(system, control, data, workspace, lists, out_control);
 #if defined(DEBUG_FOCUS)
 	fprintf( stderr, "totalforces - ");
 	//Print_Total_Force( system, control, data, workspace, lists, out_control );

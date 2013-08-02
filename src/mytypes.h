@@ -452,10 +452,14 @@ typedef struct
   real amd_power;
   real amd_hof;  /*heat of formation*/
 
-  int bboost;
+  int bboost;    /*boost parameters*/
   real bboost_Vmax;
   real bboost_P1;
   real bboost_q;
+  
+  int bias;
+  int bias_con;
+  real bias_V;
 } control_params;
 
 
@@ -553,10 +557,12 @@ typedef struct
   real E_vdW;                      /* Total van der Waals energy */
   real E_Ele;                      /* Total electrostatics energy */
   real E_Pol;                      /* Polarization energy */
-  real E_amd;                /* amd delta energy */
+  real E_amd;                      /* amd delta energy */
   real E_amd_delta;                /* amd delta energy */
   real F_amd_scale;                /* amd force scale */
   int Fragment_wat;                /* number of water H2O1 in fragment */
+  int bias_atom1;                  /* bias atom1 */
+  int bias_atom2;                  /* bias atom2 */
 
   real N_f;                        /*Number of degrees of freedom */
   rvec t_scale;
