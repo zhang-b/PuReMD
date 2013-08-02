@@ -1438,7 +1438,7 @@ void Compute_Forces(reax_system *system, control_params *control,
         //Bias Potential
         //Bias_Spring(system, control, data, workspace, lists, out_control);
         if (control->bias)
-            Bias_COn(system, control, data, workspace, lists, out_control);
+            Bias_COn_decompose(system, control, data, workspace, lists, out_control);
 #if defined(DEBUG_FOCUS)
 	fprintf( stderr, "totalforces - ");
 	//Print_Total_Force( system, control, data, workspace, lists, out_control );
