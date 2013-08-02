@@ -2,6 +2,7 @@ allocate.o
 analyze.o
 bond_orders.o
 box.o
+bias.o
 forces.o
 four_body_interactions.o
 GMRES.o
