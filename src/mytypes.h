@@ -563,8 +563,10 @@ typedef struct
   int Fragment_wat;                /* number of water H2O1 in fragment */
   int bias_atom1;                  /* bias atom1 */
   int bias_atom2;                  /* bias atom2 */
+  real bias_r;                     /* distance between atom1 and atom2*/
   int bias_success;                /* bias flag */
   int bias_n;                      /* bias n */
+  int bias_counter;
 
   real N_f;                        /*Number of degrees of freedom */
   rvec t_scale;

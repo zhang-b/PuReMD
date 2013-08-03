@@ -25,7 +25,7 @@
 #include "mytypes.h"
 
 void Bias_Foo();
-void Bias_COn_decompose(reax_system *, control_params *, simulation_data *, 
+void Bias_COn_Decompose(reax_system *, control_params *, simulation_data *, 
                  static_storage *, list **, output_controls *);
 void Bias_Spring(reax_system *, control_params *, simulation_data *, 
                  static_storage *, list **, output_controls *);
