@@ -22,6 +22,15 @@ void Bias_Foo()
     return;
 }
 
+void Slow_Down_Atom(reax_atom *atom)
+{
+    int i;
+    real v;
+    v = rvec_Norm(atom->v);
+    if ( v > 30.0 )
+        rvec_Scale(atom->v, 30.0/v, atom->v);
+}
+
 int Reactive_O_Atom(int grp[], int n, int atom)
 {
     int i;
@@ -145,6 +154,8 @@ void Bias_COn_Combine(reax_system *system, control_params *control,
         //atom2->f[0] += 1 * scale * rv[0];
         //atom2->f[1] += 1 * scale * rv[1];
         //atom2->f[2] += 1 * scale * rv[2];
+        Slow_Down_Atom(atom1);
+        Slow_Down_Atom(atom2);
 
         /*
         if (abs(scale) > 0)
