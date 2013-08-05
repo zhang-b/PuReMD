@@ -457,9 +457,15 @@ typedef struct
   real bboost_P1;
   real bboost_q;
   
-  int bias;
-  int bias_con;
-  real bias_V;
+  int bias_con_com;
+  int bias_con_com_n;
+  int bias_con_com_interval;
+  real bias_con_com_vmax;
+
+  int bias_con_de;
+  int bias_con_de_n;
+  int bias_con_de_interval;
+  real bias_con_de_vmax;
 } control_params;
 
 
@@ -764,6 +770,7 @@ typedef struct
   FILE *out;
   FILE *pot;
   FILE *bboost;
+  FILE *bias;
   FILE *log;
   FILE *mol, *ign;
   FILE *dpl;

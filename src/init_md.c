@@ -464,9 +464,17 @@ void Init_Out_Controls(reax_system *system, control_params *control,
     strcpy( temp, control->sim_name );
     strcat( temp, ".bboost" );
     out_control->bboost = fopen( temp, "w" );
-    fprintf( out_control->bboost, "%-10s%-6s%-6s%-6s%3s%8s%8s%24s%4s%4s\n",\
+    fprintf( out_control->bboost, "%-10s%-6s%-6s%-6s%3s%8s%8s%24s%4s%4s\n",
              "step", "nbond", "an1", "an2", "rad", "rmax", "emax", "tp", "at1", "at2" );
     fflush( out_control->bboost);
+
+    /* Init bias file */
+    strcpy( temp, control->sim_name );
+    strcat( temp, ".bias" );
+    out_control->bias = fopen( temp, "w" );
+    fprintf( out_control->bias, "%-10s%-6s%-6s%-6s%3s%8s%8s%24s%4s%4s\n",
+             "step", "nbond", "an1", "an2", "rad", "rmax", "emax", "tp", "at1", "at2" );
+    fflush( out_control->bias);
   }
 
   /* Init pressure file */

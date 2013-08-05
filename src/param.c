@@ -905,9 +905,8 @@ char Read_Control_File(FILE* fp, reax_system *system, control_params* control,
 	control->bboost_P1 = 0.0;
 	control->bboost_q = 0.0;
 
-	control->bias = 0;
-	control->bias_con = 0;
-	control->bias_V = 0.0;
+	control->bias_con_de = 0;
+	control->bias_con_com = 0;
 
 	/* memory allocations */
 	s = (char*) malloc(sizeof(char) * MAX_LINE);
@@ -1169,15 +1168,30 @@ char Read_Control_File(FILE* fp, reax_system *system, control_params* control,
 		} else if (strcmp(tmp[0], "bboost_q") == 0) {
 			val = atof(tmp[1]);
 			control->bboost_q = val;
-		} else if (strcmp(tmp[0], "bias") == 0) {
+		} else if (strcmp(tmp[0], "bias_con_de") == 0) {
 			ival = atoi(tmp[1]);
-			control->bias = ival;
-		} else if (strcmp(tmp[0], "bias_con") == 0) {
+			control->bias_con_de = ival;
+		} else if (strcmp(tmp[0], "bias_con_de_n") == 0) {
 			ival = atoi(tmp[1]);
-			control->bias_con = ival;
-		} else if (strcmp(tmp[0], "bias_V") == 0) {
+			control->bias_con_de_n = ival;
+		} else if (strcmp(tmp[0], "bias_con_de_interval") == 0) {
+			ival = atoi(tmp[1]);
+			control->bias_con_de_interval = ival;
+		} else if (strcmp(tmp[0], "bias_con_de_vmax") == 0) {
 			val = atof(tmp[1]);
-			control->bias_V = val;
+			control->bias_con_de_vmax= val;
+		} else if (strcmp(tmp[0], "bias_con_com") == 0) {
+			ival = atoi(tmp[1]);
+			control->bias_con_com = ival;
+		} else if (strcmp(tmp[0], "bias_con_com_n") == 0) {
+			ival = atoi(tmp[1]);
+			control->bias_con_com_n = ival;
+		} else if (strcmp(tmp[0], "bias_con_com_interval") == 0) {
+			ival = atoi(tmp[1]);
+			control->bias_con_com_interval = ival;
+		} else if (strcmp(tmp[0], "bias_con_com_vmax") == 0) {
+			val = atof(tmp[1]);
+			control->bias_con_com_vmax= val;
 		} else {
 			fprintf(stderr, "WARNING: unknown parameter %s\n", tmp[0]);
 			exit(15);
