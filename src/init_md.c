@@ -129,6 +129,9 @@ void Init_Simulation_Data( reax_system *system, control_params *control,
   data->boost = 0;
   data->ignite_T = control->T;
 
+  /* init bias potential */
+  data->bias_success = 0;
+
   switch( control->ensemble ) {
   case NVE:
     data->N_f = 3 * system->N;

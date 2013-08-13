@@ -17,11 +17,11 @@
 #include "vector.h"
 
 #define BIAS_V_MAX 40.0          /* the maximum velocity allowed */  
-#define BIAS_ATOM_MAX 900        /* maximum atom number */
+#define BIAS_ATOM_MAX 4000        /* maximum atom number */
 #define BIAS_R_MIN 40.0          /* abitrary initial value for r_min */
 #define BIAS_R1_CO_MAX  3.0      /* cut-off for non-bond distance */
 #define BIAS_R2_CO_MAX  5.0      /* cut-off2 for non-bond distance */
-#define BIAS_RE_CO_MAX  1.35     /* re for C-O distance */    
+#define BIAS_RE_CO_MAX  1.40     /* re for C-O distance */    
 #define BIAS_LAST_CO 500         /* number of stablized steps */
 #define BIAS_BOND_CUTOFF   0.3   /* cut-off for bond */
 #define BIAS_BOND_CUTOFF2   0.8   /* cut-off for bond (more rigorous)*/
@@ -88,10 +88,12 @@ void Bias_COn_Combine(reax_system *system, control_params *control,
     step = data->step - data->prev_steps;
     interval = control->bias_con_com_interval;
 
-    if( step == 0 || data->bias_success)
+    if( step%interval == 0 ){
         fprintf(out_control->bias, "Step %d COn Combination\n", step);
+        data->bias_search = 1;
+    }
 
-    if ( step%interval == 0){
+    if ( data->bias_search ){
         data->bias_counter = 0;
         data->bias_success = 0;
         n_o = 0;
@@ -146,6 +148,7 @@ void Bias_COn_Combine(reax_system *system, control_params *control,
                         data->bias_atom1 = grp_c[i];
                         data->bias_atom2 = j;
                         data->bias_success = 1;
+                        data->bias_search = 0;
                     }
                 } 
             }

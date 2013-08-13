@@ -571,6 +571,7 @@ typedef struct
   int bias_atom2;                  /* bias atom2 */
   real bias_r;                     /* distance between atom1 and atom2*/
   int bias_success;                /* bias flag */
+  int bias_search;                 /* bias search flag */
   int bias_n;                      /* bias n */
   int bias_counter;
 
