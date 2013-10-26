@@ -830,6 +830,7 @@ char Read_Control_File(FILE* fp, reax_system *system, control_params* control,
 	control->periodic_images[2] = 0;
 
 	control->reneighbor = 1;
+	control->qeq = 1;
 	control->vlist_cut = 0;
 	control->nbr_cut = 4.;
 	control->r_cut = 10;
@@ -908,6 +909,13 @@ char Read_Control_File(FILE* fp, reax_system *system, control_params* control,
 	control->bias_con_de = 0;
 	control->bias_con_com = 0;
 
+        control->bias_lj126 = 0;
+        control->bias_lj126_sigma = 0.001;
+        control->bias_lj126_epsilon = 0.000;
+
+        control->bias_charge = 0;
+        control->bias_charge_dfactor = 1.0;
+
 	/* memory allocations */
 	s = (char*) malloc(sizeof(char) * MAX_LINE);
 	tmp = (char**) malloc(sizeof(char*) * MAX_TOKENS);
@@ -969,6 +977,9 @@ char Read_Control_File(FILE* fp, reax_system *system, control_params* control,
 		} else if (strcmp(tmp[0], "reneighbor") == 0) {
 			ival = atoi(tmp[1]);
 			control->reneighbor = ival;
+		} else if (strcmp(tmp[0], "qeq") == 0) {
+			ival = atoi(tmp[1]);
+			control->qeq = ival;
 		} else if (strcmp(tmp[0], "vlist_buffer") == 0) {
 			val = atof(tmp[1]);
 			control->vlist_cut = val;
@@ -1191,7 +1202,22 @@ char Read_Control_File(FILE* fp, reax_system *system, control_params* control,
 			control->bias_con_com_interval = ival;
 		} else if (strcmp(tmp[0], "bias_con_com_vmax") == 0) {
 			val = atof(tmp[1]);
-			control->bias_con_com_vmax= val;
+			control->bias_con_com_vmax = val;
+		} else if (strcmp(tmp[0], "bias_lj126") == 0) {
+			ival = atoi(tmp[1]);
+			control->bias_lj126 = ival;
+		} else if (strcmp(tmp[0], "bias_lj126_sigma") == 0) {
+			val = atof(tmp[1]);
+			control->bias_lj126_sigma= val;
+		} else if (strcmp(tmp[0], "bias_lj126_epsilon") == 0) {
+			val = atof(tmp[1]);
+			control->bias_lj126_epsilon = val;
+		} else if (strcmp(tmp[0], "bias_charge") == 0) {
+			ival = atoi(tmp[1]);
+			control->bias_charge = ival;
+		} else if (strcmp(tmp[0], "bias_charge_dfactor") == 0) {
+			val = atof(tmp[1]);
+			control->bias_charge_dfactor = val;
 		} else {
 			fprintf(stderr, "WARNING: unknown parameter %s\n", tmp[0]);
 			exit(15);

@@ -405,6 +405,7 @@ typedef struct
   real dt;
 
   int reneighbor;
+  int qeq;           // control qeq
   real vlist_cut;
   real nbr_cut;
   real r_cut, r_low; // upper and lower taper
@@ -466,6 +467,13 @@ typedef struct
   int bias_con_de_n;
   int bias_con_de_interval;
   real bias_con_de_vmax;
+
+  int bias_lj126;
+  real bias_lj126_sigma;
+  real bias_lj126_epsilon;
+
+  int bias_charge;
+  real bias_charge_dfactor;
 } control_params;
 
 

@@ -311,3 +311,81 @@ void Bias_COn_Decompose(reax_system *system, control_params *control,
     return;
 }
 
+void Bias_LJ_126(reax_system *system, control_params *control,
+                simulation_data *data, static_storage *workspace, list **lists,
+        output_controls *out_control)
+{
+    /* Combine CO2 and O to generate a CO3 */
+    int i, j;
+    int start_i, end_i; 
+    int pj;
+    real r_ij, r3, r6, r12;
+    real e_lj126, f_lj126; 
+    real epslon, sigma;
+    far_neighbor_data *nbr_pj;
+    list *far_nbrs;
+
+    sigma = control->bias_lj126_sigma;
+    epslon = control->bias_lj126_epsilon;
+
+    far_nbrs = (*lists) + FAR_NBRS;
+    for( i = 0; i < system->N; ++i ) {
+        start_i = Start_Index(i, far_nbrs);
+        end_i   = End_Index(i, far_nbrs);
+        for( pj = start_i; pj < end_i; ++pj )
+            if( far_nbrs->select.far_nbr_list[pj].d <= control->r_cut ) {
+                nbr_pj = &( far_nbrs->select.far_nbr_list[pj] );
+                j = nbr_pj->nbr;
+                r_ij = nbr_pj->d / sigma;
+                r3 = r_ij * r_ij * r_ij;
+                r6 = r3 * r3;
+                r12 = r6 * r6;
+                e_lj126 = 4 * epslon * ( 1/r12 - 1/r6);
+                f_lj126 = -4 * epslon * (12/r12 - 6/r6) * (1/r_ij);
+                if (abs(f_lj126) > 20.0)
+                    f_lj126 = f_lj126/abs(f_lj126) * 20.0;
+                rvec_ScaledAdd( system->atoms[i].f, -f_lj126, nbr_pj->dvec );
+                rvec_ScaledAdd( system->atoms[j].f,  f_lj126, nbr_pj->dvec );
+            }
+    }
+
+    return;
+}
+
+void Bias_Charge(reax_system *system, control_params *control,
+                simulation_data *data, static_storage *workspace, list **lists,
+        output_controls *out_control)
+{
+    /* Combine CO2 and O to generate a CO3 */
+    int i, j;
+    int start_i, end_i; 
+    int pj;
+    real r_ij, r2; 
+    real e_charge, f_charge; 
+    real dfactor; // damping factor
+    far_neighbor_data *nbr_pj;
+    list *far_nbrs;
+
+    dfactor = control->bias_charge_dfactor;
+
+    far_nbrs = (*lists) + FAR_NBRS;
+    for( i = 0; i < system->N; ++i ) {
+        start_i = Start_Index(i, far_nbrs);
+        end_i   = End_Index(i, far_nbrs);
+        for( pj = start_i; pj < end_i; ++pj )
+            if( far_nbrs->select.far_nbr_list[pj].d <= control->r_cut ) {
+                nbr_pj = &( far_nbrs->select.far_nbr_list[pj] );
+                j = nbr_pj->nbr;
+                r_ij = nbr_pj->d;
+                r2 = r_ij * r_ij;
+                e_charge = dfactor / r_ij;
+                f_charge = - dfactor / r2;
+                if (abs(f_charge) > 20.0)
+                    f_charge = f_charge/abs(f_charge) * 20.0;
+                rvec_ScaledAdd( system->atoms[i].f, -f_charge, nbr_pj->dvec );
+                rvec_ScaledAdd( system->atoms[j].f,  f_charge, nbr_pj->dvec );
+            }
+    }
+
+    return;
+}

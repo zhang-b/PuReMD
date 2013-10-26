@@ -120,7 +120,8 @@ void Compute_NonBonded_Forces(reax_system *system, control_params *control,
 #endif
 
 	t_start = Get_Time();
-	QEq(system, control, data, workspace, lists[FAR_NBRS], out_control);
+        if (control->qeq)
+	    QEq(system, control, data, workspace, lists[FAR_NBRS], out_control);
 	t_elapsed = Get_Timing_Info(t_start);
 	data->timing.QEq += t_elapsed;
 #if defined(DEBUG_FOCUS)
@@ -584,7 +585,7 @@ void Compute_Bond_Boost_Force_All_Couple(reax_system *system, control_params *co
   list *bonds;
 
   nrad = Find_Radicals(system, control, data, workspace, lists, out_control);
-  nrad = 0;
+  //nrad = 0;
   //printf("-------------------------step %d  -----------------\n", data->step);
   bonds = (*lists) + BONDS;
 
@@ -649,7 +650,6 @@ void Compute_Bond_Boost_Force_All_Couple(reax_system *system, control_params *co
       }
     }
   }
-
   int ntmp; 
   if (fabs(emax) < q && nbond > 0 && nrad == 0) {
     data->boost ++ ;
@@ -1441,6 +1441,10 @@ void Compute_Forces(reax_system *system, control_params *control,
             Bias_COn_Decompose(system, control, data, workspace, lists, out_control);
         else if (control->bias_con_com)
             Bias_COn_Combine(system, control, data, workspace, lists, out_control);
+   if (control->bias_lj126 == 1)
+       Bias_LJ_126(system, control, data, workspace, lists, out_control);
+   if (control->bias_charge == 1)
+       Bias_Charge(system, control, data, workspace, lists, out_control);
 #if defined(DEBUG_FOCUS)
 	fprintf( stderr, "totalforces - ");
 	//Print_Total_Force( system, control, data, workspace, lists, out_control );

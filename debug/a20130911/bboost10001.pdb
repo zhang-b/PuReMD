@@ -1,0 +1,364 @@
+CRYST1   30.000   30.000   60.000  90.00  90.00  90.00              0
+ATOM      1   LI REX     1       8.911  20.880  25.188  1.00  0.00      0   LI  
+ATOM      2   LI REX     1      19.328  15.716  32.744  1.00  0.00      0   LI  
+ATOM      3   LI REX     1      25.088  12.055  12.280  1.00  0.00      0   LI  
+ATOM      4   LI REX     1      22.797  15.049  35.742  1.00  0.00      0   LI  
+ATOM      5   LI REX     1      22.835  12.643  31.852  1.00  0.00      0   LI  
+ATOM      6   LI REX     1      23.496  16.275  41.106  1.00  0.00      0   LI  
+ATOM      7   LI REX     1      13.460  22.672  26.411  1.00  0.00      0   LI  
+ATOM      8   LI REX     1      25.947  26.164  31.737  1.00  0.00      0   LI  
+ATOM      9   LI REX     1      26.706  24.848  36.820  1.00  0.00      0   LI  
+ATOM     10   LI REX     1      28.457  27.436  41.978  1.00  0.00      0   LI  
+ATOM     11   LI REX     1      27.994  21.312  33.410  1.00  0.00      0   LI  
+ATOM     12   LI REX     1      16.297  24.804  29.479  1.00  0.00      0   LI  
+ATOM     13   LI REX     1      24.613  24.977  41.403  1.00  0.00      0   LI  
+ATOM     14   LI REX     1      25.198  28.823  38.814  1.00  0.00      0   LI  
+ATOM     15   LI REX     1       4.554  22.043  30.482  1.00  0.00      0   LI  
+ATOM     16   LI REX     1      15.519  17.108  34.542  1.00  0.00      0   LI  
+ATOM     17   LI REX     1      11.557  18.109  43.355  1.00  0.00      0   LI  
+ATOM     18   LI REX     1      24.831  12.347  54.980  1.00  0.00      0   LI  
+ATOM     19   LI REX     1      25.718  15.419  58.850  1.00  0.00      0   LI  
+ATOM     20   LI REX     1       3.583  18.963  43.296  1.00  0.00      0   LI  
+ATOM     21   LI REX     1      14.841  28.394  43.642  1.00  0.00      0   LI  
+ATOM     22   LI REX     1      19.086  27.311  51.815  1.00  0.00      0   LI  
+ATOM     23   LI REX     1      19.456  17.716  37.177  1.00  0.00      0   LI  
+ATOM     24   LI REX     1      23.601  26.824  50.369  1.00  0.00      0   LI  
+ATOM     25   LI REX     1      25.558  24.631  46.186  1.00  0.00      0   LI  
+ATOM     26   LI REX     1      21.410  26.260  31.399  1.00  0.00      0   LI  
+ATOM     27   LI REX     1      23.966   4.568  46.927  1.00  0.00      0   LI  
+ATOM     28   LI REX     1      10.489  23.189  55.546  1.00  0.00      0   LI  
+ATOM     29   LI REX     1      15.348  18.832  46.088  1.00  0.00      0   LI  
+ATOM     30   LI REX     1      18.150  15.918   5.571  1.00  0.00      0   LI  
+ATOM     31   LI REX     1      26.353  22.594  50.957  1.00  0.00      0   LI  
+ATOM     32   LI REX     1      12.039  14.633  52.474  1.00  0.00      0   LI  
+ATOM     33   LI REX     1      21.434  22.957  51.559  1.00  0.00      0   LI  
+ATOM     34   LI REX     1      22.239  26.369  54.909  1.00  0.00      0   LI  
+ATOM     35   LI REX     1       8.754   4.178   7.089  1.00  0.00      0   LI  
+ATOM     36   LI REX     1       5.873   7.082   4.917  1.00  0.00      0   LI  
+ATOM     37   LI REX     1       9.675   7.618  18.109  1.00  0.00      0   LI  
+ATOM     38   LI REX     1       4.869  12.570   0.886  1.00  0.00      0   LI  
+ATOM     39   LI REX     1      14.616   5.398   9.184  1.00  0.00      0   LI  
+ATOM     40   LI REX     1      13.770  14.942   5.625  1.00  0.00      0   LI  
+ATOM     41   LI REX     1      12.611   4.584  20.078  1.00  0.00      0   LI  
+ATOM     42   LI REX     1       9.233   2.986  17.659  1.00  0.00      0   LI  
+ATOM     43   LI REX     1       6.255   0.362   5.255  1.00  0.00      0   LI  
+ATOM     44   LI REX     1      14.711   6.285  29.986  1.00  0.00      0   LI  
+ATOM     45   LI REX     1       5.185   4.050  39.289  1.00  0.00      0   LI  
+ATOM     46   LI REX     1       4.572   4.323   8.692  1.00  0.00      0   LI  
+ATOM     47   LI REX     1       3.277  15.256  15.111  1.00  0.00      0   LI  
+ATOM     48   LI REX     1       8.053   5.122  21.494  1.00  0.00      0   LI  
+ATOM     49   LI REX     1      12.469   8.859  21.851  1.00  0.00      0   LI  
+ATOM     50   LI REX     1      18.951   5.939   7.869  1.00  0.00      0   LI  
+ATOM     51   LI REX     1      18.270   1.261  20.358  1.00  0.00      0   LI  
+ATOM     52   LI REX     1      23.620   5.316   4.325  1.00  0.00      0   LI  
+ATOM     53   LI REX     1      26.127   1.813   3.084  1.00  0.00      0   LI  
+ATOM     54   LI REX     1      18.089   3.110  11.145  1.00  0.00      0   LI  
+ATOM     55   LI REX     1      16.870  12.382   3.289  1.00  0.00      0   LI  
+ATOM     56   LI REX     1      22.706   2.891   0.103  1.00  0.00      0   LI  
+ATOM     57   LI REX     1      27.129  10.858   7.875  1.00  0.00      0   LI  
+ATOM     58   LI REX     1      21.792   0.946  24.271  1.00  0.00      0   LI  
+ATOM     59   LI REX     1       8.240  29.038  14.261  1.00  0.00      0   LI  
+ATOM     60   LI REX     1      21.293   1.470  16.538  1.00  0.00      0   LI  
+ATOM     61   LI REX     1      29.441   2.577  11.580  1.00  0.00      0   LI  
+ATOM     62   LI REX     1      26.204   7.287  23.786  1.00  0.00      0   LI  
+ATOM     63   LI REX     1      17.624   7.889  11.843  1.00  0.00      0   LI  
+ATOM     64   LI REX     1      19.528  11.226  17.461  1.00  0.00      0   LI  
+ATOM     65   LI REX     1      23.613  28.282  27.987  1.00  0.00      0   LI  
+ATOM     66   LI REX     1      23.897   9.103  27.614  1.00  0.00      0   LI  
+ATOM     67   LI REX     1      29.884   4.729  15.754  1.00  0.00      0   LI  
+ATOM     68   LI REX     1      29.538  11.603  11.711  1.00  0.00      0   LI  
+ATOM     69   LI REX     1       8.852  18.156   4.922  1.00  0.00      0   LI  
+ATOM     70   LI REX     1       5.976  21.853   4.439  1.00  0.00      0   LI  
+ATOM     71   LI REX     1       4.669  16.805   3.139  1.00  0.00      0   LI  
+ATOM     72   LI REX     1       8.676  15.171   1.578  1.00  0.00      0   LI  
+ATOM     73   LI REX     1       7.509  15.950  16.800  1.00  0.00      0   LI  
+ATOM     74   LI REX     1       6.477  27.869  35.657  1.00  0.00      0   LI  
+ATOM     75   LI REX     1       4.596  29.451   0.329  1.00  0.00      0   LI  
+ATOM     76   LI REX     1       6.378  24.881  13.926  1.00  0.00      0   LI  
+ATOM     77   LI REX     1       2.564  11.827  32.613  1.00  0.00      0   LI  
+ATOM     78   LI REX     1       7.539   8.126   9.014  1.00  0.00      0   LI  
+ATOM     79   LI REX     1       5.296  18.273   7.362  1.00  0.00      0   LI  
+ATOM     80   LI REX     1       8.497  11.972  13.964  1.00  0.00      0   LI  
+ATOM     81   LI REX     1       3.298  13.771  23.303  1.00  0.00      0   LI  
+ATOM     82   LI REX     1      28.289  24.441  18.708  1.00  0.00      0   LI  
+ATOM     83   LI REX     1       3.137  27.418  44.621  1.00  0.00      0   LI  
+ATOM     84   LI REX     1       4.615  26.531   3.781  1.00  0.00      0   LI  
+ATOM     85   LI REX     1       9.676  25.618  17.136  1.00  0.00      0   LI  
+ATOM     86   LI REX     1       0.649  27.030  21.549  1.00  0.00      0   LI  
+ATOM     87   LI REX     1       2.424  25.304  17.128  1.00  0.00      0   LI  
+ATOM     88   LI REX     1      15.808  24.969   3.962  1.00  0.00      0   LI  
+ATOM     89   LI REX     1      15.729  16.842   9.850  1.00  0.00      0   LI  
+ATOM     90   LI REX     1      22.245  18.747  24.340  1.00  0.00      0   LI  
+ATOM     91   LI REX     1      23.136  18.941   1.415  1.00  0.00      0   LI  
+ATOM     92   LI REX     1      23.949  24.303   9.826  1.00  0.00      0   LI  
+ATOM     93   LI REX     1      27.032  21.288  10.111  1.00  0.00      0   LI  
+ATOM     94   LI REX     1      14.337  27.443   0.369  1.00  0.00      0   LI  
+ATOM     95   LI REX     1      19.170  26.156   7.535  1.00  0.00      0   LI  
+ATOM     96   LI REX     1      24.674  22.974  59.731  1.00  0.00      0   LI  
+ATOM     97   LI REX     1      24.287  28.666   0.324  1.00  0.00      0   LI  
+ATOM     98   LI REX     1      10.826  25.630  12.471  1.00  0.00      0   LI  
+ATOM     99   LI REX     1      16.410  18.312  14.510  1.00  0.00      0   LI  
+ATOM    100   LI REX     1      12.272  17.631  25.132  1.00  0.00      0   LI  
+ATOM    101   LI REX     1      23.165  13.742  16.452  1.00  0.00      0   LI  
+ATOM    102   LI REX     1      26.997  18.841  26.754  1.00  0.00      0   LI  
+ATOM    103   LI REX     1      27.543  15.077   9.937  1.00  0.00      0   LI  
+ATOM    104   LI REX     1      29.673  16.287  42.687  1.00  0.00      0   LI  
+ATOM    105   LI REX     1      11.685  15.966  14.413  1.00  0.00      0   LI  
+ATOM    106   LI REX     1      17.702  22.558  17.022  1.00  0.00      0   LI  
+ATOM    107   LI REX     1      14.462  25.436   8.591  1.00  0.00      0   LI  
+ATOM    108   LI REX     1      28.034  25.767   8.856  1.00  0.00      0   LI  
+ATOM    109   LI REX     1       0.126  20.996  29.203  1.00  0.00      0   LI  
+ATOM    110   LI REX     1      19.269  26.929  18.724  1.00  0.00      0   LI  
+ATOM    111   LI REX     1      21.201  20.924  20.410  1.00  0.00      0   LI  
+ATOM    112   LI REX     1      25.949   2.811  14.513  1.00  0.00      0   LI  
+ATOM    113   LI REX     1       9.496   4.923  37.795  1.00  0.00      0   LI  
+ATOM    114   LI REX     1      29.256   4.836  35.170  1.00  0.00      0   LI  
+ATOM    115   LI REX     1      28.264   7.251  39.006  1.00  0.00      0   LI  
+ATOM    116   LI REX     1       3.211   1.262  30.054  1.00  0.00      0   LI  
+ATOM    117   LI REX     1       7.961   6.797  41.753  1.00  0.00      0   LI  
+ATOM    118   LI REX     1      24.852  14.516  45.488  1.00  0.00      0   LI  
+ATOM    119   LI REX     1      29.928  10.654  22.651  1.00  0.00      0   LI  
+ATOM    120   LI REX     1       5.092   9.177  47.255  1.00  0.00      0   LI  
+ATOM    121   LI REX     1      29.208   6.924  19.933  1.00  0.00      0   LI  
+ATOM    122   LI REX     1       4.043  11.962  27.888  1.00  0.00      0   LI  
+ATOM    123   LI REX     1       0.797   2.299  52.470  1.00  0.00      0   LI  
+ATOM    124   LI REX     1       5.311   3.783  27.001  1.00  0.00      0   LI  
+ATOM    125   LI REX     1      10.130   0.290  48.541  1.00  0.00      0   LI  
+ATOM    126   LI REX     1       2.124   8.824  59.678  1.00  0.00      0   LI  
+ATOM    127   LI REX     1       7.601  13.143  51.239  1.00  0.00      0   LI  
+ATOM    128   LI REX     1      10.895   6.278  56.060  1.00  0.00      0   LI  
+ATOM    129   LI REX     1      11.265   2.813  52.497  1.00  0.00      0   LI  
+ATOM    130   LI REX     1      15.428   5.468  54.906  1.00  0.00      0   LI  
+ATOM    131   LI REX     1      16.337  15.234  55.103  1.00  0.00      0   LI  
+ATOM    132   LI REX     1      15.883   6.840  34.644  1.00  0.00      0   LI  
+ATOM    133   LI REX     1      13.470   2.183  29.584  1.00  0.00      0   LI  
+ATOM    134   LI REX     1      17.064  10.880  21.096  1.00  0.00      0   LI  
+ATOM    135   LI REX     1      24.134   4.462  26.429  1.00  0.00      0   LI  
+ATOM    136   LI REX     1      17.704   7.991  40.365  1.00  0.00      0   LI  
+ATOM    137   LI REX     1      20.384   6.312  43.713  1.00  0.00      0   LI  
+ATOM    138   LI REX     1      14.453  13.037  24.183  1.00  0.00      0   LI  
+ATOM    139   LI REX     1      16.277   8.108  45.020  1.00  0.00      0   LI  
+ATOM    140   LI REX     1      16.688   2.932  32.723  1.00  0.00      0   LI  
+ATOM    141   LI REX     1      23.544  16.556  20.619  1.00  0.00      0   LI  
+ATOM    142   LI REX     1      25.019   4.462  37.139  1.00  0.00      0   LI  
+ATOM    143   LI REX     1      25.878   8.404  35.456  1.00  0.00      0   LI  
+ATOM    144   LI REX     1      18.715  27.620  41.201  1.00  0.00      0   LI  
+ATOM    145   LI REX     1      18.825   6.201  58.250  1.00  0.00      0   LI  
+ATOM    146   LI REX     1      19.603   6.240  48.295  1.00  0.00      0   LI  
+ATOM    147   LI REX     1       2.493  29.691  55.855  1.00  0.00      0   LI  
+ATOM    148   LI REX     1      12.111   4.789  33.650  1.00  0.00      0   LI  
+ATOM    149   LI REX     1      14.373  14.459  44.656  1.00  0.00      0   LI  
+ATOM    150   LI REX     1      27.161   3.870  50.270  1.00  0.00      0   LI  
+ATOM    151   LI REX     1      23.593  13.533  50.359  1.00  0.00      0   LI  
+ATOM    152   LI REX     1       1.219   6.461  50.259  1.00  0.00      0   LI  
+ATOM    153   LI REX     1      13.512   2.882  58.045  1.00  0.00      0   LI  
+ATOM    154   LI REX     1      13.928   7.396  59.142  1.00  0.00      0   LI  
+ATOM    155   LI REX     1      20.289  14.131  53.692  1.00  0.00      0   LI  
+ATOM    156   LI REX     1      27.996  10.662  58.644  1.00  0.00      0   LI  
+ATOM    157   LI REX     1      10.259  14.157  34.383  1.00  0.00      0   LI  
+ATOM    158   LI REX     1       3.773   7.219  43.222  1.00  0.00      0   LI  
+ATOM    159   LI REX     1       3.145  16.222  39.648  1.00  0.00      0   LI  
+ATOM    160   LI REX     1       7.189  12.433  31.667  1.00  0.00      0   LI  
+ATOM    161   LI REX     1      12.921  15.495  30.156  1.00  0.00      0   LI  
+ATOM    162   LI REX     1       3.865  16.661  19.382  1.00  0.00      0   LI  
+ATOM    163   LI REX     1       7.340  23.519  34.219  1.00  0.00      0   LI  
+ATOM    164   LI REX     1       2.860  29.741  25.309  1.00  0.00      0   LI  
+ATOM    165   LI REX     1      16.064  24.239  43.221  1.00  0.00      0   LI  
+ATOM    166   LI REX     1       5.491  13.778  35.831  1.00  0.00      0   LI  
+ATOM    167   LI REX     1      12.654  27.115  26.793  1.00  0.00      0   LI  
+ATOM    168   LI REX     1      10.601  24.597  23.354  1.00  0.00      0   LI  
+ATOM    169   LI REX     1       3.747  16.048  52.852  1.00  0.00      0   LI  
+ATOM    170   LI REX     1       5.283  21.669  54.707  1.00  0.00      0   LI  
+ATOM    171   LI REX     1       3.346  11.864  50.302  1.00  0.00      0   LI  
+ATOM    172   LI REX     1      12.080  16.615  48.009  1.00  0.00      0   LI  
+ATOM    173   LI REX     1       7.217  27.295  46.865  1.00  0.00      0   LI  
+ATOM    174   LI REX     1       9.938  26.360  51.365  1.00  0.00      0   LI  
+ATOM    175   LI REX     1       5.238  23.203  43.951  1.00  0.00      0   LI  
+ATOM    176   LI REX     1      14.729  26.085  39.129  1.00  0.00      0   LI  
+ATOM    177   LI REX     1      11.182  24.991  36.311  1.00  0.00      0   LI  
+ATOM    178   LI REX     1      27.458  19.407   0.468  1.00  0.00      0   LI  
+ATOM    179   LI REX     1      13.419  18.478  56.426  1.00  0.00      0   LI  
+ATOM    180   LI REX     1      14.232  22.980  59.186  1.00  0.00      0   LI  
+ATOM    181   LI REX     1       1.200  20.684  52.541  1.00  0.00      0   LI  
+CONECT     1
+CONECT     2
+CONECT     3
+CONECT     4
+CONECT     5
+CONECT     6
+CONECT     7
+CONECT     8
+CONECT     9
+CONECT    10
+CONECT    11
+CONECT    12
+CONECT    13
+CONECT    14
+CONECT    15
+CONECT    16
+CONECT    17
+CONECT    18
+CONECT    19
+CONECT    20
+CONECT    21
+CONECT    22
+CONECT    23
+CONECT    24
+CONECT    25
+CONECT    26
+CONECT    27
+CONECT    28
+CONECT    29
+CONECT    30
+CONECT    31
+CONECT    32
+CONECT    33
+CONECT    34
+CONECT    35
+CONECT    36
+CONECT    37
+CONECT    38
+CONECT    39
+CONECT    40
+CONECT    41
+CONECT    42
+CONECT    43
+CONECT    44
+CONECT    45
+CONECT    46
+CONECT    47
+CONECT    48
+CONECT    49
+CONECT    50
+CONECT    51
+CONECT    52
+CONECT    53
+CONECT    54
+CONECT    55
+CONECT    56
+CONECT    57
+CONECT    58
+CONECT    59
+CONECT    60
+CONECT    61
+CONECT    62
+CONECT    63
+CONECT    64
+CONECT    65
+CONECT    66
+CONECT    67
+CONECT    68
+CONECT    69
+CONECT    70
+CONECT    71
+CONECT    72
+CONECT    73
+CONECT    74
+CONECT    75
+CONECT    76
+CONECT    77
+CONECT    78
+CONECT    79
+CONECT    80
+CONECT    81
+CONECT    82
+CONECT    83
+CONECT    84
+CONECT    85
+CONECT    86
+CONECT    87
+CONECT    88
+CONECT    89
+CONECT    90
+CONECT    91
+CONECT    92
+CONECT    93
+CONECT    94
+CONECT    95
+CONECT    96
+CONECT    97
+CONECT    98
+CONECT    99
+CONECT   100
+CONECT   101
+CONECT   102
+CONECT   103
+CONECT   104
+CONECT   105
+CONECT   106
+CONECT   107
+CONECT   108
+CONECT   109
+CONECT   110
+CONECT   111
+CONECT   112
+CONECT   113
+CONECT   114
+CONECT   115
+CONECT   116
+CONECT   117
+CONECT   118
+CONECT   119
+CONECT   120
+CONECT   121
+CONECT   122
+CONECT   123
+CONECT   124
+CONECT   125
+CONECT   126
+CONECT   127
+CONECT   128
+CONECT   129
+CONECT   130
+CONECT   131
+CONECT   132
+CONECT   133
+CONECT   134
+CONECT   135
+CONECT   136
+CONECT   137
+CONECT   138
+CONECT   139
+CONECT   140
+CONECT   141
+CONECT   142
+CONECT   143
+CONECT   144
+CONECT   145
+CONECT   146
+CONECT   147
+CONECT   148
+CONECT   149
+CONECT   150
+CONECT   151
+CONECT   152
+CONECT   153
+CONECT   154
+CONECT   155
+CONECT   156
+CONECT   157
+CONECT   158
+CONECT   159
+CONECT   160
+CONECT   161
+CONECT   162
+CONECT   163
+CONECT   164
+CONECT   165
+CONECT   166
+CONECT   167
+CONECT   168
+CONECT   169
+CONECT   170
+CONECT   171
+CONECT   172
+CONECT   173
+CONECT   174
+CONECT   175
+CONECT   176
+CONECT   177
+CONECT   178
+CONECT   179
+CONECT   180
+CONECT   181
+END

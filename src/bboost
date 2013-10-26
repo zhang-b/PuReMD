@@ -1,0 +1,914 @@
+analyze.c:      if( new_bonds->select.bond_list[j].bo_data.BO >= control->bg_cut ) {
+analyze.c:    if( old_bonds->select.bond_list[oldp].bo_data.BO >= control->bg_cut )
+analyze.c:    if( new_bonds->select.bond_list[newp].bo_data.BO >= control->bg_cut )
+analyze.c:	   old_bonds->select.bond_list[oldp].bo_data.BO < control->bg_cut )
+analyze.c:	   new_bonds->select.bond_list[newp].bo_data.BO < control->bg_cut )
+analyze.c:    if( bonds->select.bond_list[i].bo_data.BO >= control->bg_cut &&
+analyze.c:      if( old_bonds->select.bond_list[i].bo_data.BO >= control->bg_cut )
+analyze.c:      if( old_bonds->select.bond_list[i].bo_data.BO >= control->bg_cut )
+analyze.c:     if( old_bonds->select.bond_list[oldp].bo_data.BO >= control->bg_cut )
+analyze.c:     if( new_bonds->select.bond_list[newp].bo_data.BO >= control->bg_cut )
+analyze.c:	   old_bonds->select.bond_list[oldp].bo_data.BO < control->bg_cut )
+analyze.c:	   new_bonds->select.bond_list[newp].bo_data.BO < control->bg_cut )
+analyze.c:	  if( old_bonds->select.bond_list[oldp].bo_data.BO>=control->bg_cut ) {
+analyze.c:	  if( new_bonds->select.bond_list[newp].bo_data.BO>=control->bg_cut ){
+analyze.c:  if( ignore && control->ignore[t] )
+analyze.c:    if( bo >= control->bg_cut && !mark[nbr] )
+analyze.c:      if( new_bonds->select.bond_list[newp].bo_data.BO >= control->bg_cut )
+analyze.c:	if( new_bonds->select.bond_list[pi].bo_data.BO >= control->bg_cut ) {
+analyze.c:		  control->bg_cut ) { // physical j&k bond
+analyze.c:    //if( control->restrict_type == -1 ||
+analyze.c:    // system->atoms[i].type == control->restrict_type )
+analyze.c:    if( control->molec_anal == REACTIONS )
+analyze.c:    if( control->diffusion_coef )
+analyze.c:  if( control->molec_anal && steps%control->freq_molec_anal == 0 ) {
+analyze.c:    if( control->molec_anal == FRAGMENTS ) {
+analyze.c:			 out_control->mol, 0 );
+analyze.c:      if( control->num_ignored )
+analyze.c:			   out_control->ign, 1 );
+analyze.c:    else if( control->molec_anal == REACTIONS )
+analyze.c:			 lists, out_control->mol );
+analyze.c:  if( control->dipole_anal && steps%control->freq_dipole_anal == 0 )
+analyze.c:			     (*lists) + BONDS, out_control->dpl );
+analyze.c:  if( control->diffusion_coef && steps%control->freq_diffusion_coef == 0 )
+analyze.c:      Calculate_Drift( system, control, data, workspace, out_control->drft );
+bias.c:    interval = control->bias_con_com_interval;
+bias.c:        fprintf(out_control->bias, "Step %d COn Combination\n", step);
+bias.c:                if (n < control->bias_con_com_n){
+bias.c:        fprintf(out_control->bias, "Totally %d C in CO2 group, and %d O in CO2 group\n", n_c, n_o);
+bias.c:            scale = control->bias_con_com_vmax * 2 * 1.65;
+bias.c:            scale = control->bias_con_com_vmax * 2 * ( r_ij - BIAS_RE_CO_MAX);
+bias.c:        fprintf(out_control->bias, "atom1 = %d atom2 = %d r_ij = %.2f scale = %.2f sucess = %d\n", 
+bias.c:    fflush(out_control->bias);
+bias.c:    interval = control->bias_con_de_interval;
+bias.c:        fprintf(out_control->bias, "Step %d COn decompostion\n", step);
+bias.c:            if ( n > control->bias_con_de_n){
+bias.c:            fprintf(out_control->bias, "Update atoms C = %d and atom O = %d\n", 
+bias.c:                        scale = -control->bias_con_de_vmax * 2 * (r - 2.0);
+bias.c:                    fprintf(out_control->bias, "scale = %.2f bo = %.2f r = %.2f sucess %d\n",
+bias.c:        if (data->bias_n <= control->bias_con_de_n)
+bias.c:    fflush(out_control->bias);
+bias.c:            if( far_nbrs->select.far_nbr_list[pj].d <= control->r_cut ) {
+bias.c:                printf("r_cut = %.2f\n", control->r_cut);
+box.c:  if( norm_sqr <= SQR( control->vlist_cut ) ) {
+box.c:  if( norm_sqr <= SQR( control->vlist_cut ) ) {
+box.c:  imax = (int)(control->vlist_cut / box->box_norms[0] + 1);
+box.c:  jmax = (int)(control->vlist_cut / box->box_norms[1] + 1);
+box.c:  kmax = (int)(control->vlist_cut / box->box_norms[2] + 1);
+box.c:    if(fabs(d_i=((x2[0]+i*box->box_norms[0])-x1[0]))<=control->vlist_cut) {
+box.c:	if(fabs(d_j=((x2[1]+j*box->box_norms[1])-x1[1]))<=control->vlist_cut) {
+box.c:	    if(fabs(d_k=((x2[2]+k*box->box_norms[2])-x1[2]))<=control->vlist_cut) {
+box.c:	      if( sqr_norm <= SQR(control->vlist_cut) ) {
+forces.c:	if (control->hb_cut > 0)
+forces.c:	fprintf( out_control->ebond, "step: %d\n%6s%6s%12s%12s%12s\n",
+forces.c:	fprintf( out_control->elp, "step: %d\n%6s%12s%12s%12s\n",
+forces.c:	fprintf( out_control->eov, "step: %d\n%6s%12s%12s\n",
+forces.c:	fprintf( out_control->eun, "step: %d\n%6s%12s%12s\n",
+forces.c:	fprintf( out_control->eval, "step: %d\n%6s%6s%6s%12s%12s%12s%12s%12s%12s\n",
+forces.c:	fprintf( out_control->epen, "step: %d\n%6s%6s%6s%12s%12s%12s%12s%12s\n",
+forces.c:	fprintf( out_control->ecoa, "step: %d\n%6s%6s%6s%12s%12s%12s%12s%12s\n",
+forces.c:	fprintf( out_control->ehb, "step: %d\n%6s%6s%6s%12s%12s%12s%12s%12s\n",
+forces.c:	fprintf( out_control->etor, "step: %d\n%6s%6s%6s%6s%12s%12s%12s%12s\n",
+forces.c:	fprintf( out_control->econ, "step:%d\n%6s%6s%6s%6s%12s%12s%12s%12s%12s%12s\n",
+forces.c:	fprintf( out_control->evdw, "step: %d\n%6s%6s%12s%12s%12s\n",
+forces.c:	fprintf( out_control->ecou, "step: %d\n%6s%6s%12s%12s%12s%12s%12s\n",
+forces.c:	if (control->tabulate == 0)
+forces.c:				if (control->ensemble == NVE || control->ensemble == NVT)
+forces.c:	data->E_amd = control->amd_energy - data->Fragment_wat*120.0;
+forces.c:		if (control->amd_func == 1){
+forces.c:		s2 = POW(s1, control->amd_power) + control->amd_alpha;
+forces.c:		s4 = control->amd_power*POW(s1, control->amd_power)-2*s2;
+forces.c:		else if (control->amd_func == 2){
+forces.c:			s4 = control->amd_alpha*(s3+1);
+forces.c:  q = control->bboost_q; // should read this from control file
+forces.c:  P1 = control->bboost_P1; 
+forces.c:  vmax = control->bboost_Vmax;
+forces.c:      vmax = control->bboost_Vmax;
+forces.c:  fprintf( out_control->bboost, "%-10d%6d%6d%10.4f%10.4f%10.4f", \
+forces.c:  fprintf( out_control->bboost, " %4s %4s\n", \
+forces.c:  fflush( out_control->bboost);
+forces.c:  q = control->bboost_q; // should read this from control file
+forces.c:  P1 = control->bboost_P1; 
+forces.c:  vmax = control->bboost_Vmax;
+forces.c:  T = control->T_final;
+forces.c:      vmax = control->bboost_Vmax;
+forces.c:  fprintf( out_control->bboost, "%-10d%6d%6d%10.4f%10.4f%10.4f", \
+forces.c:  fprintf( out_control->bboost, " %4s %4s\n", \
+forces.c:  fflush( out_control->bboost);
+forces.c:  q = control->bboost_q; // should read this from control file
+forces.c:  P1 = control->bboost_P1; 
+forces.c:  vmax = control->bboost_Vmax;
+forces.c:  T = control->T_final;
+forces.c:        vmax = control->bboost_Vmax;
+forces.c:          vmax = control->bboost_Vmax;
+forces.c:  fprintf( out_control->bboost, "%-10d%6d%6d%6d%3d%8.4f%8.4f %24.4f", \
+forces.c:  fprintf( out_control->bboost, " %4s %4s\n", \
+forces.c:  fflush( out_control->bboost);
+forces.c:		if (control->hb_cut > 0 && (ihb = sbp_i->p_hbond) == 1)
+forces.c:			if ((data->step - data->prev_steps) % control->reneighbor == 0) {
+forces.c:				if (nbr_pj->d <= control->r_cut)
+forces.c:					&(system->box), nbr_pj->dvec)) <= SQR(control->r_cut)) {
+forces.c:				Tap = control->Tap7 * r_ij + control->Tap6;
+forces.c:				Tap = Tap * r_ij + control->Tap5;
+forces.c:				Tap = Tap * r_ij + control->Tap4;
+forces.c:				Tap = Tap * r_ij + control->Tap3;
+forces.c:				Tap = Tap * r_ij + control->Tap2;
+forces.c:				Tap = Tap * r_ij + control->Tap1;
+forces.c:				Tap = Tap * r_ij + control->Tap0;
+forces.c:				if (control->hb_cut > 0 && (ihb == 1 || ihb == 2) && nbr_pj->d
+forces.c:						<= control->hb_cut) {
+forces.c:				if (far_nbrs->select.far_nbr_list[pj].d <= control->nbr_cut) {
+forces.c:						BO_s = (1.0 + control->bo_cut) * EXP(C12);
+forces.c:					if (BO >= control->bo_cut) {
+forces.c:						bo_ij->BO_s -= control->bo_cut;
+forces.c:						bo_ij->BO -= control->bo_cut;
+forces.c:						bo_ji->BO_s -= control->bo_cut;
+forces.c:						bo_ji->BO -= control->bo_cut;
+forces.c:		if (control->hb_cut > 0 && (ihb = sbp_i->p_hbond) == 1)
+forces.c:			if ((data->step - data->prev_steps) % control->reneighbor == 0) {
+forces.c:				if (nbr_pj->d <= control->r_cut)
+forces.c:					&(system->box), nbr_pj->dvec)) <= SQR(control->r_cut)) {
+forces.c:				if (control->hb_cut > 0 && (ihb == 1 || ihb == 2) && nbr_pj->d
+forces.c:						<= control->hb_cut) {
+forces.c:				if (far_nbrs->select.far_nbr_list[pj].d <= control->nbr_cut) {
+forces.c:						BO_s = (1.0 + control->bo_cut) * EXP(C12);
+forces.c:					if (BO >= control->bo_cut) {
+forces.c:						bo_ij->BO_s -= control->bo_cut;
+forces.c:						bo_ij->BO -= control->bo_cut;
+forces.c:						bo_ji->BO_s -= control->bo_cut;
+forces.c:						bo_ji->BO -= control->bo_cut;
+forces.c:			if (nbr_pj->d <= control->r_cut) {
+forces.c:				if (control->hb_cut > 0.1 && (ihb == 1 || ihb == 2)
+forces.c:						&& nbr_pj->d <= control->hb_cut) {
+forces.c:				if (nbr_pj->d <= control->nbr_cut) {
+forces.c:						BO_s = (1.0 + control->bo_cut) * EXP(C12);
+forces.c:					if (BO >= control->bo_cut) {
+forces.c:	if (!control->tabulate)
+forces.c:	if (control->amd)
+forces.c:    if (control->bboost == 1)
+forces.c:    else if (control->bboost == 2)
+forces.c:    else if (control->bboost == 3)
+forces.c:        if (control->bias_con_de)
+forces.c:        else if (control->bias_con_com)
+forces.c:   if (control->bias_126 == 1)
+four_body_interactions.c:  /*fprintf( out_control->etor, 
+four_body_interactions.c:    fprintf( out_control->etor, "%23.15e%23.15e%23.15e\n",
+four_body_interactions.c:    fprintf( out_control->etor, "%23.15e%23.15e%23.15e\n",
+four_body_interactions.c:    fprintf( out_control->etor, "%23.15e%23.15e%23.15e\n",
+four_body_interactions.c:    fprintf( out_control->etor, "%23.15e%23.15e%23.15e%23.15e\n",
+four_body_interactions.c:    fprintf( out_control->etor, "%23.15e%23.15e%23.15e%23.15e\n",
+four_body_interactions.c:    fprintf( out_control->etor, "%23.15e%23.15e%23.15e%23.15e\n", 
+four_body_interactions.c:    fprintf( out_control->etor, "%23.15e%23.15e%23.15e\n",
+four_body_interactions.c:  /* fprintf( out_control->etor, "%23.15e%23.15e%23.15e\n",
+four_body_interactions.c:     fprintf( out_control->etor, "%23.15e%23.15e%23.15e\n",
+four_body_interactions.c:      BOA_jk = bo_jk->BO - control->thb_cut;
+four_body_interactions.c:      if( j < k && bo_jk->BO > control->thb_cut/*0*/ && 
+four_body_interactions.c:	    if( bo_ij->BO > control->thb_cut/*0*/ ) {
+four_body_interactions.c:	      BOA_ij = bo_ij->BO - control->thb_cut;
+four_body_interactions.c:		if( i != l && fbh->cnt && bo_kl->BO > control->thb_cut/*0*/ &&
+four_body_interactions.c:		    bo_ij->BO * bo_jk->BO * bo_kl->BO > control->thb_cut/*0*/ ){
+four_body_interactions.c:		  BOA_kl = bo_kl->BO - control->thb_cut;
+four_body_interactions.c:		  if( control->ensemble == NVE || control->ensemble == NVT ) {
+four_body_interactions.c:		  /*fprintf( out_control->etor, 
+four_body_interactions.c:		  // fprintf( out_control->etor, "%12.8f\n", dfn11 );
+four_body_interactions.c:		  fprintf( out_control->etor, "%12.8f%12.8f%12.8f\n", 
+four_body_interactions.c:		  fprintf( out_control->etor, 
+four_body_interactions.c:		  /* fprintf( out_control->etor, 
+four_body_interactions.c:		  fprintf( out_control->etor, 
+four_body_interactions.c:		  /* fprintf(out_control->etor,"%23.15e%23.15e%23.15e%23.15e\n",
+four_body_interactions.c:		  fprintf( out_control->etor, 
+four_body_interactions.c:		  fprintf( out_control->econ, 
+four_body_interactions.c:		  /* fprintf( out_control->etor, 
+four_body_interactions.c:		  /* fprintf( out_control->etor, 
+four_body_interactions.c:		  fprintf( out_control->etor, 
+init_md.c:  if( !control->restart )
+init_md.c:  if( control->reposition_atoms == 0 ) {
+init_md.c:  else if( control->reposition_atoms == 1 ) {
+init_md.c:  else if( control->reposition_atoms == 2 ) {
+init_md.c:  if( !control->restart || (control->restart && control->random_vel) )  
+init_md.c:    Generate_Initial_Velocities( system, control->T_init );
+init_md.c:  if( !control->restart )  
+init_md.c:  data->ignite_T = control->T;
+init_md.c:  switch( control->ensemble ) {
+init_md.c:    if( !control->restart || (control->restart && control->random_vel) ) {
+init_md.c:      data->therm.G_xi = control->Tau_T * (2.0 * data->E_Kin - 
+init_md.c:					   data->N_f * K_B * control->T );
+init_md.c:      data->therm.v_xi = data->therm.G_xi * control->dt;
+init_md.c:	       data->therm.G_xi, control->Tau_T, data->E_Kin, 
+init_md.c:    if( !control->restart ) {
+init_md.c:      data->therm.G_xi = control->Tau_T * (2.0 * data->E_Kin - 
+init_md.c:					   data->N_f * K_B * control->T );
+init_md.c:      data->therm.v_xi = data->therm.G_xi * control->dt;
+init_md.c:      //data->inv_W = 1. / (data->N_f*K_B*control->T*SQR(control->Tau_P));
+init_md.c:  if( control->molec_anal || control->diffusion_coef )
+init_md.c:  if( control->diffusion_coef )
+init_md.c:  if( control->hb_cut > 0 ) {
+init_md.c:  if( out_control->write_steps > 0 ) { 
+init_md.c:    strcpy( temp, control->sim_name );
+init_md.c:    out_control->trj = fopen( temp, "w" );
+init_md.c:    out_control->write_header( system, control, workspace, out_control );
+init_md.c:  if( out_control->energy_update_freq > 0 ) {
+init_md.c:    strcpy( temp, control->sim_name );
+init_md.c:    out_control->out = fopen( temp, "w" );
+init_md.c:    fprintf( out_control->out, "%-6s%16s%16s%12s%16s%16s%16s%11s%11s%13s%13s%13s\n",
+init_md.c:    fflush( out_control->out );
+init_md.c:    strcpy( temp, control->sim_name );
+init_md.c:    out_control->pot = fopen( temp, "w" );
+init_md.c:    fprintf( out_control->pot, 
+init_md.c:    fflush( out_control->pot );
+init_md.c:    strcpy( temp, control->sim_name );
+init_md.c:    out_control->log = fopen( temp, "w" );
+init_md.c:    fprintf( out_control->log, "%-6s%10s%10s%10s%10s%10s%10s%10s\n", 
+init_md.c:    strcpy( temp, control->sim_name );
+init_md.c:    out_control->bboost = fopen( temp, "w" );
+init_md.c:    fprintf( out_control->bboost, "%-10s%-6s%-6s%-6s%3s%8s%8s%24s%4s%4s\n",
+init_md.c:    fflush( out_control->bboost);
+init_md.c:    strcpy( temp, control->sim_name );
+init_md.c:    out_control->bias = fopen( temp, "w" );
+init_md.c:    fprintf( out_control->bias, "%-10s%-6s%-6s%-6s%3s%8s%8s%24s%4s%4s\n",
+init_md.c:    fflush( out_control->bias);
+init_md.c:  if( control->ensemble == NPT || 
+init_md.c:      control->ensemble == iNPT || 
+init_md.c:      control->ensemble == sNPT ) {
+init_md.c:    strcpy( temp, control->sim_name );
+init_md.c:    out_control->prs = fopen( temp, "w" );
+init_md.c:    fprintf( out_control->prs, "%-6s%13s%13s%13s%13s%13s%13s%13s%13s\n",
+init_md.c:    fflush( out_control->prs );
+init_md.c:  if( control->molec_anal ) {
+init_md.c:    sprintf( temp, "%s.mol", control->sim_name );
+init_md.c:    out_control->mol = fopen( temp, "w" );
+init_md.c:    if( control->num_ignored ) {
+init_md.c:      sprintf( temp, "%s.ign", control->sim_name );
+init_md.c:      out_control->ign = fopen( temp, "w" );
+init_md.c:  if( control->dipole_anal ) {
+init_md.c:    strcpy( temp, control->sim_name );
+init_md.c:    out_control->dpl = fopen( temp, "w" );
+init_md.c:    fprintf( out_control->dpl, 
+init_md.c:    fflush( out_control->dpl );
+init_md.c:  if( control->diffusion_coef ) {
+init_md.c:    strcpy( temp, control->sim_name );
+init_md.c:    out_control->drft = fopen( temp, "w" );
+init_md.c:    fprintf( out_control->drft, "Step     Type Count   Avg Squared Disp\n" );
+init_md.c:    fflush( out_control->drft );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->ebond = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->elp = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->eov = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->eun = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->eval = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->epen = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->ecoa = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->ehb = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->etor = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->econ = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->evdw = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->ecou = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->fbo = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->fdbo = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->fbond = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->flp = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->fatom = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->f3body = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->fhb = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->f4body = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->fnonb = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->ftot = fopen( temp, "w" );
+init_md.c:  strcpy( temp, control->sim_name );
+init_md.c:  out_control->ftot2 = fopen( temp, "w" );
+init_md.c:  /* if ( out_control->out == NULL || out_control->pot == NULL || 
+init_md.c:     out_control->log == NULL || out_control->mol == NULL || 
+init_md.c:     out_control->dpl == NULL || out_control->drft == NULL ||       
+init_md.c:     out_control->pdb == NULL )
+init_md.c:  if( control->tabulate )
+integrate.c:  dt = control->dt;
+integrate.c:  renbr = (steps % control->reneighbor == 0);
+integrate.c:  dt = control->dt;
+integrate.c:  renbr = (steps % control->reneighbor == 0);
+integrate.c:    G_xi_new = control->Tau_T * ( 2.0 * E_kin_new - 
+integrate.c:				  data->N_f * K_B * control->T );
+integrate.c:  dt = control->dt;
+integrate.c:  renbr = (steps % control->reneighbor == 0);
+integrate.c:  //fprintf( out_control->prs, 
+integrate.c:  //control->Tau_T, control->Tau_P, dt / control->Tau_T, dt / control->Tau_P );
+integrate.c:  mu = POW( 1.0 + (dt / control->Tau_P[0]) * (data->iso_bar.P - control->P[0]),
+integrate.c:  if (control->Tau_P[0] > 9999){
+integrate.c:  lambda = 1.0 + (dt / control->Tau_T) * (control->T / data->therm.T - 1.0);
+integrate.c:  dt = control->dt;
+integrate.c:  renbr = (steps % control->reneighbor == 0);
+integrate.c:  //fprintf( out_control->prs, 
+integrate.c:  //control->Tau_T, control->Tau_P, dt / control->Tau_T, dt / control->Tau_P );
+integrate.c:    mu[d] = POW( 1.0+(dt/control->Tau_P[d])*(data->tot_press[d]-control->P[d]),
+integrate.c:  lambda = 1.0 + (dt / control->Tau_T) * (control->T / data->therm.T - 1.0);
+integrate.c:  real dt = control->dt;
+integrate.c:  data->therm.xi += 0.5 * dt * control->Tau_T  * 
+integrate.c:    ( 2.0 * data->E_Kin - data->N_f * K_B * control->T );
+integrate.c:  fprintf(out_control->log,"reset-"); fflush( out_control->log );
+integrate.c:  fprintf(out_control->log,"nbrs-"); fflush( out_control->log );
+integrate.c:     fprintf(out_control->log,"qeq-"); fflush( out_control->log ); */
+integrate.c:  fprintf(out_control->log,"forces\n"); fflush( out_control->log );
+integrate.c:  data->therm.xi += 0.5*dt * control->Tau_T  * ( 2.0 * data->E_Kin - 
+integrate.c:						 data->N_f * K_B * control->T );
+integrate.c:  fprintf( out_control->log,"Xi: %8.3f %8.3f %8.3f\n", 
+integrate.c:	   data->therm.xi, data->E_Kin, data->N_f * K_B * control->T ); 
+integrate.c:  fflush( out_control->log );
+integrate.c:  real dt = control->dt;
+integrate.c:  iso_bar->a_eps = control->Tau_P * 
+integrate.c:    ( 3.0 * box->volume * (iso_bar->P - control->P) + 
+integrate.c:  therm->G_xi = control->Tau_T * ( 2.0 * data->E_Kin + 
+integrate.c:				   SQR( iso_bar->v_eps ) / control->Tau_P - 
+integrate.c:				   (data->N_f +1) * K_B * control->T );
+integrate.c:  fprintf(out_control->log, "a: %12.6f   eps: %12.6f   deps: %12.6f\n", 
+integrate.c:  fprintf(out_control->log, "G: %12.6f   xi : %12.6f   dxi : %12.6f\n", 
+integrate.c:  fprintf(out_control->log,"reset-"); fflush( out_control->log );
+integrate.c:  fprintf(out_control->log,"nbrs-"); fflush( out_control->log );
+integrate.c:     fprintf(out_control->log,"qeq-"); fflush( out_control->log ); */
+integrate.c:  fprintf(out_control->log,"forces\n"); fflush( out_control->log );
+integrate.c:      a_eps_new = 3.0 * control->Tau_P * 
+integrate.c:	( system->box.volume * (P_int - control->P) + 2.0 * E_kin / data->N_f );
+integrate.c:      G_xi_new = control->Tau_T * ( 2.0 * E_kin + 
+integrate.c:				    SQR( v_eps_old ) / control->Tau_P - 
+integrate.c:				    (data->N_f + 1) * K_B * control->T );
+integrate.c:      fprintf( out_control->log, 
+integrate.c:  fprintf( out_control->log, "V: %8.3ff\tsides{%8.3f, %8.3f, %8.3f}\n", 
+integrate.c:  fprintf(out_control->log,"eps:\ta- %8.3f  v- %8.3f  eps- %8.3f\n", 
+integrate.c:  fprintf(out_control->log,"xi: \tG- %8.3f  v- %8.3f  xi - %8.3f\n", 
+lookup.c:  dr = control->r_cut / control->tabulate;
+lookup.c:  h = (real*) malloc( (control->tabulate+1) * sizeof(real) );
+lookup.c:  fh = (real*) malloc( (control->tabulate+1) * sizeof(real) );
+lookup.c:  fvdw = (real*) malloc( (control->tabulate+1) * sizeof(real) );
+lookup.c:  fCEvd = (real*) malloc( (control->tabulate+1) * sizeof(real) );
+lookup.c:  fele = (real*) malloc( (control->tabulate+1) * sizeof(real) );
+lookup.c:  fCEclmb = (real*) malloc( (control->tabulate+1) * sizeof(real) );
+lookup.c:	  LR[i][j].xmax = control->r_cut;
+lookup.c:	  LR[i][j].n = control->tabulate + 1;
+lookup.c:	  LR[i][j].inv_dx = control->tabulate / control->r_cut;
+lookup.c:	  for( r = 1; r <= control->tabulate; ++r ) {
+lookup.c:	    else if( r == control->tabulate ){
+lookup.c:	    for( r = 1; r <= control->tabulate; ++r )
+lookup.c:				&(LR[i][j].H[1]), control->tabulate+1 );
+lookup.c:	    for( r = 1; r <= control->tabulate; ++r )
+lookup.c:				 &(LR[i][j].vdW[1]), control->tabulate+1 );
+lookup.c:				&(LR[i][j].CEvd[1]), control->tabulate+1 );
+lookup.c:	    for( r = 1; r <= control->tabulate; ++r )
+lookup.c:				 &(LR[i][j].ele[1]), control->tabulate+1 );
+lookup.c:				&(LR[i][j].CEclmb[1]), control->tabulate+1 );
+lookup.c:	 rand_dist = (real)rand()/RAND_MAX * control->r_cut;
+neighbors.c:		SQR(control->vlist_cut) ) { 	
+neighbors.c:				       &(system->box), control->vlist_cut, 
+neighbors.c:		SQR(control->vlist_cut) ) { 	
+neighbors.c:				       &(system->box), control->vlist_cut, 
+neighbors.c:  if( control->periodic_boundaries )
+neighbors.c:      if( system->box.box_norms[0] > 2.0 * control->vlist_cut &&
+neighbors.c:	  system->box.box_norms[1] > 2.0 * control->vlist_cut &&
+neighbors.c:	  system->box.box_norms[2] > 2.0 * control->vlist_cut )
+neighbors.c:  if( control->ensemble == iNPT || control->ensemble == sNPT || 
+neighbors.c:      control->ensemble == NPT )
+neighbors.c:	    //     SQR(control->r_cut)) 	
+neighbors.c:		    /*if( control->hb_cut > 0.1 && 
+neighbors.c:		      new_nbrs[c].d <= control->hb_cut ) {
+neighbors.c:  if( (data->step - data->prev_steps) < control->restrict_bonds ) {
+neighbors.c:	   num_far / system->N, control->max_far_nbrs );
+neighbors.c:  if( control->ensemble == iNPT || 
+neighbors.c:      control->ensemble == sNPT || 
+neighbors.c:      control->ensemble == NPT )
+neighbors.c:	    //     SQR(control->r_cut)) 	
+param.c:	swa = control->r_low;
+param.c:	swb = control->r_cut;
+param.c:	control->Tap7 = 20.0 / d7;
+param.c:	control->Tap6 = -70.0 * (swa + swb) / d7;
+param.c:	control->Tap5 = 84.0 * (swa2 + 3.0 * swa * swb + swb2) / d7;
+param.c:	control->Tap4 = -35.0 * (swa3 + 9.0 * swa2 * swb + 9.0 * swa * swb2 + swb3)
+param.c:	control->Tap3 = 140.0 * (swa3 * swb + 3.0 * swa2 * swb2 + swa * swb3) / d7;
+param.c:	control->Tap2 = -210.0 * (swa3 * swb2 + swa2 * swb3) / d7;
+param.c:	control->Tap1 = 140.0 * swa3 * swb3 / d7;
+param.c:	control->Tap0 = (-35.0 * swa3 * swb2 * swb2 + 21.0 * swa2 * swb3 * swb2
+param.c:            reax->tbp[i][j].q_e = control->bboost_q;
+param.c:            reax->tbp[j][i].q_e = control->bboost_q;
+param.c:	strcpy(control->sim_name, "default.sim");
+param.c:	control->restart = 0;
+param.c:	out_control->restart_format = 1;
+param.c:	out_control->restart_freq = 0;
+param.c:	strcpy(control->restart_from, "default.res");
+param.c:	out_control->restart_freq = 0;
+param.c:	control->random_vel = 0;
+param.c:	control->reposition_atoms = 0;
+param.c:	control->ensemble = 0;
+param.c:	control->nsteps = 0;
+param.c:	control->dt = 0.25;
+param.c:	control->geo_format = 1;
+param.c:	control->restrict_bonds = 0;
+param.c:	control->periodic_boundaries = 1;
+param.c:	control->periodic_images[0] = 0;
+param.c:	control->periodic_images[1] = 0;
+param.c:	control->periodic_images[2] = 0;
+param.c:	control->reneighbor = 1;
+param.c:	control->vlist_cut = 0;
+param.c:	control->nbr_cut = 4.;
+param.c:	control->r_cut = 10;
+param.c:	control->max_far_nbrs = 1000;
+param.c:	control->bo_cut = 0.01;
+param.c:	control->thb_cut = 0.001;
+param.c:	control->hb_cut = 7.50;
+param.c:	control->q_err = 0.000001;
+param.c:	control->tabulate = 0;
+param.c:	control->refactor = 100;
+param.c:	control->droptol = 0.01;
+param.c:	control->T_init = 0.;
+param.c:	control->T_final = 300.;
+param.c:	control->Tau_T = 1.0;
+param.c:	control->T_mode = 0.;
+param.c:	control->T_rate = 1.;
+param.c:	control->T_freq = 1.;
+param.c:	control->P[0] = 0.000101325;
+param.c:	control->P[1] = 0.000101325;
+param.c:	control->P[2] = 0.000101325;
+param.c:	control->Tau_P[0] = 500.0;
+param.c:	control->Tau_P[1] = 500.0;
+param.c:	control->Tau_P[2] = 500.0;
+param.c:	control->Tau_PT = 500.0;
+param.c:	control->compressibility = 1.0;
+param.c:	control->press_mode = 0;
+param.c:	control->remove_CoM_vel = 25;
+param.c:	out_control->debug_level = 0;
+param.c:	out_control->energy_update_freq = 10;
+param.c:	out_control->write_steps = 100;
+param.c:	out_control->traj_compress = 0;
+param.c:	out_control->write = fprintf;
+param.c:	out_control->traj_format = 0;
+param.c:	out_control->write_header = (int(*)(reax_system*, control_params*,
+param.c:	out_control->append_traj_frame
+param.c:	strcpy(out_control->traj_title, "default_title");
+param.c:	out_control->atom_format = 0;
+param.c:	out_control->bond_info = 0;
+param.c:	out_control->angle_info = 0;
+param.c:	control->molec_anal = 0;
+param.c:	control->freq_molec_anal = 0;
+param.c:	control->bg_cut = 0.3;
+param.c:	control->num_ignored = 0;
+param.c:	memset(control->ignore, 0, sizeof(int) * MAX_ATOM_TYPES );
+param.c:	control->dipole_anal = 0;
+param.c:	control->freq_dipole_anal = 0;
+param.c:	control->diffusion_coef = 0;
+param.c:	control->freq_diffusion_coef = 0;
+param.c:	control->restrict_type = 0;
+param.c:	control->amd = 0;
+param.c:	control->amd_energy = 0;
+param.c:	control->amd_alpha = 0;
+param.c:	control->amd_power = 1;
+param.c:	control->amd_func = 1;
+param.c:	control->amd_hof = 0;
+param.c:	control->bboost = 0;
+param.c:	control->bboost_Vmax = 0.0;
+param.c:	control->bboost_P1 = 0.0;
+param.c:	control->bboost_q = 0.0;
+param.c:	control->bias_con_de = 0;
+param.c:	control->bias_con_com = 0;
+param.c:			strcpy(control->sim_name, tmp[1]);
+param.c:		//  control->restart = ival;
+param.c:			out_control->restart_format = ival;
+param.c:			out_control->restart_freq = ival;
+param.c:			control->random_vel = ival;
+param.c:			control->reposition_atoms = ival;
+param.c:			control->ensemble = ival;
+param.c:			control->nsteps = ival;
+param.c:			control->dt = val * 1.e-3; // convert dt from fs to ps!
+param.c:			control->periodic_boundaries = ival;
+param.c:			control->periodic_images[0] = ival;
+param.c:			control->periodic_images[1] = ival;
+param.c:			control->periodic_images[2] = ival;
+param.c:			control->geo_format = ival;
+param.c:			control->restrict_bonds = ival;
+param.c:			control->tabulate = ival;
+param.c:			control->reneighbor = ival;
+param.c:			control->vlist_cut = val;
+param.c:			control->nbr_cut = val;
+param.c:			control->thb_cut = val;
+param.c:			control->hb_cut = val;
+param.c:			control->q_err = val;
+param.c:			control->refactor = ival;
+param.c:			control->droptol = val;
+param.c:			control->T_init = val;
+param.c:			if (control->T_init < 0.001)
+param.c:				control->T_init = 0.001;
+param.c:			control->T_final = val;
+param.c:			if (control->T_final < 0.1)
+param.c:				control->T_final = 0.1;
+param.c:			control->Tau_T = val * 1.e-3; // convert t_mass from fs to ps
+param.c:			control->T_mode = ival;
+param.c:			control->T_rate = val;
+param.c:			control->T_freq = val;
+param.c:			if (control->ensemble == iNPT) {
+param.c:				control->P[0] = control->P[1] = control->P[2] = val;
+param.c:			} else if (control->ensemble == sNPT) {
+param.c:				control->P[0] = val;
+param.c:				control->P[1] = val;
+param.c:				control->P[2] = val;
+param.c:			if (control->ensemble == iNPT) {
+param.c:				control->Tau_P[0] = val * 1.e-3; // convert p_mass from fs to ps
+param.c:			} else if (control->ensemble == sNPT) {
+param.c:				control->Tau_P[0] = val * 1.e-3; // convert p_mass from fs to ps
+param.c:				control->Tau_P[1] = val * 1.e-3; // convert p_mass from fs to ps
+param.c:				control->Tau_P[2] = val * 1.e-3; // convert p_mass from fs to ps
+param.c:			control->Tau_PT = val * 1.e-3; // convert pt_mass from fs to ps
+param.c:			control->compressibility = val;
+param.c:			control->press_mode = val;
+param.c:			control->remove_CoM_vel = val;
+param.c:			out_control->debug_level = ival;
+param.c:			out_control->energy_update_freq = ival;
+param.c:			out_control->write_steps = ival;
+param.c:			out_control->traj_compress = ival;
+param.c:			if (out_control->traj_compress)
+param.c:				out_control->write
+param.c:				out_control->write = fprintf;
+param.c:			out_control->traj_format = ival;
+param.c:			if (out_control->traj_format == 0) {
+param.c:				out_control->write_header
+param.c:				out_control->append_traj_frame = (int(*)(reax_system*,
+param.c:			} else if (out_control->traj_format == 1) {
+param.c:				out_control->write_header
+param.c:				out_control->append_traj_frame = (int(*)(reax_system*,
+param.c:			strcpy(out_control->traj_title, tmp[1]);
+param.c:			out_control->atom_format += ival * 4;
+param.c:			out_control->atom_format += ival * 2;
+param.c:			out_control->atom_format += ival * 1;
+param.c:			out_control->bond_info = ival;
+param.c:			out_control->angle_info = ival;
+param.c:			control->molec_anal = ival;
+param.c:			control->freq_molec_anal = ival;
+param.c:			control->bg_cut = val;
+param.c:			control->num_ignored = atoi(tmp[1]);
+param.c:			for (i = 0; i < control->num_ignored; ++i)
+param.c:				control->ignore[atoi(tmp[i + 2])] = 1;
+param.c:			control->dipole_anal = ival;
+param.c:			control->freq_dipole_anal = ival;
+param.c:			control->diffusion_coef = ival;
+param.c:			control->freq_diffusion_coef = ival;
+param.c:			control->restrict_type = ival;
+param.c:			control->amd = ival;
+param.c:			control->amd_energy = val;
+param.c:			control->amd_alpha = val;
+param.c:			control->amd_power = val;
+param.c:			control->amd_func = ival;
+param.c:			control->amd_hof = val;
+param.c:			control->bboost= val;
+param.c:			control->bboost_Vmax = val;
+param.c:			control->bboost_P1 = val;
+param.c:			control->bboost_q = val;
+param.c:			control->bias_con_de = ival;
+param.c:			control->bias_con_de_n = ival;
+param.c:			control->bias_con_de_interval = ival;
+param.c:			control->bias_con_de_vmax= val;
+param.c:			control->bias_con_com = ival;
+param.c:			control->bias_con_com_n = ival;
+param.c:			control->bias_con_com_interval = ival;
+param.c:			control->bias_con_com_vmax= val;
+param.c:	if (control->T_mode == 0)
+param.c:		control->T = control->T_final;
+param.c:		control->T = control->T_init;
+param.c:	control->bo_cut = 0.01 * system->reaxprm.gp.l[29];
+param.c:	control->r_low = system->reaxprm.gp.l[11];
+param.c:	control->r_cut = system->reaxprm.gp.l[12];
+param.c:	control->vlist_cut += control->r_cut;
+param.c:	system->g.cell_size = control->vlist_cut / 2.;
+param.c:			control->ensemble, control->nsteps, control->dt, control->tabulate,
+param.c:			control->T, control->P[0], control->P[1], control->P[2] );
+pdb_tools.c:  sprintf( temp, "%s%d.pdb", control->sim_name, data->step );
+pdb_tools.c:  out_control->pdb = fopen( temp, "w" );
+pdb_tools.c:  fprintf(out_control->pdb,PDB_CRYST1_FORMAT_O,
+pdb_tools.c:  fprintf( out_control->log, "Box written\n" ); fflush( out_control->log );
+pdb_tools.c:    fprintf( out_control->pdb,PDB_ATOM_FORMAT_O,
+pdb_tools.c:  fprintf( out_control->log, "ATOM written\n" ); fflush( out_control->log );
+pdb_tools.c:    fprintf( out_control->pdb, "%6s%6d", "CONECT", workspace->orig_id[i] );
+pdb_tools.c:      fprintf( out_control->pdb, "%6d", connect[k] );
+pdb_tools.c:    fprintf( out_control->pdb, "\n" );
+pdb_tools.c:  fprintf( out_control->pdb, "END\n" );
+pdb_tools.c:  fclose( out_control->pdb );
+print_utils.c:  fprintf( out_control->fbo, "%6s%6s%12s%12s%12s%12s%12s\n", 
+print_utils.c:      fprintf( out_control->fbo, "%6d%6d%23.15e%23.15e%23.15e%23.15e%23.15e\n", 
+print_utils.c:  /* fprintf( out_control->fbo, "%6s%6s%10s%10s%10s%10s\n", 
+print_utils.c:      /*fprintf( out_control->fdbo, "%6d %6d\tstart: %6d\tend: %6d\n", 
+print_utils.c:	fprintf( out_control->fdbo, "%6d%6d%6d%23.15e%23.15e%23.15e\n",
+print_utils.c:	fprintf( out_control->fdbo, "%6d%6d%6d%23.15e%23.15e%23.15e\n",
+print_utils.c:	fprintf( out_control->fdbo, "%6d%6d%6d%23.15e%23.15e%23.15e\n",
+print_utils.c:  fflush(out_control->fdbo);
+print_utils.c:  fprintf( out_control->fbond, "%d\n", data->step );
+print_utils.c:  fprintf( out_control->fbond, "%6s\t%s\n", "atom", "fbond" ); 
+print_utils.c:    fprintf(out_control->fbond, "%6d %23.15e%23.15e%23.15e\n",
+print_utils.c:  fprintf( out_control->flp, "%d\n", data->step );
+print_utils.c:  fprintf( out_control->flp, "%6s\t%s\n", "atom","f_lonepair" );
+print_utils.c:    fprintf(out_control->flp, "%6d %23.15e%23.15e%23.15e\n",
+print_utils.c:  fflush(out_control->flp);
+print_utils.c:  fprintf( out_control->fatom, "%d\n", data->step );
+print_utils.c:  fprintf( out_control->fatom, "%6s\t%-38s%-38s%-38s\n", 
+print_utils.c:      fprintf( out_control->fatom, 
+print_utils.c:      fprintf( out_control->fatom, 
+print_utils.c:  fflush(out_control->fatom);
+print_utils.c:  fprintf( out_control->f3body, "%d\n", data->step );
+print_utils.c:  fprintf( out_control->f3body, "%6s%-37s%-37s%-37s%-38s\n", 
+print_utils.c:      fprintf( out_control->f3body, "%6d %23.15e%23.15e%23.15e  0 0 0  0 0 0\n",
+print_utils.c:      fprintf( out_control->f3body, 
+print_utils.c:      fprintf( out_control->f3body, "%6d %23.15e%23.15e%23.15e ",
+print_utils.c:      fprintf( out_control->f3body, 
+print_utils.c:  fflush(out_control->f3body);
+print_utils.c:  fprintf( out_control->fhb, "%d\n", data->step );
+print_utils.c:  fprintf( out_control->fhb, "%6s\t%-38s\n", "atom", "f_hb" );
+print_utils.c:    fprintf(out_control->fhb, "%6d\t[%23.15e%23.15e%23.15e]\n",
+print_utils.c:  fflush(out_control->fhb);
+print_utils.c:  fprintf( out_control->f4body, "%6s\t%-38s%-38s%-38s\n", 
+print_utils.c:      fprintf( out_control->f4body, 
+print_utils.c:      fprintf( out_control->f4body, 
+print_utils.c:  fflush(out_control->f4body);
+print_utils.c:  fprintf( out_control->fnonb, "%d\n", data->step );
+print_utils.c:  fprintf( out_control->fnonb, "%6s\t%-38s%-38s%-38s\n", 
+print_utils.c:      fprintf(out_control->fnonb, 
+print_utils.c:      fprintf(out_control->fnonb, 
+print_utils.c:  fflush(out_control->fnonb);
+print_utils.c:  fprintf( out_control->ftot2, "%d\n", data->step );
+print_utils.c:  fprintf( out_control->ftot2, "%6s\t%-38s%-38s\n", 
+print_utils.c:    fprintf( out_control->ftot2, 
+print_utils.c:  fflush(out_control->ftot2);
+print_utils.c:  sprintf( fname, "%s.near_nbrs", control->sim_name );
+print_utils.c:  sprintf( fname, "%s.near_nbrs_lgj", control->sim_name );
+print_utils.c:  sprintf( fname, "%s.far_nbrs", control->sim_name );
+print_utils.c:  sprintf( fname, "%s.far_nbrs_lgj", control->sim_name );
+print_utils.c:  sprintf( temp, "%s.ftot", control->sim_name );
+print_utils.c:  out_control->ftot = fopen( temp, "w" );
+print_utils.c:    fprintf(out_control->ftot, "%6d %23.15e %23.15e %23.15e\n", 
+print_utils.c:    //fprintf(out_control->ftot, "%6d %19.9e %19.9e %19.9e\n", 
+print_utils.c:    //fprintf(out_control->ftot, "%3d %12.6f %12.6f %12.6f\n", 
+print_utils.c:  fflush(out_control->ftot);
+print_utils.c:  fclose(out_control->ftot);
+print_utils.c:  if( out_control->energy_update_freq > 0 && 
+print_utils.c:      data->step % out_control->energy_update_freq == 0 )  {
+print_utils.c:    fprintf( out_control->out, 
+print_utils.c:	     data->therm.T, control->T, system->box.volume, data->iso_bar.P, 
+print_utils.c:	     (control->P[0] + control->P[1] + control->P[2])/3 );
+print_utils.c:    fprintf( out_control->pot, 
+print_utils.c:    fprintf( out_control->out, 
+print_utils.c:	     E_CONV*data->E_Kin, data->therm.T, control->T, system->box.volume, data->iso_bar.P,
+print_utils.c:	     (control->P[0] + control->P[1] + control->P[2])/3 );
+print_utils.c:    fprintf( out_control->pot, 
+print_utils.c:    else f_update = out_control->energy_update_freq;
+print_utils.c:    fprintf( out_control->log,"%6d%10.2f%10.2f%10.2f%10.2f%10.2f%10.2f%10.2f\n",
+print_utils.c:    fflush( out_control->out );
+print_utils.c:    fflush( out_control->pot );
+print_utils.c:    fflush( out_control->log );
+print_utils.c:    if( control->ensemble == NPT || control->ensemble == iNPT || 
+print_utils.c:	control->ensemble == sNPT ) {
+print_utils.c:      fprintf( out_control->prs, "%-8d%13.6f%13.6f%13.6f",
+print_utils.c:      fprintf( out_control->prs, "%13.6f%13.6f%13.6f",
+print_utils.c:      fprintf( out_control->prs, "%13.6f\n", data->kin_press );
+print_utils.c:      fprintf( out_control->prs, 
+print_utils.c:	       control->P[0],control->P[1],control->P[2],system->box.volume );
+print_utils.c:      fflush( out_control->prs);
+print_utils.c:  if( out_control->write_steps > 0 && 
+print_utils.c:      data->step % out_control->write_steps == 0 ){
+print_utils.c:    out_control->append_traj_frame( system, control, data, 
+print_utils.c:  sprintf( fname, "%s.state%d.out", control->sim_name, step );
+print_utils.c:  sprintf( fname, "%s.H%d.out", control->sim_name, step );
+print_utils.c:  /*sprintf( fname, "%s.b_s%d", control->sim_name, step );
+print_utils.c:    sprintf( fname, "%s.b_t%d", control->sim_name, step );
+print_utils.c:  sprintf( fname, "%s.q%d", control->sim_name, step );
+QEq.c:  if(control->refactor > 0 && 
+QEq.c:     ((data->step-data->prev_steps)%control->refactor==0 || workspace->L==NULL)){
+QEq.c:    Calculate_Droptol( workspace->H, workspace->droptol, control->droptol ); 
+QEq.c:    //sprintf( fname, "%s.L%d.out", control->sim_name, data->step );
+QEq.c:  //  workspace->b_s, control->q_err, workspace->s[0], out_control->log );
+QEq.c:  //  workspace->b_t, control->q_err, workspace->t[0], out_control->log );
+QEq.c:  //    workspace->b_s, control->q_err, workspace->s[0], out_control->log );
+QEq.c:  //    workspace->b_t, control->q_err, workspace->t[0], out_control->log );
+QEq.c:  matvecs = PGMRES( workspace, workspace->H, workspace->b_s, control->q_err,
+QEq.c:    workspace->L, workspace->U, workspace->s[0], out_control->log );
+QEq.c:  matvecs += PGMRES( workspace, workspace->H, workspace->b_t, control->q_err, 
+QEq.c:    workspace->L, workspace->U, workspace->t[0], out_control->log );
+QEq.c:  //matvecs=PCG( workspace, workspace->H, workspace->b_s, control->q_err, 
+QEq.c:  //workspace->L, workspace->U, workspace->s[0], out_control->log ) + 1;
+QEq.c:  //matvecs+=PCG( workspace, workspace->H, workspace->b_t, control->q_err, 
+QEq.c:  //workspace->L, workspace->U, workspace->t[0], out_control->log ) + 1;
+QEq.c:  // workspace->b_s, control->q_err, workspace->s[0], out_control->log ) + 1;
+QEq.c:  // workspace->b_t, control->q_err, workspace->t[0], out_control->log ) + 1;
+QEq.c:  // if( data->step == control->nsteps )
+reset_utils.c:  if( control->hb_cut > 0 )
+reset_utils.c:  if( control->ensemble == NPT || control->ensemble == sNPT || 
+reset_utils.c:      control->ensemble == iNPT )
+restart.c:  sprintf( fname, "%s.res%d", control->sim_name, data->step );
+restart.c:  control->nsteps += data->prev_steps;  
+restart.c:  sprintf( fname, "%s.res%d", control->sim_name, data->step );
+restart.c:  control->nsteps += data->prev_steps;  
+restart.c:  if( out_control->restart_format == WRITE_ASCII )
+restart.c:  else if( out_control->restart_format == WRITE_BINARY )
+single_body_interactions.c:    fprintf( out_control->elp, "%23.15e%23.15e%23.15e%23.15e\n", 
+single_body_interactions.c:    fprintf( out_control->elp, "%6d%23.15e%23.15e%23.15e\n",
+single_body_interactions.c:	      fprintf(out_control->elp,"C2cor%6d%6d%23.15e%23.15e%23.15e\n",
+single_body_interactions.c:      /* fprintf( out_control->eov, "%6d%23.15e%23.15e"
+single_body_interactions.c:      /*fprintf( out_control->eov, "%6d%23.15e%23.15e%23.15e%23.15e%23.15e\n", 
+single_body_interactions.c:      /* fprintf( out_control->eun, "%6d%23.15e\n",
+single_body_interactions.c:      /*fprintf( out_control->eun, "%6d%23.15e%23.15e%23.15e%23.15e\n",
+single_body_interactions.c:    fprintf( out_control->eov, "%6d%15.8f%15.8f%15.8f\n", 
+single_body_interactions.c:    fprintf( out_control->eov, "%6d%15.8f%15.8f\n", 
+single_body_interactions.c:    fprintf( out_control->eov, "%6d%15.8f%15.8f\n", 
+system_props.c:  if( control->T_mode == 1 ) { // step-wise temperature control
+system_props.c:	((int)(control->T_freq / control->dt)) == 0 ) {
+system_props.c:      if( fabs( control->T - control->T_final ) >= fabs( control->T_rate ) )
+system_props.c:	control->T += control->T_rate;
+system_props.c:      else control->T = control->T_final;	 
+system_props.c:  else if( control->T_mode == 2 ) { // constant slope control
+system_props.c:    tmp = control->T_rate * control->dt / control->T_freq;
+system_props.c:    if( fabs( control->T - control->T_final ) >= fabs( tmp ) )
+system_props.c:      control->T += tmp;       
+system_props.c:  else if( control->T_mode == 3 ) { // pesudo nve
+system_props.c:        control->T = data->therm.T;
+system_props.c:    if (control->T < data->ignite_T)
+system_props.c:        control->T = data->ignite_T;
+system_props.c:    else if (control->T > 3074.0)
+system_props.c:        control->T = 3074.0;
+system_props.c:    //printf("Now boost = %d, and Temperature = %.3f\n", data->boost, control->T);
+system_props.c:  if( control->press_mode == 0 || control->press_mode == 2 ) {
+system_props.c:      if( out_control->debug_level > 0 ) {
+system_props.c:	fprintf( out_control->prs, "%-8d%8.2f%8.2f%8.2f", 
+system_props.c:	fprintf( out_control->prs, "%8.2f%8.2f%8.2f", 
+system_props.c:	fprintf( out_control->prs, "%8.2f%8.2f%8.2f\n", 
+testmd.c:  if( control->ensemble != NVE && 
+testmd.c:      control->remove_CoM_vel && 
+testmd.c:      data->step && data->step % control->remove_CoM_vel == 0 ) {
+testmd.c:    Compute_Center_of_Mass( system, data, out_control->prs );
+testmd.c:  if (control->bboost) {
+testmd.c:  if( control->geo_format == XYZ ) {
+testmd.c:  else if( control->geo_format == PDB ) 
+testmd.c:  else if( control->geo_format == BGF ) 
+testmd.c:  else if( control->geo_format == ASCII_RESTART ) {
+testmd.c:    control->restart = 1;
+testmd.c:  else if( control->geo_format == BINARY_RESTART ) {
+testmd.c:    control->restart = 1;
+three_body_interactions.c:    // fprintf( out_control->eval, "j: %d\n", j );
+three_body_interactions.c:      BOA_ij = bo_ij->BO - control->thb_cut;
+three_body_interactions.c:	// fprintf( out_control->eval, "i: %d\n", i );
+three_body_interactions.c:	  // fprintf( out_control->eval, "pk: %d\n", pk );
+three_body_interactions.c:	  BOA_jk   = bo_jk->BO - control->thb_cut;
+three_body_interactions.c:	      (bo_ij->BO * bo_jk->BO) > SQR(control->thb_cut)/*0*/) {
+three_body_interactions.c:	      // fprintf( out_control->eval, 
+three_body_interactions.c:		  // fprintf( out_control->eval, "%6d%12.8f\n", 
+three_body_interactions.c:		if( control->ensemble == NVE || control->ensemble == NVT ) {
+three_body_interactions.c:		fprintf( out_control->eval, 
+three_body_interactions.c:		/*fprintf( out_control->eval, 
+three_body_interactions.c:		  fprintf( out_control->eval, 
+three_body_interactions.c:		  fprintf( out_control->eval, 
+three_body_interactions.c:		/*fprintf( out_control->eval, 
+three_body_interactions.c:		/* fprintf( out_control->epen, 
+three_body_interactions.c:		   fprintf( out_control->epen, 
+three_body_interactions.c:		fprintf( out_control->ecoa, 
+three_body_interactions.c:	    if( control->ensemble == NVE || control->ensemble == NVT ) {
+three_body_interactions.c:	    /*fprintf( out_control->ehb, 
+three_body_interactions.c:	      fprintf( out_control->ehb, "%23.15e%23.15e%23.15e\n",
+three_body_interactions.c:	    fprintf( stderr, //out_control->ehb, 
+traj.c:	   control->restart,
+traj.c:	   control->restart_from,
+traj.c:	   control->random_vel,
+traj.c:	   out_control->restart_freq,
+traj.c:	   control->ensemble,
+traj.c:	   control->nsteps,
+traj.c:	   control->dt,
+traj.c:	   control->reposition_atoms,
+traj.c:	   control->restrict_bonds,
+traj.c:	   control->tabulate,
+traj.c:	   control->nbr_cut,
+traj.c:	   control->r_cut,
+traj.c:	   control->bg_cut,
+traj.c:	   control->bo_cut,
+traj.c:	   control->thb_cut,
+traj.c:	   control->hb_cut,
+traj.c:	   control->q_err,
+traj.c:	   control->T_init,
+traj.c:	   control->T_final,
+traj.c:	   control->Tau_T,
+traj.c:	   control->T_mode,
+traj.c:	   control->T_rate,
+traj.c:	   control->T_freq,
+traj.c:	   control->P[0], control->P[1], control->P[2], 
+traj.c:	   control->Tau_P[0], control->Tau_P[1], control->Tau_P[2],
+traj.c:	   control->compressibility,
+traj.c:	   control->press_mode,
+traj.c:	   control->remove_CoM_vel,
+traj.c:	   out_control->write_steps,
+traj.c:	   out_control->traj_compress,
+traj.c:	   out_control->traj_format,
+traj.c:	   out_control->atom_format,
+traj.c:	   out_control->bond_info,
+traj.c:	   out_control->angle_info,
+traj.c:	   out_control->energy_update_freq,
+traj.c:	   control->molec_anal,
+traj.c:	   control->freq_molec_anal );
+traj.c:  switch( out_control->atom_format )
+traj.c:  if( out_control->bond_info == OPT_BOND_BASIC )
+traj.c:  else if( out_control->bond_info == OPT_BOND_FULL )
+traj.c:  if( out_control->angle_info == OPT_ANGLE_BASIC )
+traj.c:  out_control->write( out_control->trj, HEADER_INIT, 
+traj.c:		      header_len, HEADER_INIT_LEN, out_control->traj_title );
+traj.c:  out_control->write( out_control->trj, SIZE_INFO_LINE2,
+traj.c:  out_control->write( out_control->trj, "%s", control_block );
+traj.c:  out_control->write( out_control->trj, SIZE_INFO_LINE2, 
+traj.c:  out_control->write( out_control->trj, "%s", frame_format );
+traj.c:  out_control->write( out_control->trj, SIZE_INFO_LINE2, 
+traj.c:     out_control->write( out_control->trj, ATOM_MAPPING,  
+traj.c:  fflush( out_control->trj );
+traj.c:  switch( out_control->atom_format )
+traj.c:  if( out_control->bond_info == OPT_BOND_BASIC )
+traj.c:  else if( out_control->bond_info == OPT_BOND_FULL )
+traj.c:	      bonds->select.bond_list[j].bo_data.BO >= control->bg_cut )
+traj.c:  if( out_control->angle_info == OPT_ANGLE_BASIC )
+traj.c:	if( bonds->select.bond_list[pi].bo_data.BO >= control->bg_cut ) 
+traj.c:	      if( bonds->select.bond_list[pk_j].bo_data.BO >= control->bg_cut ) 
+traj.c:  if( control->ensemble == NPT || control->ensemble == sNPT )
+traj.c:  else  if( control->ensemble == iNPT )
+traj.c:  out_control->write( out_control->trj, SIZE_INFO_LINE2, 
+traj.c:  out_control->write( out_control->trj, "%s", buffer );
+traj.c:      out_control->write( out_control->trj, SIZE_INFO_LINE3, 
+traj.c:  switch( out_control->atom_format )
+traj.c:	out_control->write( out_control->trj, ATOM_BASIC, 
+traj.c:	out_control->write( out_control->trj, ATOM_wF, 
+traj.c:	out_control->write( out_control->trj, ATOM_wV, 
+traj.c:	out_control->write( out_control->trj, ATOM_FULL, 
+traj.c:  fflush( out_control->trj );
+traj.c:      out_control->write( out_control->trj, SIZE_INFO_LINE3, 
+traj.c:  if( out_control->bond_info == 1 ) {
+traj.c:	    bonds->select.bond_list[j].bo_data.BO >= control->bg_cut ) {
+traj.c:	  out_control->write( out_control->trj, BOND_BASIC, 
+traj.c:  else if( out_control->bond_info == 2 ) {
+traj.c:	    bonds->select.bond_list[j].bo_data.BO >= control->bg_cut ) {
+traj.c:	  out_control->write( out_control->trj, BOND_FULL, 
+traj.c:  fflush( out_control->trj );
+traj.c:  if( out_control->angle_info ) {
+traj.c:    out_control->write( out_control->trj, SIZE_INFO_LINE3,
+traj.c:	if( bonds->select.bond_list[pi].bo_data.BO >= control->bg_cut ) 
+traj.c:	      if( bonds->select.bond_list[pk_j].bo_data.BO >= control->bg_cut ) 
+traj.c:		out_control->write( out_control->trj, ANGLE_BASIC,
+traj.c:  fflush( out_control->trj );
+traj.c:  out_control->trj = gzopen( traj_name, "r" );
+traj.c:  while( !gzeof( out_control->trj ) )
+traj.c:    if( gzgets( out_control->trj, size_buffer, 50 ) == Z_NULL )
+traj.c:    gzseek( out_control->trj, skip_part, SEEK_CUR );
+traj.c:  gzclose( out_control->trj );
+traj.c:  fflush( out_control->trj );
+traj.c:  out_control->write( out_control->trj, "%d\n", system->N );
+traj.c:  out_control->write( out_control->trj, "%d\t%8.3f\t%8.3f\t%8.3f\t%8.3f\n",
+traj.c:    out_control->write( out_control->trj, "%3s %10.5f %10.5f %10.5f\n",
+traj.c:  fflush( out_control->trj );
+two_body_interactions.c:	fprintf( out_control->ebond, "%6d%6d%24.15e%24.15e\n", 
+two_body_interactions.c:	/* fprintf( out_control->ebond, "%6d%6d%12.6f%12.6f%12.6f\n", 
+two_body_interactions.c:	    fprintf( out_control->ebond, 
+two_body_interactions.c:      if( far_nbrs->select.far_nbr_list[pj].d <= control->r_cut ) {
+two_body_interactions.c:	Tap = control->Tap7 * r_ij + control->Tap6;
+two_body_interactions.c:	Tap = Tap * r_ij + control->Tap5;
+two_body_interactions.c:	Tap = Tap * r_ij + control->Tap4;
+two_body_interactions.c:	Tap = Tap * r_ij + control->Tap3;
+two_body_interactions.c:	Tap = Tap * r_ij + control->Tap2;
+two_body_interactions.c:	Tap = Tap * r_ij + control->Tap1;
+two_body_interactions.c:	Tap = Tap * r_ij + control->Tap0;
+two_body_interactions.c:	dTap = 7*control->Tap7 * r_ij + 6*control->Tap6;
+two_body_interactions.c:	dTap = dTap * r_ij + 5*control->Tap5;
+two_body_interactions.c:	dTap = dTap * r_ij + 4*control->Tap4;
+two_body_interactions.c:	dTap = dTap * r_ij + 3*control->Tap3;
+two_body_interactions.c:	dTap = dTap * r_ij + 2*control->Tap2;
+two_body_interactions.c:	dTap += control->Tap1/r_ij;
+two_body_interactions.c:	if( control->ensemble == NVE || control->ensemble == NVT ) {
+two_body_interactions.c:	fprintf( out_control->evdw,
+two_body_interactions.c:	fprintf( out_control->ecou, "%6d%6d%24.15e%24.15e%24.15e%24.15e\n",
+two_body_interactions.c:  Tap = control->Tap7 * r_ij + control->Tap6;
+two_body_interactions.c:  Tap = Tap * r_ij + control->Tap5;
+two_body_interactions.c:  Tap = Tap * r_ij + control->Tap4;
+two_body_interactions.c:  Tap = Tap * r_ij + control->Tap3;
+two_body_interactions.c:  Tap = Tap * r_ij + control->Tap2;
+two_body_interactions.c:  Tap = Tap * r_ij + control->Tap1;
+two_body_interactions.c:  Tap = Tap * r_ij + control->Tap0;
+two_body_interactions.c:  dTap = 7*control->Tap7 * r_ij + 6*control->Tap6;
+two_body_interactions.c:  dTap = dTap * r_ij + 5*control->Tap5;
+two_body_interactions.c:  dTap = dTap * r_ij + 4*control->Tap4;
+two_body_interactions.c:  dTap = dTap * r_ij + 3*control->Tap3;
+two_body_interactions.c:  dTap = dTap * r_ij + 2*control->Tap2;
+two_body_interactions.c:  dTap += control->Tap1/r_ij;
+two_body_interactions.c:  update_freq = out_control->energy_update_freq;
+two_body_interactions.c:      if( far_nbrs->select.far_nbr_list[pj].d <= control->r_cut ) {
+two_body_interactions.c:	if( control->ensemble == NVE || control->ensemble == NVT ) {
+two_body_interactions.c:	fprintf(out_control->evdw, "%6d%6d%24.15e%24.15e%24.15e\n",
+two_body_interactions.c:	fprintf(out_control->ecou,"%6d%6d%24.15e%24.15e%24.15e%24.15e%24.15e\n",
