@@ -249,6 +249,12 @@ int Find_Radicals(reax_system *system, control_params *control,
           if (ov > 0.3)
               no += 1;
       }
+      else if (strcmp(atp, "C") == 0) {
+          if (un < -0.8)
+              nu += 1;
+          if (ov > 0.4)
+              no += 1;
+      }
   }
   return nu + no;
 }
