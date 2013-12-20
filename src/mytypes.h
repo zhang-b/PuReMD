@@ -597,6 +597,7 @@ typedef struct
   rvec tot_press;
   
   reax_timing timing;
+  real tmp_flag;  /* flag for bond boost simulation */
 } simulation_data;
 
 
