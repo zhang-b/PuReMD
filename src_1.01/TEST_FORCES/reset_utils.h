@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------
-  SeriallReax - Reax Force Field Simulator
+  SerialReax - Reax Force Field Simulator
       
   Copyright (2010) Purdue University
   Hasan Metin Aktulga, haktulga@cs.purdue.edu
@@ -19,21 +19,33 @@
   <http://www.gnu.org/licenses/>.
   ----------------------------------------------------------------------*/
 
-#ifndef __BIAS_H_
-#define __BIAS_H_
+#ifndef __RESET_UTILS_H_
+#define __RESET_UTILS_H_
 
 #include "mytypes.h"
 
-void Bias_Foo();
-void Bias_COn_Combine(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Bias_COn_Decompose(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Bias_LJ_126(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Compute_Bond_Boost_Force_All_Couple(reax_system *, control_params *, simulation_data *,
-                 static_storage *, list **, output_controls *); 
-void Compute_Force_Boost_Force_All_Couple(reax_system *, control_params *, simulation_data *,
-                 static_storage *, list **, output_controls *); 
+void Reset_Atoms( reax_system* );
+
+void Reset_Pressures( simulation_data* );
+
+void Reset_Simulation_Data( simulation_data* );
+
+#ifdef TEST_FORCES
+void Reset_Test_Forces( reax_system*, static_storage* );
+#endif
+
+void Reset_Workspace( reax_system*, static_storage* );
+
+void Reset_Neighbor_Lists( reax_system*, control_params*, 
+			   static_storage*, list** );
+
+void Reset( reax_system*, control_params*, simulation_data*, 
+	    static_storage*, list** );	       
+
+//void Reset_Neighbor_Lists( reax_system*, static_storage*, list** );
+
+void Reset_Grid( grid* );
+
+void Reset_Marks( grid*, ivec*, int );
 
 #endif

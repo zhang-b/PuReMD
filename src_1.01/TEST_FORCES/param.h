@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------
-  SeriallReax - Reax Force Field Simulator
+  SerialReax - Reax Force Field Simulator
       
   Copyright (2010) Purdue University
   Hasan Metin Aktulga, haktulga@cs.purdue.edu
@@ -19,21 +19,24 @@
   <http://www.gnu.org/licenses/>.
   ----------------------------------------------------------------------*/
 
-#ifndef __BIAS_H_
-#define __BIAS_H_
+#ifndef __PARAM_H_
+#define __PARAM_H_
 
 #include "mytypes.h"
 
-void Bias_Foo();
-void Bias_COn_Combine(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Bias_COn_Decompose(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Bias_LJ_126(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Compute_Bond_Boost_Force_All_Couple(reax_system *, control_params *, simulation_data *,
-                 static_storage *, list **, output_controls *); 
-void Compute_Force_Boost_Force_All_Couple(reax_system *, control_params *, simulation_data *,
-                 static_storage *, list **, output_controls *); 
+#define MAX_LINE 1024
+#define MAX_TOKENS 20
+#define MAX_TOKEN_LEN 1024
+
+int  Get_Atom_Type( reax_interaction*, char* );
+
+int  Tokenize( char*, char*** );
+
+char Read_Force_Field( FILE*, reax_interaction* );
+
+char Read_Force_Field_ext( FILE*, reax_interaction*, control_params *control );
+
+char Read_Control_File( FILE*, reax_system*, control_params*, 
+			output_controls* );
 
 #endif

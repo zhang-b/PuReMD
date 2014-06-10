@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------
-  SeriallReax - Reax Force Field Simulator
+  SerialReax - Reax Force Field Simulator
       
   Copyright (2010) Purdue University
   Hasan Metin Aktulga, haktulga@cs.purdue.edu
@@ -19,21 +19,24 @@
   <http://www.gnu.org/licenses/>.
   ----------------------------------------------------------------------*/
 
-#ifndef __BIAS_H_
-#define __BIAS_H_
+#ifndef __RANDOM_H_
+#define __RANDOM_H_
 
-#include "mytypes.h"
+#include <mytypes.h>
 
-void Bias_Foo();
-void Bias_COn_Combine(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Bias_COn_Decompose(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Bias_LJ_126(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Compute_Bond_Boost_Force_All_Couple(reax_system *, control_params *, simulation_data *,
-                 static_storage *, list **, output_controls *); 
-void Compute_Force_Boost_Force_All_Couple(reax_system *, control_params *, simulation_data *,
-                 static_storage *, list **, output_controls *); 
+/* System random number generator used linear congruance method with
+   large periodicity for generation of pseudo random number. function
+   Random returns this random number appropriately scaled so that
+   0 <= Random(range) < range */
+double Random(double);
+
+/* This function seeds the system pseudo random number generator with
+   current time. Use this function once in the begining to initialize
+   the system */
+void Randomize();
+
+/* GRandom return random number with gaussian distribution with mean
+   and standard deviation "sigma" */
+double GRandom(double, double);
 
 #endif

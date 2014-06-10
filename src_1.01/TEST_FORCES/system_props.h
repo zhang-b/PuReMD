@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------
-  SeriallReax - Reax Force Field Simulator
+  SerialReax - Reax Force Field Simulator
       
   Copyright (2010) Purdue University
   Hasan Metin Aktulga, haktulga@cs.purdue.edu
@@ -19,21 +19,25 @@
   <http://www.gnu.org/licenses/>.
   ----------------------------------------------------------------------*/
 
-#ifndef __BIAS_H_
-#define __BIAS_H_
+#ifndef __SYSTEM_PROP_H_
+#define __SYSTEM_PROP_H_
 
-#include "mytypes.h"
+#include <mytypes.h>
 
-void Bias_Foo();
-void Bias_COn_Combine(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Bias_COn_Decompose(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Bias_LJ_126(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Compute_Bond_Boost_Force_All_Couple(reax_system *, control_params *, simulation_data *,
-                 static_storage *, list **, output_controls *); 
-void Compute_Force_Boost_Force_All_Couple(reax_system *, control_params *, simulation_data *,
-                 static_storage *, list **, output_controls *); 
+real Get_Time( );
+
+real Get_Timing_Info( real );
+
+void Temperature_Control( control_params*, simulation_data*, output_controls* );
+
+void Compute_Total_Mass( reax_system*, simulation_data* );
+
+void Compute_Center_of_Mass( reax_system*, simulation_data*, FILE* );
+
+void Compute_Kinetic_Energy( reax_system*, simulation_data* );
+
+void Compute_Pressure( reax_system*, simulation_data*, static_storage* );
+
+void Compute_Pressure_Isotropic( reax_system*, control_params*, simulation_data*, output_controls* );
 
 #endif

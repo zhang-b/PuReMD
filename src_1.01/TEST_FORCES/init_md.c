@@ -127,9 +127,7 @@ void Init_Simulation_Data( reax_system *system, control_params *control,
   
   /* state of the boost*/
   data->boost = 0;
-  data->single_flag = 0;
   data->ignite_T = control->T;
-  data->bboost_emax = 0.0;
 
   /* init bias potential */
   data->bias_success = 0;

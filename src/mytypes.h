@@ -537,6 +537,10 @@ typedef struct
   int step;
   int prev_steps;
   int boost;         /*states of the boost*/
+  int single_flag;  /* flag for bond boost simulation */
+  int adatom1;  /* flag for bond boost simulation */
+  int adatom2;  /* flag for bond boost simulation */
+  real bboost_emax;
   real ignite_T;     /*ignite Temperature */
   real time;
 
@@ -597,7 +601,6 @@ typedef struct
   rvec tot_press;
   
   reax_timing timing;
-  real tmp_flag;  /* flag for bond boost simulation */
 } simulation_data;
 
 

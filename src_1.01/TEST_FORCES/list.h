@@ -19,21 +19,19 @@
   <http://www.gnu.org/licenses/>.
   ----------------------------------------------------------------------*/
 
-#ifndef __BIAS_H_
-#define __BIAS_H_
+#ifndef __LIST_H_
+#define __LIST_H_
 
 #include "mytypes.h"
 
-void Bias_Foo();
-void Bias_COn_Combine(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Bias_COn_Decompose(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Bias_LJ_126(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Compute_Bond_Boost_Force_All_Couple(reax_system *, control_params *, simulation_data *,
-                 static_storage *, list **, output_controls *); 
-void Compute_Force_Boost_Force_All_Couple(reax_system *, control_params *, simulation_data *,
-                 static_storage *, list **, output_controls *); 
+char Make_List( int, int, int, list* );
+void Delete_List( list* );
+
+int  Num_Entries(int,list*);
+int  Start_Index( int, list* );
+int  End_Index( int, list* );
+
+void Set_Start_Index(int,int,list*);
+void Set_End_Index(int,int,list*);
 
 #endif

@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------
-  SeriallReax - Reax Force Field Simulator
+  SerialReax - Reax Force Field Simulator
       
   Copyright (2010) Purdue University
   Hasan Metin Aktulga, haktulga@cs.purdue.edu
@@ -19,21 +19,19 @@
   <http://www.gnu.org/licenses/>.
   ----------------------------------------------------------------------*/
 
-#ifndef __BIAS_H_
-#define __BIAS_H_
+#ifndef __THREE_BODY_INTERACTIONS_H_
+#define __THREE_BODY_INTERACTIONS_H_
 
 #include "mytypes.h"
 
-void Bias_Foo();
-void Bias_COn_Combine(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Bias_COn_Decompose(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Bias_LJ_126(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Compute_Bond_Boost_Force_All_Couple(reax_system *, control_params *, simulation_data *,
-                 static_storage *, list **, output_controls *); 
-void Compute_Force_Boost_Force_All_Couple(reax_system *, control_params *, simulation_data *,
-                 static_storage *, list **, output_controls *); 
+void Three_Body_Interactions( reax_system*, control_params*, simulation_data*,
+			      static_storage*, list**, output_controls* );
 
+void Hydrogen_Bonds( reax_system*, control_params*, simulation_data*,
+		     static_storage*, list**, output_controls* );
+
+void Calculate_Theta( rvec, real, rvec, real, real*, real* );
+		      
+void Calculate_dCos_Theta( rvec, real, rvec, real, rvec*, rvec*, rvec* );
+			   
 #endif

@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------
-  SeriallReax - Reax Force Field Simulator
+  SerialReax - Reax Force Field Simulator
       
   Copyright (2010) Purdue University
   Hasan Metin Aktulga, haktulga@cs.purdue.edu
@@ -19,21 +19,29 @@
   <http://www.gnu.org/licenses/>.
   ----------------------------------------------------------------------*/
 
-#ifndef __BIAS_H_
-#define __BIAS_H_
+#ifndef __GMRES_H_
+#define __GMRES_H_
+
+#define SIGN(x) (x < 0.0 ? -1 : 1);
 
 #include "mytypes.h"
 
-void Bias_Foo();
-void Bias_COn_Combine(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Bias_COn_Decompose(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Bias_LJ_126(reax_system *, control_params *, simulation_data *, 
-                 static_storage *, list **, output_controls *);
-void Compute_Bond_Boost_Force_All_Couple(reax_system *, control_params *, simulation_data *,
-                 static_storage *, list **, output_controls *); 
-void Compute_Force_Boost_Force_All_Couple(reax_system *, control_params *, simulation_data *,
-                 static_storage *, list **, output_controls *); 
+int GMRES( static_storage*, sparse_matrix*, 
+	   real*, real, real*, FILE* );
+
+int GMRES_HouseHolder( static_storage*, sparse_matrix*, 
+		       real*, real, real*, FILE* );
+
+int PGMRES( static_storage*, sparse_matrix*, real*, real, 
+	    sparse_matrix*, sparse_matrix*, real*, FILE* );
+
+int PCG( static_storage*, sparse_matrix*, real*, real, 
+	sparse_matrix*, sparse_matrix*, real*, FILE* );
+
+int CG( static_storage*, sparse_matrix*, 
+	 real*, real, real*, FILE* );
+
+int uyduruk_GMRES( static_storage*, sparse_matrix*, 
+		   real*, real, real*, int, FILE* );
 
 #endif
