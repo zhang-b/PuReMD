@@ -88,10 +88,8 @@ void Read_System( char *geof, char *ff, char *ctrlf,
   /* ffield file */
   Read_Force_Field( ffield, &(system->reaxprm) );
 
-  printf(" finish reading the force field\n");
   /* control file */
   Read_Control_File( ctrl, system, control, out_control );
-  printf(" finish reading the control file\n");
 
   /* read the boost parameters */
   if (control->bboost) {
@@ -103,7 +101,6 @@ void Read_System( char *geof, char *ff, char *ctrlf,
     else
       Read_Force_Field_ext( bboost, &(system->reaxprm), control );
   }
-  printf(" finish reading the ext ffield file\n");
 
   /* geo file */
   if( control->geo_format == XYZ ) {
@@ -126,7 +123,6 @@ void Read_System( char *geof, char *ff, char *ctrlf,
     fprintf( stderr, "unknown geo file format. terminating!\n" );
     exit(1);
   }  
-  printf(" finish reading the structure\n");
 
 #if defined(DEBUG_FOCUS)
   fprintf( stderr, "input files have been read...\n" );
@@ -149,11 +145,9 @@ int main(int argc, char* argv[])
   
   Read_System( argv[1], argv[2], argv[3], &system, &control, 
 	       &data, &workspace, &out_control );
-  printf("Finish reading the system\n");
 
   Initialize( &system, &control, &data, &workspace, &lists, 
 	      &out_control, &Evolve );
-  printf("Finish initializing the system\n");
 
   /* compute f_0 */
   //if( control.restart == 0 ) {
