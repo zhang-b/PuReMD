@@ -40,16 +40,55 @@ bias.c:            scale = control->bias_con_com_vmax * 2 * 1.65;
 bias.c:            scale = control->bias_con_com_vmax * 2 * ( r_ij - BIAS_RE_CO_MAX);
 bias.c:        fprintf(out_control->bias, "atom1 = %d atom2 = %d r_ij = %.2f scale = %.2f sucess = %d\n", 
 bias.c:    fflush(out_control->bias);
+bias.c:    atp1 = system->reaxprm.sbp[control->bias_con_de_atom1 - 1].name;
+bias.c:    atp2 = system->reaxprm.sbp[control->bias_con_de_atom2 - 1].name;
 bias.c:    interval = control->bias_con_de_interval;
 bias.c:        fprintf(out_control->bias, "Step %d COn decompostion\n", step);
+bias.c:                    if ( bo > control->bias_con_de_cutoff&& strcmp(j_elem, atp2) == 0){
 bias.c:            if ( n > control->bias_con_de_n){
 bias.c:            fprintf(out_control->bias, "Update atoms C = %d and atom O = %d\n", 
-bias.c:                        scale = -control->bias_con_de_vmax * 2 * (r - 2.0);
+bias.c:            if (strcmp(j_elem, atp2) == 0 && bo > control->bias_con_de_cutoff){
+bias.c:                        scale = -control->bias_con_de_vmax * 2 * (r - 1.8);
 bias.c:                    fprintf(out_control->bias, "scale = %.2f bo = %.2f r = %.2f sucess %d\n",
 bias.c:        if (data->bias_n <= control->bias_con_de_n)
 bias.c:    fflush(out_control->bias);
+bias.c:    sigma = control->bias_lj126_sigma;
+bias.c:    epslon = control->bias_lj126_epsilon;
 bias.c:            if( far_nbrs->select.far_nbr_list[pj].d <= control->r_cut ) {
-bias.c:                printf("r_cut = %.2f\n", control->r_cut);
+bias.c:    dfactor = control->bias_charge_dfactor;
+bias.c:            if( far_nbrs->select.far_nbr_list[pj].d <= control->r_cut ) {
+bias.c:	data->E_amd = control->amd_energy - data->Fragment_wat*120.0;
+bias.c:		if (control->amd_func == 1){
+bias.c:		s2 = POW(s1, control->amd_power) + control->amd_alpha;
+bias.c:		s4 = control->amd_power*POW(s1, control->amd_power)-2*s2;
+bias.c:		else if (control->amd_func == 2){
+bias.c:			s4 = control->amd_alpha*(s3+1);
+bias.c:  q = control->bboost_q; // should read this from control file
+bias.c:  P1 = control->bboost_P1; 
+bias.c:  vmax = control->bboost_Vmax;
+bias.c:      vmax = control->bboost_Vmax;
+bias.c:  fprintf( out_control->bboost, "%-10d%6d%6d%10.4f%10.4f%10.4f", \
+bias.c:  fprintf( out_control->bboost, " %4s %4s\n", \
+bias.c:  fflush( out_control->bboost);
+bias.c:  q = control->bboost_q; // should read this from control file
+bias.c:  P1 = control->bboost_P1; 
+bias.c:  vmax = control->bboost_Vmax;
+bias.c:  T = control->T_final;
+bias.c:    if (fabs(emax) < q && nbond > 0 && nrad <= control->bboost_nrad) {
+bias.c:      vmax = control->bboost_Vmax;
+bias.c:  fprintf( out_control->bboost, "%-10d%6d%6d%10.4f%10.4f%10.4f", \
+bias.c:  fprintf( out_control->bboost, " %4s %4s\n", \
+bias.c:  fflush( out_control->bboost);
+bias.c:  q = control->bboost_q; // should read this from control file
+bias.c:  P1 = control->bboost_P1; 
+bias.c:  vmax = control->bboost_Vmax;
+bias.c:  T = control->T_final;
+bias.c:        vmax = control->bboost_Vmax;
+bias.c:  if (fabs(emax) < q && nbond > 0 && nrad <= control->bboost_nrad) {
+bias.c:          vmax = control->bboost_Vmax;
+bias.c:  fprintf( out_control->bboost, "%-10d%6d%6d%6d%3d%8.4f%8.4f %44.4f", \
+bias.c:  fprintf( out_control->bboost, " %4s %4s\n", \
+bias.c:  fflush( out_control->bboost);
 box.c:  if( norm_sqr <= SQR( control->vlist_cut ) ) {
 box.c:  if( norm_sqr <= SQR( control->vlist_cut ) ) {
 box.c:  imax = (int)(control->vlist_cut / box->box_norms[0] + 1);
@@ -59,6 +98,25 @@ box.c:    if(fabs(d_i=((x2[0]+i*box->box_norms[0])-x1[0]))<=control->vlist_cut) 
 box.c:	if(fabs(d_j=((x2[1]+j*box->box_norms[1])-x1[1]))<=control->vlist_cut) {
 box.c:	    if(fabs(d_k=((x2[2]+k*box->box_norms[2])-x1[2]))<=control->vlist_cut) {
 box.c:	      if( sqr_norm <= SQR(control->vlist_cut) ) {
+EEM.c:  if(control->refactor > 0 && 
+EEM.c:     ((data->step-data->prev_steps)%control->refactor==0 || workspace->L==NULL)){
+EEM.c:    Calculate_Droptol( workspace->H, workspace->droptol, control->droptol ); 
+EEM.c:    //sprintf( fname, "%s.L%d.out", control->sim_name, data->step );
+EEM.c:  //  workspace->b_s, control->q_err, workspace->s[0], out_control->log );
+EEM.c:  //  workspace->b_t, control->q_err, workspace->t[0], out_control->log );
+EEM.c:  //    workspace->b_s, control->q_err, workspace->s[0], out_control->log );
+EEM.c:  //    workspace->b_t, control->q_err, workspace->t[0], out_control->log );
+EEM.c:  matvecs = PGMRES( workspace, workspace->H, workspace->b_s, control->q_err,
+EEM.c:    workspace->L, workspace->U, workspace->s[0], out_control->log );
+EEM.c:  matvecs += PGMRES( workspace, workspace->H, workspace->b_t, control->q_err, 
+EEM.c:    workspace->L, workspace->U, workspace->t[0], out_control->log );
+EEM.c:  //matvecs=PCG( workspace, workspace->H, workspace->b_s, control->q_err, 
+EEM.c:  //workspace->L, workspace->U, workspace->s[0], out_control->log ) + 1;
+EEM.c:  //matvecs+=PCG( workspace, workspace->H, workspace->b_t, control->q_err, 
+EEM.c:  //workspace->L, workspace->U, workspace->t[0], out_control->log ) + 1;
+EEM.c:  // workspace->b_s, control->q_err, workspace->s[0], out_control->log ) + 1;
+EEM.c:  // workspace->b_t, control->q_err, workspace->t[0], out_control->log ) + 1;
+EEM.c:  // if( data->step == control->nsteps )
 forces.c:	if (control->hb_cut > 0)
 forces.c:	fprintf( out_control->ebond, "step: %d\n%6s%6s%12s%12s%12s\n",
 forces.c:	fprintf( out_control->elp, "step: %d\n%6s%12s%12s%12s\n",
@@ -72,38 +130,9 @@ forces.c:	fprintf( out_control->etor, "step: %d\n%6s%6s%6s%6s%12s%12s%12s%12s\n"
 forces.c:	fprintf( out_control->econ, "step:%d\n%6s%6s%6s%6s%12s%12s%12s%12s%12s%12s\n",
 forces.c:	fprintf( out_control->evdw, "step: %d\n%6s%6s%12s%12s%12s\n",
 forces.c:	fprintf( out_control->ecou, "step: %d\n%6s%6s%12s%12s%12s%12s%12s\n",
+forces.c:        if (control->qeq)
 forces.c:	if (control->tabulate == 0)
 forces.c:				if (control->ensemble == NVE || control->ensemble == NVT)
-forces.c:	data->E_amd = control->amd_energy - data->Fragment_wat*120.0;
-forces.c:		if (control->amd_func == 1){
-forces.c:		s2 = POW(s1, control->amd_power) + control->amd_alpha;
-forces.c:		s4 = control->amd_power*POW(s1, control->amd_power)-2*s2;
-forces.c:		else if (control->amd_func == 2){
-forces.c:			s4 = control->amd_alpha*(s3+1);
-forces.c:  q = control->bboost_q; // should read this from control file
-forces.c:  P1 = control->bboost_P1; 
-forces.c:  vmax = control->bboost_Vmax;
-forces.c:      vmax = control->bboost_Vmax;
-forces.c:  fprintf( out_control->bboost, "%-10d%6d%6d%10.4f%10.4f%10.4f", \
-forces.c:  fprintf( out_control->bboost, " %4s %4s\n", \
-forces.c:  fflush( out_control->bboost);
-forces.c:  q = control->bboost_q; // should read this from control file
-forces.c:  P1 = control->bboost_P1; 
-forces.c:  vmax = control->bboost_Vmax;
-forces.c:  T = control->T_final;
-forces.c:      vmax = control->bboost_Vmax;
-forces.c:  fprintf( out_control->bboost, "%-10d%6d%6d%10.4f%10.4f%10.4f", \
-forces.c:  fprintf( out_control->bboost, " %4s %4s\n", \
-forces.c:  fflush( out_control->bboost);
-forces.c:  q = control->bboost_q; // should read this from control file
-forces.c:  P1 = control->bboost_P1; 
-forces.c:  vmax = control->bboost_Vmax;
-forces.c:  T = control->T_final;
-forces.c:        vmax = control->bboost_Vmax;
-forces.c:          vmax = control->bboost_Vmax;
-forces.c:  fprintf( out_control->bboost, "%-10d%6d%6d%6d%3d%8.4f%8.4f %24.4f", \
-forces.c:  fprintf( out_control->bboost, " %4s %4s\n", \
-forces.c:  fflush( out_control->bboost);
 forces.c:		if (control->hb_cut > 0 && (ihb = sbp_i->p_hbond) == 1)
 forces.c:			if ((data->step - data->prev_steps) % control->reneighbor == 0) {
 forces.c:				if (nbr_pj->d <= control->r_cut)
@@ -148,9 +177,10 @@ forces.c:	if (control->amd)
 forces.c:    if (control->bboost == 1)
 forces.c:    else if (control->bboost == 2)
 forces.c:    else if (control->bboost == 3)
-forces.c:        if (control->bias_con_de)
-forces.c:        else if (control->bias_con_com)
-forces.c:   if (control->bias_126 == 1)
+forces.c:    if (control->bias_con_de)
+forces.c:    else if (control->bias_con_com)
+forces.c:    if (control->bias_lj126 == 1)
+forces.c:    if (control->bias_charge == 1)
 four_body_interactions.c:  /*fprintf( out_control->etor, 
 four_body_interactions.c:    fprintf( out_control->etor, "%23.15e%23.15e%23.15e\n",
 four_body_interactions.c:    fprintf( out_control->etor, "%23.15e%23.15e%23.15e\n",
@@ -216,9 +246,7 @@ init_md.c:    strcpy( temp, control->sim_name );
 init_md.c:    out_control->pot = fopen( temp, "w" );
 init_md.c:    fprintf( out_control->pot, 
 init_md.c:    fflush( out_control->pot );
-init_md.c:    strcpy( temp, control->sim_name );
-init_md.c:    out_control->log = fopen( temp, "w" );
-init_md.c:    fprintf( out_control->log, "%-6s%10s%10s%10s%10s%10s%10s%10s\n", 
+init_md.c:    /* fprintf( out_control->log, "%-6s%10s%10s%10s%10s%10s%10s%10s\n", 
 init_md.c:    strcpy( temp, control->sim_name );
 init_md.c:    out_control->bboost = fopen( temp, "w" );
 init_md.c:    fprintf( out_control->bboost, "%-10s%-6s%-6s%-6s%3s%8s%8s%24s%4s%4s\n",
@@ -307,6 +335,7 @@ integrate.c:  dt = control->dt;
 integrate.c:  renbr = (steps % control->reneighbor == 0);
 integrate.c:    G_xi_new = control->Tau_T * ( 2.0 * E_kin_new - 
 integrate.c:				  data->N_f * K_B * control->T );
+integrate.c:    tmp = control->Tau_T * control->Tau_T /3.14/3.14/4*2*data->N_f * K_B * control->T;
 integrate.c:  dt = control->dt;
 integrate.c:  renbr = (steps % control->reneighbor == 0);
 integrate.c:  //fprintf( out_control->prs, 
@@ -405,6 +434,8 @@ param.c:	control->Tap1 = 140.0 * swa3 * swb3 / d7;
 param.c:	control->Tap0 = (-35.0 * swa3 * swb2 * swb2 + 21.0 * swa2 * swb3 * swb2
 param.c:            reax->tbp[i][j].q_e = control->bboost_q;
 param.c:            reax->tbp[j][i].q_e = control->bboost_q;
+param.c:        fprintf(out_control->log, "    Reading %d global parameters\n", n);
+param.c:        fprintf(out_control->log, "    Reading %d atomic parameters\n", reax->num_atom_types);
 param.c:	strcpy(control->sim_name, "default.sim");
 param.c:	control->restart = 0;
 param.c:	out_control->restart_format = 1;
@@ -423,6 +454,7 @@ param.c:	control->periodic_images[0] = 0;
 param.c:	control->periodic_images[1] = 0;
 param.c:	control->periodic_images[2] = 0;
 param.c:	control->reneighbor = 1;
+param.c:	control->qeq = 1;
 param.c:	control->vlist_cut = 0;
 param.c:	control->nbr_cut = 4.;
 param.c:	control->r_cut = 10;
@@ -479,11 +511,20 @@ param.c:	control->amd_power = 1;
 param.c:	control->amd_func = 1;
 param.c:	control->amd_hof = 0;
 param.c:	control->bboost = 0;
+param.c:        control->bboost_nrad = 0;
 param.c:	control->bboost_Vmax = 0.0;
 param.c:	control->bboost_P1 = 0.0;
 param.c:	control->bboost_q = 0.0;
 param.c:	control->bias_con_de = 0;
+param.c:        control->bias_con_de_atom1 = 0;
+param.c:        control->bias_con_de_atom2 = 0;
+param.c:	control->bias_con_de_cutoff = 0.3;
 param.c:	control->bias_con_com = 0;
+param.c:        control->bias_lj126 = 0;
+param.c:        control->bias_lj126_sigma = 0.001;
+param.c:        control->bias_lj126_epsilon = 0.000;
+param.c:        control->bias_charge = 0;
+param.c:        control->bias_charge_dfactor = 1.0;
 param.c:			strcpy(control->sim_name, tmp[1]);
 param.c:		//  control->restart = ival;
 param.c:			out_control->restart_format = ival;
@@ -501,6 +542,7 @@ param.c:			control->geo_format = ival;
 param.c:			control->restrict_bonds = ival;
 param.c:			control->tabulate = ival;
 param.c:			control->reneighbor = ival;
+param.c:			control->qeq = ival;
 param.c:			control->vlist_cut = val;
 param.c:			control->nbr_cut = val;
 param.c:			control->thb_cut = val;
@@ -571,18 +613,27 @@ param.c:			control->amd_alpha = val;
 param.c:			control->amd_power = val;
 param.c:			control->amd_func = ival;
 param.c:			control->amd_hof = val;
-param.c:			control->bboost= val;
+param.c:			control->bboost = ival;
+param.c:			control->bboost_nrad = ival;
 param.c:			control->bboost_Vmax = val;
 param.c:			control->bboost_P1 = val;
 param.c:			control->bboost_q = val;
 param.c:			control->bias_con_de = ival;
 param.c:			control->bias_con_de_n = ival;
+param.c:			control->bias_con_de_atom1 = ival;
+param.c:			control->bias_con_de_atom2 = ival;
 param.c:			control->bias_con_de_interval = ival;
+param.c:			control->bias_con_de_cutoff = val;
 param.c:			control->bias_con_de_vmax= val;
 param.c:			control->bias_con_com = ival;
 param.c:			control->bias_con_com_n = ival;
 param.c:			control->bias_con_com_interval = ival;
-param.c:			control->bias_con_com_vmax= val;
+param.c:			control->bias_con_com_vmax = val;
+param.c:			control->bias_lj126 = ival;
+param.c:			control->bias_lj126_sigma= val;
+param.c:			control->bias_lj126_epsilon = val;
+param.c:			control->bias_charge = ival;
+param.c:			control->bias_charge_dfactor = val;
 param.c:	if (control->T_mode == 0)
 param.c:		control->T = control->T_final;
 param.c:		control->T = control->T_init;
@@ -690,25 +741,6 @@ print_utils.c:  sprintf( fname, "%s.H%d.out", control->sim_name, step );
 print_utils.c:  /*sprintf( fname, "%s.b_s%d", control->sim_name, step );
 print_utils.c:    sprintf( fname, "%s.b_t%d", control->sim_name, step );
 print_utils.c:  sprintf( fname, "%s.q%d", control->sim_name, step );
-QEq.c:  if(control->refactor > 0 && 
-QEq.c:     ((data->step-data->prev_steps)%control->refactor==0 || workspace->L==NULL)){
-QEq.c:    Calculate_Droptol( workspace->H, workspace->droptol, control->droptol ); 
-QEq.c:    //sprintf( fname, "%s.L%d.out", control->sim_name, data->step );
-QEq.c:  //  workspace->b_s, control->q_err, workspace->s[0], out_control->log );
-QEq.c:  //  workspace->b_t, control->q_err, workspace->t[0], out_control->log );
-QEq.c:  //    workspace->b_s, control->q_err, workspace->s[0], out_control->log );
-QEq.c:  //    workspace->b_t, control->q_err, workspace->t[0], out_control->log );
-QEq.c:  matvecs = PGMRES( workspace, workspace->H, workspace->b_s, control->q_err,
-QEq.c:    workspace->L, workspace->U, workspace->s[0], out_control->log );
-QEq.c:  matvecs += PGMRES( workspace, workspace->H, workspace->b_t, control->q_err, 
-QEq.c:    workspace->L, workspace->U, workspace->t[0], out_control->log );
-QEq.c:  //matvecs=PCG( workspace, workspace->H, workspace->b_s, control->q_err, 
-QEq.c:  //workspace->L, workspace->U, workspace->s[0], out_control->log ) + 1;
-QEq.c:  //matvecs+=PCG( workspace, workspace->H, workspace->b_t, control->q_err, 
-QEq.c:  //workspace->L, workspace->U, workspace->t[0], out_control->log ) + 1;
-QEq.c:  // workspace->b_s, control->q_err, workspace->s[0], out_control->log ) + 1;
-QEq.c:  // workspace->b_t, control->q_err, workspace->t[0], out_control->log ) + 1;
-QEq.c:  // if( data->step == control->nsteps )
 reset_utils.c:  if( control->hb_cut > 0 )
 reset_utils.c:  if( control->ensemble == NPT || control->ensemble == sNPT || 
 reset_utils.c:      control->ensemble == iNPT )
@@ -753,9 +785,14 @@ testmd.c:  if( control->ensemble != NVE &&
 testmd.c:      control->remove_CoM_vel && 
 testmd.c:      data->step && data->step % control->remove_CoM_vel == 0 ) {
 testmd.c:    Compute_Center_of_Mass( system, data, out_control->prs );
+testmd.c:  fprintf(out_control->log, "  Reading force field\n");
+testmd.c:  fprintf(out_control->log, "  Reading control file\n");
 testmd.c:  if (control->bboost) {
+testmd.c:      fprintf(out_control->log, " Reading the ext ffield file\n");
+testmd.c:  fprintf(out_control->log, "  Reading geometry\n");
 testmd.c:  if( control->geo_format == XYZ ) {
-testmd.c:  else if( control->geo_format == PDB ) 
+testmd.c:  else if( control->geo_format == PDB ) {
+testmd.c:    fprintf(out_control->log, " Reading PDB format\n");
 testmd.c:  else if( control->geo_format == BGF ) 
 testmd.c:  else if( control->geo_format == ASCII_RESTART ) {
 testmd.c:    control->restart = 1;

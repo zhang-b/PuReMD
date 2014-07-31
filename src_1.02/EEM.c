@@ -19,7 +19,7 @@
   <http://www.gnu.org/licenses/>.
   ----------------------------------------------------------------------*/
 
-#include "QEq.h"
+#include "EEM.h"
 #include "allocate.h"
 #include "GMRES.h"
 #include "list.h"
@@ -303,7 +303,7 @@ void Calculate_Charges( reax_system *system, static_storage *workspace )
 }
 
 
-void QEq( reax_system *system, control_params *control, simulation_data *data, 
+void EEM( reax_system *system, control_params *control, simulation_data *data, 
 	  static_storage *workspace, list *far_nbrs, 
 	  output_controls *out_control )
 {

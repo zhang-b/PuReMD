@@ -73,6 +73,16 @@ void Temperature_Control( control_params *control, simulation_data *data,
 
     //printf("Now boost = %d, and Temperature = %.3f\n", data->boost, control->T);
   }
+ 
+  // calculate xi_mass
+  // Nose1984 equation (2.30)
+  data->therm.xi_mass = 2 * data->N_f * K_B * control->T * SQR(control->Tau_T) /
+                        (4 * SQR(PI));
+
+#if defined(DEBUG_FOCUS)
+  printf("here the tau_T we are using is %.4f\n", data->therm.xi_mass);
+#endif
+
 }
 
 

@@ -332,6 +332,12 @@ typedef struct
   char name[5];
 } reax_atom;
 
+typedef struct
+{
+  char **names;
+  int  *natoms;
+  int  **atoms;
+} reax_groups;
 
 typedef struct
 {
@@ -374,6 +380,7 @@ typedef struct
 {
   int N;
   reax_atom *atoms;
+  reax_groups grps;
   reax_interaction reaxprm;
   simulation_box box;
   grid g;
@@ -484,6 +491,7 @@ typedef struct
 typedef struct
 {
   real T;
+  real xi_mass;
   real xi;
   real v_xi;
   real v_xi_old;
@@ -531,7 +539,7 @@ typedef struct
   real init_forces;
   real bonded;
   real nonb;
-  real QEq;
+  real EEM;
   int  matvecs;
 } reax_timing;
 
@@ -702,7 +710,7 @@ typedef struct {
   real *nlp, *nlp_temp, *Clp, *vlpex;
   rvec *dDeltap_self;
   
-  /* QEq storage */
+  /* EEM storage */
   sparse_matrix *H, *L, *U;
   real *droptol;
   real *w;

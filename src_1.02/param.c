@@ -148,7 +148,7 @@ char Read_Force_Field_ext(FILE* fp, reax_interaction* reax,
     return 0;
 }
 
-char Read_Force_Field(FILE* fp, reax_interaction* reax) {
+char Read_Force_Field(FILE* fp, reax_interaction* reax, output_controls* out_control) {
 	char *s;
 	char **tmp;
 	char ****tor_flag;
@@ -169,6 +169,7 @@ char Read_Force_Field(FILE* fp, reax_interaction* reax) {
 
 	/* reading the number of global parameters */
 	n = atoi(tmp[0]);
+        fprintf(out_control->log, "    Reading %d global parameters\n", n);
 	if (n < 1) {
 		fprintf(stderr, "WARNING: number of globals in ffield file is 0!\n");
 		return 1;
@@ -191,6 +192,7 @@ char Read_Force_Field(FILE* fp, reax_interaction* reax) {
 	fgets(s, MAX_LINE, fp);
 	c = Tokenize(s, &tmp);
 	reax->num_atom_types = atoi(tmp[0]);
+        fprintf(out_control->log, "    Reading %d atomic parameters\n", reax->num_atom_types);
 
 	/* 3 lines of comments */
 	fgets(s, MAX_LINE, fp);

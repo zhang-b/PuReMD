@@ -6,7 +6,7 @@ CFLAGS  = -I.  -Wall -O3 -funroll-loops -fstrict-aliasing -g
 DEFS    = $(CFLAGS)
 FLAG    = $(DEFS) $(INCS) $(LIBS)
 
-OBJ     =  grid.o list.o lookup.o print_utils.o reset_utils.o restart.o random.o traj.o vector.o allocate.o analyze.o box.o system_props.o param.o pdb_tools.o neighbors.o GMRES.o EEM.o bond_orders.o single_body_interactions.o two_body_interactions.o three_body_interactions.o four_body_interactions.o forces.o integrate.o init_md.o bias.o ndx.o testmd.o
+OBJ     =  grid.o list.o lookup.o print_utils.o reset_utils.o restart.o random.o traj.o vector.o allocate.o analyze.o box.o system_props.o param.o pdb_tools.o neighbors.o GMRES.o EEM.o bond_orders.o single_body_interactions.o two_body_interactions.o three_body_interactions.o four_body_interactions.o forces.o integrate.o init_md.o bias.o testmd.o
 
 all:    SerialReax
 
@@ -97,9 +97,6 @@ vector.o: vector.c vector.h mytypes.h
 
 bias.o: bias.c bias.h mytypes.h list.o vector.o
 	$(CC) $(DEFS) -c bias.c
-
-ndx.o: ndx.c ndx.h mytypes.h
-	$(CC) $(DEFS) -c ndx.c
 
 clean:
 	rm -f *.o *~ core 

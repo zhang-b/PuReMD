@@ -32,7 +32,7 @@ int  Get_Atom_Type( reax_interaction*, char* );
 
 int  Tokenize( char*, char*** );
 
-char Read_Force_Field( FILE*, reax_interaction* );
+char Read_Force_Field( FILE*, reax_interaction*, output_controls* );
 
 char Read_Force_Field_ext( FILE*, reax_interaction*, control_params *control );
 

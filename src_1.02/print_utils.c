@@ -619,7 +619,7 @@ void Output_Results( reax_system *system, control_params *control,
 	     data->timing.init_forces/f_update,
 	     data->timing.bonded/f_update,
 	     data->timing.nonb/f_update,
-	     data->timing.QEq/f_update,
+	     data->timing.EEM/f_update,
 	     (double)data->timing.matvecs/f_update );
     
     data->timing.total = Get_Time( );
@@ -627,7 +627,7 @@ void Output_Results( reax_system *system, control_params *control,
     data->timing.init_forces = 0;
     data->timing.bonded = 0;
     data->timing.nonb = 0;
-    data->timing.QEq = 0;
+    data->timing.EEM = 0;
     data->timing.matvecs = 0;
     
     fflush( out_control->out );

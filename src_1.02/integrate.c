@@ -26,7 +26,7 @@
 #include "grid.h"
 #include "neighbors.h"
 #include "print_utils.h"
-#include "QEq.h"
+#include "EEM.h"
 #include "reset_utils.h"
 #include "restart.h"
 #include "system_props.h"
@@ -84,6 +84,7 @@ void Velocity_Verlet_NVE(reax_system* system, control_params* control,
 
 
 
+// @ref: Martyna1994
 void Velocity_Verlet_Nose_Hoover_NVT_Klein(reax_system* system, 
 					   control_params* control, 
 					   simulation_data *data, 
@@ -170,7 +171,7 @@ void Velocity_Verlet_Nose_Hoover_NVT_Klein(reax_system* system,
 #endif
     }
     
-    G_xi_new = control->Tau_T * ( 2.0 * E_kin_new - 
+    G_xi_new = therm->xi_mass * ( 2.0 * E_kin_new - 
 				  data->N_f * K_B * control->T );
     v_xi_new = therm->v_xi + 0.5 * dt * ( therm->G_xi + G_xi_new );
 #if defined(DEBUG)
@@ -471,7 +472,7 @@ void Velocity_Verlet_Nose_Hoover_NVT(reax_system* system,
 			   lists, out_control );
   fprintf(out_control->log,"nbrs-"); fflush( out_control->log );
 
-  /* QEq( system, control, workspace, lists[FAR_NBRS], out_control );
+  /* EEM( system, control, workspace, lists[FAR_NBRS], out_control );
      fprintf(out_control->log,"qeq-"); fflush( out_control->log ); */
 
   Compute_Forces( system, control, data, workspace, lists, out_control );
@@ -574,7 +575,7 @@ void Velocity_Verlet_Isotropic_NPT( reax_system* system,
 			   lists, out_control );
   fprintf(out_control->log,"nbrs-"); fflush( out_control->log );
 
-  /* QEq( system, control, workspace, lists[FAR_NBRS], out_control );
+  /* EEM( system, control, workspace, lists[FAR_NBRS], out_control );
      fprintf(out_control->log,"qeq-"); fflush( out_control->log ); */
 
   Compute_Forces( system, control, data, workspace, lists, out_control );

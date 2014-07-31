@@ -143,14 +143,14 @@ void Init_Simulation_Data( reax_system *system, control_params *control,
     data->N_f = 3 * system->N + 1;
     
     if( !control->restart || (control->restart && control->random_vel) ) {
-      data->therm.G_xi = control->Tau_T * (2.0 * data->E_Kin - 
+      data->therm.G_xi = data->therm.xi_mass * (2.0 * data->E_Kin - 
 					   data->N_f * K_B * control->T );
       data->therm.v_xi = data->therm.G_xi * control->dt;
       data->therm.v_xi_old = 0;
       data->therm.xi = 0;
 #if defined(DEBUG_FOCUS)
-      fprintf( stderr, "init_md: G_xi=%f Tau_T=%f E_kin=%f N_f=%f v_xi=%f\n",
-	       data->therm.G_xi, control->Tau_T, data->E_Kin, 
+      fprintf( stderr, "init_md: G_xi=%f xi_mass=%f E_kin=%f N_f=%f v_xi=%f\n",
+	       data->therm.G_xi, data->therm.xi_mass, data->E_Kin, 
 	       data->N_f, data->therm.v_xi );
 #endif
     }
@@ -199,7 +199,7 @@ void Init_Simulation_Data( reax_system *system, control_params *control,
   data->timing.init_forces = 0;
   data->timing.bonded = 0;
   data->timing.nonb = 0;
-  data->timing.QEq = 0;
+  data->timing.EEM = 0;
   data->timing.matvecs = 0;
 }
 
@@ -231,7 +231,7 @@ void Init_Workspace( reax_system *system, control_params *control,
   workspace->CdDelta	      = (real *) malloc( system->N * sizeof( real ) );
   workspace->vlpex	      = (real *) malloc( system->N * sizeof( real ) );
 
-  /* QEq storage */
+  /* EEM storage */
   workspace->H        = NULL;
   workspace->L        = NULL;
   workspace->U        = NULL;
@@ -456,12 +456,10 @@ void Init_Out_Controls(reax_system *system, control_params *control,
     fflush( out_control->pot );
     
     /* Init log file */
-    strcpy( temp, control->sim_name );
-    strcat( temp, ".log" );
-    out_control->log = fopen( temp, "w" );
-    fprintf( out_control->log, "%-6s%10s%10s%10s%10s%10s%10s%10s\n", 
+    /* fprintf( out_control->log, "%-6s%10s%10s%10s%10s%10s%10s%10s\n", 
 	     "step", "total", "neighbors", "init", "bonded", 
-	     "nonbonded", "QEq", "matvec" );
+	     "nonbonded", "EEM", "matvec" );
+    */
 
     /* Init bond boost file */
     strcpy( temp, control->sim_name );
