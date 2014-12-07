@@ -1,7 +1,7 @@
 CC      = gcc 
 
 LIBS    = -lm -lz
-CFLAGS  = -I.  -Wall -O3 -funroll-loops -fstrict-aliasing -g -DTEST_FORCES
+CFLAGS  = -I.  -Wall -O3 -funroll-loops -fstrict-aliasing -g -DTEST_FORCES -DTEST_ENERGY
  #-finline-functions  -finline-limit=15 -g#-DTEST -pg -ldl -rdynamic -g
 DEFS    = $(CFLAGS)
 FLAG    = $(DEFS) $(INCS) $(LIBS)
@@ -11,7 +11,7 @@ OBJ     =  grid.o list.o lookup.o print_utils.o reset_utils.o restart.o random.o
 all:    SerialReax
 
 SerialReax: $(OBJ) Makefile
-	$(CC) $(OBJ) $(FLAG) -o SerialReax
+	$(CC) $(OBJ) $(FLAG) -o SerialReax_debug
 
 testmd.o: testmd.c mytypes.h forces.o analyze.o init_md.o integrate.o neighbors.o param.o pdb_tools.o QEq.o system_props.o traj.o vector.o
 	$(CC) $(DEFS) -c testmd.c

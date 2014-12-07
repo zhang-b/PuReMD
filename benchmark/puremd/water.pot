@@ -1,0 +1,2 @@
+step          ebond        eatom          elp         eang         ecoa          ehb         etor        econj         evdw        ecoul         epol
+0         -16048.45     -1293.84        -0.00        21.26         0.00        -0.09         0.01         0.00      6040.07        34.48      -593.63

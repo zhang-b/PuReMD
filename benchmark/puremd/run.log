@@ -1,0 +1,29 @@
+Start reading the system
+  Reading force field
+    Reading 39 global parameters
+    Reading 9 atomic parameters
+  Reading control file
+  Reading geometry
+ Reading PDB format
+Finish reading the system
+
+Start initializing the system
+Finish initializing the system
+
+Start reseting the system
+Finish reseting the system
+
+Start generating neighbor lists for the first time
+Finish generating neighbor lists
+
+Start force calculation for the first time
+Finish force calculation
+
+Start kinetic energy calculation for the first time
+Finish kinetic energy calculation
+
+Start MD loop
+     0      0.02      0.00      0.00      0.00      0.00      0.00     10.00
+Box written
+ATOM written
+total: 0.03 secs

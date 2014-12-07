@@ -172,28 +172,28 @@ int main(int argc, char* argv[])
   fprintf(out_control.log,"Start reading the system\n");
   Read_System( argv[1], argv[2], argv[3], argv[4], &system,
              &control, &data, &workspace, &out_control );
-  fprintf(out_control.log,"Finish reading the system\n");
+  fprintf(out_control.log,"Finish reading the system\n\n");
   fprintf(out_control.log,"Start initializing the system\n");
   Initialize( &system, &control, &data, &workspace, &lists, 
 	      &out_control, &Evolve );
-  fprintf(out_control.log,"Finish initializing the system\n");
+  fprintf(out_control.log,"Finish initializing the system\n\n");
 
   /* compute f_0 */
   //if( control.restart == 0 ) {
   fprintf(out_control.log,"Start reseting the system\n");
   Reset( &system, &control, &data, &workspace, &lists );
-  fprintf(out_control.log,"Finish reseting the system\n");
+  fprintf(out_control.log,"Finish reseting the system\n\n");
 
   fprintf(out_control.log,"Start generating neighbor lists for the first time\n");
   Generate_Neighbor_Lists( &system, &control, &data, &workspace, 
 			   &lists, &out_control );
-  fprintf(out_control.log,"Finish generating neighbor lists\n");
+  fprintf(out_control.log,"Finish generating neighbor lists\n\n");
   fprintf(out_control.log,"Start force calculation for the first time\n");
   Compute_Forces(&system, &control, &data, &workspace, &lists, &out_control);
-  fprintf(out_control.log,"Finish force calculation\n");
+  fprintf(out_control.log,"Finish force calculation\n\n");
   fprintf(out_control.log,"Start kinetic energy calculation for the first time\n");
   Compute_Kinetic_Energy( &system, &data );
-  fprintf(out_control.log,"Finish kinetic energy calculation\n");
+  fprintf(out_control.log,"Finish kinetic energy calculation\n\n");
   fprintf(out_control.log,"Start MD loop\n");
   Output_Results(&system, &control, &data, &workspace, &lists, &out_control);
   ++data.step;

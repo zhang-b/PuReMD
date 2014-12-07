@@ -1,0 +1,21 @@
+@log
+@note: need to determine the version of puremd
+# For PureMD
+/net/hulk/home6/chengtao/soft/reaxc_bboost/PuReMD/src_1.02/SerialReax geo ffield control
+# For Lammps
+/ul/chengtao/soft/lammps-1Feb14/src/lmp_openmpi -in lammps_input
+
+        LAMMPS      PureMD
+PotEng  -11839.1471 -11840.19
+ebond   -16048.4548 -16048.45
+eatom   -1293.8418  -1293.84
+elp     0   0
+eang    21.2601 21.26
+ecoa    0   0
+ehb -0.089  -0.09
+etor    0.0149  0.01
+econj   0   0
+evdw    6040.0694   6040.07
+ecoul   34.4813 34.48
+epol    -592.5872   -593.63
+

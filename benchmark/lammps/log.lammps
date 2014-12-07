@@ -1,0 +1,229 @@
+LAMMPS (1 Feb 2014)
+
+#Lammps 2009 input file generate by DFF
+
+units          real
+atom_style     charge
+boundary       p p p
+
+read_data      lammps.data
+  orthogonal box = (0 0 0) to (25 25 25)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  198 atoms
+
+pair_style      reax/c control.reaxc
+pair_coeff      * * ffield O H
+
+#----Neighbor Section----#
+neighbor                1.0 bin
+neigh_modify    delay 0 every 10 check no
+
+
+#----ReaxFF Energy Terms----#
+compute         reax all pair reax/c
+variable eb     equal c_reax[1]
+variable ea     equal c_reax[2]
+variable elp    equal c_reax[3]
+variable emol   equal c_reax[4]
+variable ev     equal c_reax[5]
+variable epen   equal c_reax[6]
+variable ecoa   equal c_reax[7]
+variable ehb    equal c_reax[8]
+variable et     equal c_reax[9]
+variable eco    equal c_reax[10]
+variable ew     equal c_reax[11]
+variable ep     equal c_reax[12]
+variable efi    equal c_reax[13]
+variable eqeq   equal c_reax[14]
+
+fix             QEQ all qeq/reax 1 0.0 10.0 1.0e-6 reax/c
+
+thermo          1
+thermo_style    custom step etotal ke pe temp press vol v_eb v_ea v_elp v_emol v_ev v_epen v_ecoa v_ehb v_et v_eco v_ew v_ep v_efi v_eqeq cella cellb cellc cellalpha cellbeta cellgamma
+thermo_modify   line multi
+
+#fix             201 all box/relax aniso 0.0 vmax 0.001
+
+min_style       sd
+minimize        0 1.0e-8 0 0
+WARNING: Resetting reneighboring criteria during minimization (../min.cpp:173)
+Memory usage per processor = 27.382 Mbytes
+---------------- Step        0 ----- CPU =      0.0000 (sec) ----------------
+Step     =              0 TotEng   =    -11839.1471 KinEng   =         0.0000 
+PotEng   =    -11839.1471 Temp     =         0.0000 Press    =     -1821.9847 
+Volume   =     15625.0000 eb       =    -16048.4548 ea       =     -1293.8418 
+elp      =        -0.0000 emol     =         0.0000 ev       =        21.2601 
+epen     =         0.0000 ecoa     =         0.0000 ehb      =        -0.0890 
+et       =         0.0149 eco      =         0.0000 ew       =      6040.0694 
+ep       =        34.4810 efi      =         0.0000 eqeq     =      -592.5870 
+Cella    =        25.0000 Cellb    =        25.0000 Cellc    =        25.0000 
+CellAlpha =        90.0000 CellBeta =        90.0000 CellGamma =        90.0000 
+Loop time of 1.90735e-06 on 1 procs for 0 steps with 198 atoms
+
+Minimization stats:
+  Stopping criterion = max iterations
+  Energy initial, next-to-last, final = 
+        -11839.1471231                  0     -11839.1471231
+  Force two-norm initial, final = 796.999 796.999
+  Force max component initial, final = 120.233 120.233
+  Final line search alpha, max atom move = 0 0
+  Iterations, force evaluations = 0 0
+
+Pair  time (%) = 0 (0)
+Neigh time (%) = 0 (0)
+Comm  time (%) = 0 (0)
+Outpt time (%) = 0 (0)
+Other time (%) = 1.90735e-06 (100)
+
+Nlocal:    198 ave 198 max 198 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:    1132 ave 1132 max 1132 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    10006 ave 10006 max 10006 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 10006
+Ave neighs/atom = 50.5354
+Neighbor list builds = 0
+Dangerous builds = 0
+
+min_style       cg
+minimize        0 1.0e-8 0 0
+WARNING: Resetting reneighboring criteria during minimization (../min.cpp:173)
+Memory usage per processor = 27.382 Mbytes
+---------------- Step        0 ----- CPU =      0.0000 (sec) ----------------
+Step     =              0 TotEng   =    -11839.1471 KinEng   =         0.0000 
+PotEng   =    -11839.1471 Temp     =         0.0000 Press    =     -1821.9833 
+Volume   =     15625.0000 eb       =    -16048.4548 ea       =     -1293.8418 
+elp      =        -0.0000 emol     =         0.0000 ev       =        21.2601 
+epen     =         0.0000 ecoa     =         0.0000 ehb      =        -0.0890 
+et       =         0.0149 eco      =         0.0000 ew       =      6040.0694 
+ep       =        34.4817 efi      =         0.0000 eqeq     =      -592.5876 
+Cella    =        25.0000 Cellb    =        25.0000 Cellc    =        25.0000 
+CellAlpha =        90.0000 CellBeta =        90.0000 CellGamma =        90.0000 
+Loop time of 2.86102e-06 on 1 procs for 0 steps with 198 atoms
+
+Minimization stats:
+  Stopping criterion = max iterations
+  Energy initial, next-to-last, final = 
+         -11839.147122                  0      -11839.147122
+  Force two-norm initial, final = 796.999 796.999
+  Force max component initial, final = 120.233 120.233
+  Final line search alpha, max atom move = 0 0
+  Iterations, force evaluations = 0 0
+
+Pair  time (%) = 0 (0)
+Neigh time (%) = 0 (0)
+Comm  time (%) = 0 (0)
+Outpt time (%) = 0 (0)
+Other time (%) = 2.86102e-06 (100)
+
+Nlocal:    198 ave 198 max 198 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:    1132 ave 1132 max 1132 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    10006 ave 10006 max 10006 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 10006
+Ave neighs/atom = 50.5354
+Neighbor list builds = 0
+Dangerous builds = 0
+
+min_style       quickmin
+minimize        0 1.0e-8 0 0
+WARNING: Resetting reneighboring criteria during minimization (../min.cpp:173)
+Memory usage per processor = 26.6818 Mbytes
+---------------- Step        0 ----- CPU =      0.0000 (sec) ----------------
+Step     =              0 TotEng   =    -11839.1471 KinEng   =         0.0000 
+PotEng   =    -11839.1471 Temp     =         0.0000 Press    =     -1821.9842 
+Volume   =     15625.0000 eb       =    -16048.4548 ea       =     -1293.8418 
+elp      =        -0.0000 emol     =         0.0000 ev       =        21.2601 
+epen     =         0.0000 ecoa     =         0.0000 ehb      =        -0.0890 
+et       =         0.0149 eco      =         0.0000 ew       =      6040.0694 
+ep       =        34.4812 efi      =         0.0000 eqeq     =      -592.5872 
+Cella    =        25.0000 Cellb    =        25.0000 Cellc    =        25.0000 
+CellAlpha =        90.0000 CellBeta =        90.0000 CellGamma =        90.0000 
+Loop time of 0 on 1 procs for 0 steps with 198 atoms
+
+Minimization stats:
+  Stopping criterion = max iterations
+  Energy initial, next-to-last, final = 
+        -11839.1471227                  0     -11839.1471227
+  Force two-norm initial, final = 796.999 796.999
+  Force max component initial, final = 120.233 120.233
+  Final line search alpha, max atom move = 0 0
+  Iterations, force evaluations = 0 0
+
+Pair  time (%) = 0 (0)
+Neigh time (%) = 0 (0)
+Comm  time (%) = 0 (0)
+Outpt time (%) = 0 (0)
+Other time (%) = 0 (0)
+
+Nlocal:    198 ave 198 max 198 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:    1132 ave 1132 max 1132 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    10006 ave 10006 max 10006 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 10006
+Ave neighs/atom = 50.5354
+Neighbor list builds = 0
+Dangerous builds = 0
+
+write_restart   min.rst
+
+dump           100 all custom 1 dump.lammpstrj id type x y z vx vy vz
+dump_modify    100 sort id
+dump           101 all cfg 1 dump.*.cfg mass type xs ys zs vx vy vz fx fy fz
+dump_modify    101 element O H
+
+#fix            200 all reax/c/bonds 1 bonds.reax
+#fix            201 all reax/c/species 1 1 1 species.out
+run            1
+Memory usage per processor = 29.03 Mbytes
+---------------- Step        0 ----- CPU =      0.0000 (sec) ----------------
+Step     =              0 TotEng   =    -11839.1471 KinEng   =         0.0000 
+PotEng   =    -11839.1471 Temp     =         0.0000 Press    =     -1821.9834 
+Volume   =     15625.0000 eb       =    -16048.4548 ea       =     -1293.8418 
+elp      =        -0.0000 emol     =         0.0000 ev       =        21.2601 
+epen     =         0.0000 ecoa     =         0.0000 ehb      =        -0.0890 
+et       =         0.0149 eco      =         0.0000 ew       =      6040.0694 
+ep       =        34.4813 efi      =         0.0000 eqeq     =      -592.5873 
+Cella    =        25.0000 Cellb    =        25.0000 Cellc    =        25.0000 
+CellAlpha =        90.0000 CellBeta =        90.0000 CellGamma =        90.0000 
+---------------- Step        1 ----- CPU =      0.0100 (sec) ----------------
+Step     =              1 TotEng   =    -11839.1471 KinEng   =         0.0000 
+PotEng   =    -11839.1471 Temp     =         0.0000 Press    =     -1821.9845 
+Volume   =     15625.0000 eb       =    -16048.4548 ea       =     -1293.8418 
+elp      =        -0.0000 emol     =         0.0000 ev       =        21.2601 
+epen     =         0.0000 ecoa     =         0.0000 ehb      =        -0.0890 
+et       =         0.0149 eco      =         0.0000 ew       =      6040.0694 
+ep       =        34.4813 efi      =         0.0000 eqeq     =      -592.5872 
+Cella    =        25.0000 Cellb    =        25.0000 Cellc    =        25.0000 
+CellAlpha =        90.0000 CellBeta =        90.0000 CellGamma =        90.0000 
+Loop time of 0.0100319 on 1 procs for 1 steps with 198 atoms
+
+Pair  time (%) = 0.00495291 (49.3714)
+Neigh time (%) = 0 (0)
+Comm  time (%) = 5.72205e-06 (0.0570383)
+Outpt time (%) = 0.00437617 (43.6224)
+Other time (%) = 0.000697136 (6.94916)
+
+Nlocal:    198 ave 198 max 198 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:    1132 ave 1132 max 1132 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    10006 ave 10006 max 10006 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 10006
+Ave neighs/atom = 50.5354
+Neighbor list builds = 0
+Dangerous builds = 0
+
+Please see the log.cite file for references relevant to this simulation
+
