@@ -22,5 +22,7 @@
 #include "mytypes.h"
 
 char Read_Ndx_File( FILE*, reax_groups*, control_params*, output_controls* );
+char Make_Default_Groups( reax_groups*, control_params*, reax_system*,
+                         output_controls* );
 
 #endif

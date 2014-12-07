@@ -132,7 +132,8 @@ void Read_Binary_Restart( char *fname, reax_system *system,
   
   data->step = data->prev_steps;
   // nsteps is updated based on the number of steps in the previous run
-  control->nsteps += data->prev_steps;  
+  if (control->reset_time == 0)
+    control->nsteps += data->prev_steps;  
 }
 
 

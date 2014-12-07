@@ -100,16 +100,6 @@ void Read_System( char *geof, char *ff, char *ctrlf, char *ndx,
   }
   Read_Control_File( ctrl, system, control, out_control );
 
-  /*  index file */
-  if (ndx != NULL) {
-      ndxfile = fopen( "index.ndx", "r");
-      if (ndxfile == NULL) {
-      perror("Error: in opening index file\n");
-      exit(EXIT_FAILURE);
-      }
-  Read_Ndx_File( ndxfile, &(system->grps), control, out_control );
-  }
-
   /* read the boost parameters */
   if (control->bboost) {
     if ((bboost = fopen( "ffield.ext", "r")) == NULL ) {
@@ -146,6 +136,18 @@ void Read_System( char *geof, char *ff, char *ctrlf, char *ndx,
     fprintf( stderr, "unknown geo file format. terminating!\n" );
     exit(1);
   }  
+
+  /*  index file */
+  Make_Default_Groups(&(system->grps), control, system, out_control );
+  if (ndx != NULL) {
+      ndxfile = fopen( "index.ndx", "r");
+      if (ndxfile == NULL) {
+      perror("Error: in opening index file\n");
+      exit(EXIT_FAILURE);
+      }
+  Read_Ndx_File( ndxfile, &(system->grps), control, out_control );
+  }
+
 
 #if defined(DEBUG_FOCUS)
   fprintf( stderr, "input files have been read...\n" );

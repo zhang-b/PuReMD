@@ -122,8 +122,9 @@ void Init_Simulation_Data( reax_system *system, control_params *control,
  
   Reset_Simulation_Data( data );
 
-  if( !control->restart )  
+  if( !control->restart || control->reset_time )  
     data->step = data->prev_steps = 0;
+  data->step_reweight = 0.0;
   
   /* state of the boost*/
   data->boost = 0;

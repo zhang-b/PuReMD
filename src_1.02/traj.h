@@ -146,6 +146,8 @@ int Write_Custom_Header( reax_system*, control_params*,
 			 static_storage*, output_controls* );
 int Write_xyz_Header   ( reax_system*, control_params*, 
 			 static_storage*, output_controls* );
+int Write_pdb_Header   ( reax_system*, control_params*, 
+			 static_storage*, output_controls* );
 
 /*
   Write_Traj_Header( gzfile file,
@@ -183,6 +185,8 @@ int Append_Custom_Frame( reax_system*, control_params*, simulation_data*,
 int Append_xyz_Frame   ( reax_system*, control_params*, simulation_data*, 
 			 static_storage*, list**, output_controls* );
 
+int Append_pdb_Frame   ( reax_system*, control_params*, simulation_data*, 
+			 static_storage*, list**, output_controls* );
 
 void Read_Traj( output_controls*, char * );
 

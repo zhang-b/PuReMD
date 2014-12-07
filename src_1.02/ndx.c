@@ -30,10 +30,9 @@ char Read_Ndx_File(FILE *fp, reax_groups *grps, control_params *control,
     char *ret1, *ret2;
     char *sep = "\t \n!=";
     char *tmp, *token;
-    int n, i, ng, natom, counter;
+    int n, natom, counter;
     int flag;
 
-    ng = 0;
     natom = 0;
     counter = 0;
     flag = 0;
@@ -41,14 +40,6 @@ char Read_Ndx_File(FILE *fp, reax_groups *grps, control_params *control,
     s = (char*) calloc(MAX_LINE, sizeof(char));
     tmp = (char*) calloc(MAX_LINE, sizeof(char));
     token = (char*) calloc(MAX_LINE, sizeof(char));
-    grps = (reax_groups*) calloc(1, sizeof(reax_groups)); 
-    grps->natoms = (int*) calloc(MAX_GROUPS, sizeof(int));
-    grps->names = (char**) calloc(MAX_GROUPS, sizeof(char *));
-    grps->atoms = (int**) calloc(MAX_GROUPS, sizeof(int*));
-    for (i = 0; i < MAX_GROUPS; i++) {
-        grps->names[i] = (char*) calloc(MAX_LINE, sizeof(char));
-        grps->atoms[i] = (int*) calloc(MAX_ATOMS, sizeof(int*));
-    }
 
     if ((fp = fopen("index.ndx", "r")) == NULL) {
         fprintf(stderr, "Error opening index file!\n");
@@ -62,24 +53,24 @@ char Read_Ndx_File(FILE *fp, reax_groups *grps, control_params *control,
         if ((ret1 == NULL) || ret2 == NULL) {
             token = strtok(s, sep);
             while(token != NULL) {
-                grps->atoms[ng][counter] = atoi(token);
+                grps->atoms[grps->ngrps][counter] = atoi(token);
                 token = strtok(NULL, sep);
                 counter++;
             }
         }
         else {
             n = ret2 - ret1;
-            strncpy(grps->names[ng], ret1 +2, n -2);
+            strncpy(grps->names[grps->ngrps], ret1 + 2, n - 2);
             if (flag) {
-                grps->natoms[ng] = counter;
-                ng++;
+                grps->natoms[grps->ngrps] = counter;
+                grps->ngrps++;
                 counter = 0;
             }
             flag = IN;
         }
     }
-    grps->natoms[ng] = counter - 1;
-    //nlist[ng] = counter;
+    grps->natoms[grps->ngrps] = counter - 1;
+    //nlist[grps->ngrps] = counter;
     
     // Output
     
@@ -109,3 +100,26 @@ char Read_Ndx_File(FILE *fp, reax_groups *grps, control_params *control,
 
 }
 
+char Make_Default_Groups(reax_groups *grps, control_params *control, 
+                  reax_system* system, output_controls *out_control) {
+    int i;
+
+    grps = (reax_groups*) calloc(1, sizeof(reax_groups)); 
+    grps->natoms = (int*) calloc(MAX_GROUPS, sizeof(int));
+    grps->names = (char**) calloc(MAX_GROUPS, sizeof(char *));
+    grps->atoms = (int**) calloc(MAX_GROUPS, sizeof(int*));
+    grps->ngrps = 0;
+
+    for (i = 0; i < MAX_GROUPS; i++) {
+        grps->names[i] = (char*) calloc(MAX_LINE, sizeof(char));
+        grps->atoms[i] = (int*) calloc(MAX_ATOMS, sizeof(int*));
+    }
+    grps->ngrps = 1;
+    strcpy(grps->names[grps->ngrps], "system");
+    for (i = 0; i<system->N; i++) {
+        grps->atoms[grps->ngrps][i] = i;
+    }
+    grps->ngrps++;
+
+    return 0;
+}

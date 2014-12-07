@@ -337,6 +337,7 @@ typedef struct
   char **names;
   int  *natoms;
   int  **atoms;
+  int  ngrps;
 } reax_groups;
 
 typedef struct
@@ -395,6 +396,7 @@ typedef struct
   int  restart;
   int  random_vel;
 
+  int  reset_time;
   int  reposition_atoms;
 
   /* ensemble values:
@@ -551,6 +553,7 @@ typedef struct
   int boost;         /*states of the boost*/
   real ignite_T;     /*ignite Temperature */
   real time;
+  real step_reweight;
 
   real M;			   /* Total Mass */
   real inv_M;                      /* 1 / Total Mass */

@@ -476,7 +476,7 @@ void Analyze_Fragments( reax_system *system, control_params *control,
   //list *old_bonds = (*lists) + OLD_BONDS;
 
   /* fragment analysis */
-  fprintf( fout, "step%d fragments\n", data->step );
+  fprintf( fout, "step %d fragments real step %.2f\n", data->step, data->step_reweight);
   num_fragments = 0;
   num_fragment_types = 0;
   memset( mark, 0, system->N * sizeof(int) );

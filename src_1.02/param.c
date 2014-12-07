@@ -831,6 +831,7 @@ char Read_Control_File(FILE* fp, reax_system *system, control_params* control,
 	control->periodic_images[1] = 0;
 	control->periodic_images[2] = 0;
 
+        control->reset_time = 0;
 	control->reneighbor = 1;
 	control->qeq = 1;
 	control->vlist_cut = 0;
@@ -980,6 +981,9 @@ char Read_Control_File(FILE* fp, reax_system *system, control_params* control,
 		} else if (strcmp(tmp[0], "tabulate_long_range") == 0) {
 			ival = atoi(tmp[1]);
 			control->tabulate = ival;
+		} else if (strcmp(tmp[0], "reset_time") == 0) {
+			ival = atoi(tmp[1]);
+			control->reset_time = ival;
 		} else if (strcmp(tmp[0], "reneighbor") == 0) {
 			ival = atoi(tmp[1]);
 			control->reneighbor = ival;
@@ -1107,6 +1111,13 @@ char Read_Control_File(FILE* fp, reax_system *system, control_params* control,
 				out_control->append_traj_frame = (int(*)(reax_system*,
 						control_params*, simulation_data*, static_storage*,
 						list **, void*)) Append_xyz_Frame;
+			} else if (out_control->traj_format == 3) {
+				out_control->write_header
+						= (int(*)(reax_system*, control_params*,
+								static_storage*, void*)) Write_pdb_Header;
+				out_control->append_traj_frame = (int(*)(reax_system*,
+						control_params*, simulation_data*, static_storage*,
+						list **, void*)) Append_pdb_Frame;
 			}
 		} else if (strcmp(tmp[0], "traj_title") == 0) {
 			strcpy(out_control->traj_title, tmp[1]);

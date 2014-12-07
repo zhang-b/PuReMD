@@ -21,6 +21,8 @@
 
 #include "traj.h"
 #include "list.h"
+#include "pdb_tools.h"
+
 
 /************************************************/
 /*      CUSTOM FORMAT ROUTINES                  */
@@ -487,4 +489,102 @@ int Append_xyz_Frame( reax_system *system, control_params *control,
   fflush( out_control->trj );
 
   return 1;
+}
+
+int Write_pdb_Header( reax_system *system, control_params *control, 
+		      static_storage* workspace, output_controls *out_control )
+{
+  fflush( out_control->trj );
+  
+  return 1;
+}
+
+int Append_pdb_Frame( reax_system *system, control_params *control, 
+		      simulation_data *data, static_storage *workspace, 
+		      list **lists, output_controls *out_control )
+{
+  int  i, j, k, count;
+  int  connect[4];
+  char temp[MAX_STR], name[10];
+  real bo;
+  real alpha, beta, gamma;
+  list *bonds = (*lists) + BONDS;
+  
+  out_control->write( out_control->trj, "TITLE  TITLE t= %d\n", data->step);
+  out_control->write( out_control->trj, "REMARK  NO REMARK\n" );
+  /*  Writing Box information */
+  /*  Write full volume tensor from the angles (as soon as possible) TODO_SOON */
+  gamma = acos( (system->box.box[0][0] * system->box.box[1][0] +  
+                         system->box.box[0][1] * system->box.box[1][1] + 
+                         system->box.box[0][2] * system->box.box[1][2]) / 
+                    (system->box.box_norms[0]*system->box.box_norms[1]));
+  beta  = acos( (system->box.box[0][0] * system->box.box[2][0] +  
+                         system->box.box[0][1] * system->box.box[2][1] + 
+                         system->box.box[0][2] * system->box.box[2][2]) / 
+                    (system->box.box_norms[0]*system->box.box_norms[2]));
+  alpha = acos( (system->box.box[2][0] * system->box.box[1][0] +  
+                         system->box.box[2][1] * system->box.box[1][1] + 
+                         system->box.box[2][2] * system->box.box[1][2]) / 
+                    (system->box.box_norms[2]*system->box.box_norms[1]));
+
+  out_control->write(out_control->trj,PDB_CRYST1_FORMAT_O,
+              "CRYST1",
+              system->box.box_norms[0],
+              system->box.box_norms[1],
+              system->box.box_norms[2],
+              RAD2DEG(alpha),
+              RAD2DEG(beta),
+              RAD2DEG(gamma),
+              " ",
+              0);
+
+  out_control->write( out_control->trj, "MODEL      1\n" );
+  /*  Writing atom information */
+  for (i=0; i < system->N; i++) {
+    strncpy( name, system->reaxprm.sbp[system->atoms[i].type].name, 2 );
+    name[2] = '\0';
+    out_control->write( out_control->trj,PDB_ATOM_FORMAT_O,
+                     "ATOM  ",
+                     workspace->orig_id[i],
+                     name,
+                     ' ',
+                     "REX",
+                     ' ',
+                     1,
+                     ' ',
+                     system->atoms[i].x[0],
+                     system->atoms[i].x[1],
+                     system->atoms[i].x[2],
+                     1.0, 
+                     0.0,
+                     "0",
+                     name,
+                     "  " );
+  }
+
+  /*  Writing connect information */
+  for(i=0; i < system->N; i++) {
+    count = 0;
+
+    for(j = Start_Index(i, bonds); j < End_Index(i, bonds); ++j) {
+      bo = bonds->select.bond_list[j].bo_data.BO;
+      if (bo > 0.3)
+    {
+      connect[count]=workspace->orig_id[bonds->select.bond_list[j].nbr];
+      count++;
+    }   
+    }
+
+    out_control->write( out_control->trj, "%6s%6d", "CONECT", workspace->orig_id[i] );
+    for( k=0; k < count; k++ )
+      out_control->write( out_control->trj, "%6d", connect[k] );
+    out_control->write( out_control->trj, "\n" );
+  }
+
+  out_control->write( out_control->trj, "TER\n" );
+  out_control->write( out_control->trj, "ENDMDL\n" );
+  fflush( out_control->trj );
+
+  return 1;
+
 }
